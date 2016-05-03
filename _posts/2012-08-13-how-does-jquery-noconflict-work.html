@@ -1,0 +1,14 @@
+---
+layout: post
+title: How does jQuery.noConflict work?
+date: 2012-08-13
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+The <code>noConflict</code> function in jQuery lets you use multiple versions of jQuery on the same page or load other libraries that also have a <code>$</code> function.<br /><h3>The code in jQuery 1.7.2</h3><pre class="brush: javascript">noConflict: function( deep ) {<br />    if ( window.$ === jQuery ) {<br />        window.$ = _$;<br />    }<br /><br />    if ( deep &amp;&amp; window.jQuery === jQuery ) {<br />        window.jQuery = _jQuery;<br />    }<br /><br />    return jQuery;<br />}</pre>The code is quite easy to understand, once you know that when jQuery is loaded it puts backups of <code>window.$</code> and <code>window.jQuery</code> into <code>_$</code> and <code>_jQuery</code>. <br /><pre class="brush: javascript">// Map over jQuery in case of overwrite<br />_jQuery = window.jQuery,<br /><br />// Map over the $ in case of overwrite<br />_$ = window.$,<br /></pre><h3>Return jQuery</h3>This returns the jQuery function that jQuery uses internally. This way, when you use <code>$.noConflict(true)</code>, you can use the return value as your <code>$</code> function - because <code>window.jQuery</code> will be overwritten. <br /><h3>Why the if's?</h3>If <code>noConflict</code> wouldn't check that the global object actually stores a reference to jQuery it could overwrite another library. Imagine you  <br /><ol><li>Load jQuery</li><li>Call noConflict</li><li>Load another <code>$</code> function library</li><li>Accidentally call noConflict again</li></ol>This would set the <code>$</code> function of the other library to undefined. (You're right if you think that this is not a very likely scenario. Some earlier version of jQuery didn't even do this check.) <br /><code>window.$</code> is compared with <code>jQuery</code> rather than <code>$</code> because internally jQuery only uses the local <code>jQuery</code> variable. <code>$</code> is only used when exposing the jQuery object to <code>window</code>.</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

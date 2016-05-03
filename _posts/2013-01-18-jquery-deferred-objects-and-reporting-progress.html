@@ -1,0 +1,14 @@
+---
+layout: post
+title: jQuery deferred objects and reporting progress
+date: 2013-01-18
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+<div><span style="font-size: x-small;">Previous posts on deferred objects: <a href="http://blog.mostlystatic.com/2013/01/introduction-to-jquery-deferred-objects.html">with $.ajax</a> and <a href="http://blog.mostlystatic.com/2013/01/using-deferred-objects-in-your-own.html">your own components</a>.</span><br /><br />jQuery deferred objects allow you to report progress by calling the <a href="http://api.jquery.com/deferred.notify/">notify function</a>. You can add a handler to promise objects with the <a href="http://api.jquery.com/deferred.progress/">progress function</a>. (Promise objects are subsets of deferred objects that are returned to the observing code.)</div><pre class="brush: javascript">function getExamplePromise() {<br />    var def = $.Deferred();<br />    var count = 0;<br />    var interval = setInterval(function () {<br />        count++;<br />        def.notify(Math.round(count / 4 * 100) + "%")<br />        if (count === 4) {<br />            clearInterval(interval);<br />            def.resolve();<br />        }<br />    }, 500);<br />    return def.promise();<br />}<br /><br />var promise = getExamplePromise();<br />promise.progress(function (progress) {<br />    console.log("Progress report: " + progress);<br />});<br />promise.then(function () {<br />    console.log("Done")<br />});</pre><div>This will be printed in the console:<br /><pre>Progress report: 25%<br />Progress report: 50%<br />Progress report: 75%<br />Progress report: 100%<br />Done</pre>You can use <a href="http://api.jquery.com/deferred.notifyWith/">notifyWith</a> if you want to set the execution context in the progress handler.</div></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

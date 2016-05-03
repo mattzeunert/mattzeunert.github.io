@@ -1,0 +1,14 @@
+---
+layout: post
+title: Logging namespace field addition and removal in Javascript
+date: 2012-06-09
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+I've been trying to figure out if a Javascript library is leaking global variables that might change the behavior of a function when it is called multiple times. So I made <a href="https://github.com/mostlystatic/namespace-logger">namespaceLogger</a>:<br /><br /><ul><li>View fields that were added or removed since the previous log call</li><li>View all non-default fields in the global namespace (so you'll just see jQuery and $, but not location ,&nbsp;Boolean or&nbsp;SVGAngle)</li></ul><div>You can include or paste the&nbsp;<a href="https://raw.github.com/mostlystatic/namespace-logger/master/namespace-logger.js">raw javascript code</a>&nbsp;to use it. For example, pasting it on the blog I get this:</div> <pre class="brush: javascript"><br />Found 871 fields in namespace [object Window]<br />Found 334 special fields: XRegExp, SyntaxHighlighter, jstiming, tickAboveFold, a, b, c, f, g, h, i, j, k, setAttributeOnload, ___gcfg, ___gapisync, gapi, gadgets, shindig, osapi, google, hackhack, safeJSON, tamings___, bridge___, caja___, ___, friendconnect_serverBase, friendconnect_loginUrl, friendconnect_gadgetPrefix, f...<br />Full log in window.namespaceLogger.lastLog<br />> window.hi = "Hello!"<br />> window.namespaceLogger.log()<br />1 new field: hi<br /></pre> To change the namespace, call window.namespaceLogger.setNamespace.</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

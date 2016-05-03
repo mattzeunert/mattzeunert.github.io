@@ -1,0 +1,14 @@
+---
+layout: post
+title: How does .fn work in javascript libraries?
+date: 2012-06-13
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+<p>Many javascript libraries allow you to add plugins by adding functions to their .fn field. Here's a jQuery example: </p> <pre class="brush: javascript">&lt;script&gt;<br />(function($){<br /> $.fn.sayHi = function(){<br />  $(this).html("Hello!");<br /> };<br />})(jQuery)<br />jQuery("body").sayHi();<br />&lt;/script&gt;<br /></pre> <p>As you can see the object returned by the $() call implements the sayHi function. This is implemented by <b>setting jQuery.fn to jQuery.prototype</b>. </p><p>When you call $() a new jQuery.fn.init instance is created. And because jQuery.fn.init.prototype is set to jQuery.fn you get your new jQuery instance, including your sayHi function. </p> <p>You can find the relevant code in <a href="https://github.com/jquery/jquery/blob/master/src/core.js#L88">core.js</a> in the jQuery Github repository. </p> <h3>Why not just attach it to jQuery.prototype?</h3> <p>According to the <a href="http://www.amazon.co.uk/jQuery-Cookbook-Cody-Lindley/dp/0596159773">jQuery Cookbook</a> jQuery 1.0 used to copy the functions from jQuery.fn to the jQuery object. That proved inefficient and was therefore changed to use jQuery.prototype while maintaining backward compatibility. </br>I suppose this way also provides a way to disable plugins explicitly by not setting jQuery.prototype to jQuery.fn. </p></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

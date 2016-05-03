@@ -1,0 +1,69 @@
+---
+layout: root
+title: Writing
+---
+
+<link rel="alternate" type="application/rss+xml" 
+  title="RSS Feed for Matt Zeunert's blog" 
+  href="/tech.rss" />
+
+<!-- <h1 class="content-h1">Overview</h1> -->
+
+<!-- <div class="writing-summary">
+
+  <a href="/2014/05/11/testing-and-debugging-cross-platform-websites.html">   Testing and debugging cross-platform websites
+  </a>
+
+  <a href="/web-development-for-non-techies.html">Web development for non-techies</a>
+  <a href="/project-ideas.html">List of project ideas</a>
+  <a href="#blog">Blog</a>
+
+</div> -->
+
+<h1 class="content-h1" id="blog">Startup Posts</h1>
+
+{% for post in site.posts %}
+  {% if post.startups %}
+    <a href="{{post.url}}" class="blog-post-link" ga-link-track="writing-{{post.title}}">
+      <div style="float:right;" class="date">
+        {{post.date | date: "%-d %b %Y" }}
+      </div>
+      {{post.title}}
+    </a>
+    <br style="clear:both">
+  {% endif %}
+{% endfor %}
+
+
+<h1 class="content-h1" id="blog">Blog</h1>
+
+{% for post in site.posts %}
+<a href="{{post.url}}" class="blog-post-link">
+  <div style="float:right;" class="date">
+    {{post.date | date: "%-d %b %Y" }}
+  </div>
+  {{post.title}}
+</a>
+<br style="clear:both">
+{% endfor %}
+
+
+<h1 class="content-h1">Meetup Notes</h1>
+
+{% for note in site.pages reversed %}
+  {% if note.group == 'notes'%}
+      <a href="{{note.url}}" class="blog-post-link">
+        <div style="float:right;" class="date">
+          {{note.date | date: "%-d %b %Y" }}
+        </div>
+        {{note.title}}
+      </a>
+      <br style="clear:both">
+  {% endif %}
+{% endfor %}
+
+<h1 class="content-h1" id="meetup-notes">
+  Ideas
+</h1>
+
+I have a <a href="/project-ideas.html" style="color: #e58e1a">list of project ideas</a> I think would be interesting to do, but don't have the time for right now.

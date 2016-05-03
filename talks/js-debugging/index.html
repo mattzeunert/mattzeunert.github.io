@@ -1,0 +1,110 @@
+<style>
+body {
+    font-size: 20px;
+    font-family: Arial;
+    line-height: 1.5em;
+    margin: 0;
+}
+small {
+    font-size: 16px;
+}
+a {
+    color: #1D1D98;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    background: #1D1D98;
+    padding: 20px;
+    color: white;
+    font-size: 26px;
+    font-weight: normal;
+}
+h1 a {
+    color: white;
+}
+
+h2 {
+    font-size: 20px;
+}
+h3 {
+    font-size: 16px;
+    margin-bottom: 0;
+    text-decoration: underline;
+    font-weight: normal;
+}
+.content {
+    padding: 20px;
+}
+
+@media screen and (max-width: 960px) {
+    h1 {
+        font-size: 24px;
+        line-height: 1.3em;
+    }
+    body {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!-- <a href="/clock">Clock demo</a><br/> -->
+<h1>
+    Debugging JavaScript with Chrome DevTools
+    <small style="float: right"><a href="https://twitter.com/mattzeunert">@mattzeunert</a></small>
+</h1>
+<div class="content">
+    <a href="http://slides.com/mattzeunert/js-conf-uruguay#/">Slides</a>
+
+    <h2>Demo Pages</h2>
+
+    <div id="demos"></div>
+
+    <h2>Links</h2>
+    
+    <h3>Custom Object Formatters</h3>
+
+    <a href="https://docs.google.com/document/d/1FTascZXT9cxfetuPRT2eXPQKXui4nWFivUnS_335T3U/preview">Custom Object Formatters</a><br/>
+    <a href="https://github.com/andrewdavey/immutable-devtools">Immutable DevTools</a><br/>
+    <a href="https://chrome.google.com/webstore/detail/immutablejs-object-format/hgldghadipiblonfkkicmgcbbijnpeog">Immutable Object Formatter</a> (Chrome Extension)
+
+    <h3>Behaviour-based Breakpoints</h3>
+
+    <a href="https://developers.google.com/web/tools/chrome-devtools/debug/breakpoints/add-breakpoints?hl=en#create-conditional-breakpoints">
+        Conditional Breakpoints in Chrome
+    </a><br/>
+    <a href="https://github.com/paulirish/devtools-addons/wiki/Snippets">Debugging snippets</a> (Break on object property access, trace calls)<br/>
+    <a href="https://chrome.google.com/webstore/detail/javascript-breakpoint-col/kgpjjblahlmjlfljfpcneapmeblichbp">
+    JavaScript Breakpoint Collection
+    </a> (Chrome Extension)
+
+    <h3>Remote Debugging</h3>
+
+    <a href="https://github.com/node-inspector/node-inspector">Node-inspector / node-debug</a> (Use DevTools with Node)<br/>
+    <a href="https://developers.google.com/web/tools/chrome-devtools/debug/remote-debugging/remote-debugging">
+    Debugging pages on an Android phone</a><br/>
+    <a href="http://sokolovstas.github.io/SublimeWebInspector/">
+        Sublime Web Inspector
+    </a>
+
+    <h3>More Info</h3>
+
+    <a href="https://umaar.com/dev-tips/">Dev Tools Tips</a> (with gifs!)
+</div>
+
+
+<script src="shared.js"></script>
+<script>
+var html = ""
+demoList.forEach(function(demo){
+    html += "<a href='" + demo.path + "'>" + demo.title + "</a><br/>"
+})  
+document.getElementById("demos").innerHTML = html;  
+</script>

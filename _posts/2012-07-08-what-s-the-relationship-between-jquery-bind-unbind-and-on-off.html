@@ -1,0 +1,14 @@
+---
+layout: post
+title: What's the relationship between jQuery bind/unbind and on/off?
+date: 2012-07-08
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+The on/off methods were introduced with <a href="http://api.jquery.com/category/version/1.7/">jQuery 1.7</a> in November 2011. They supersede methods like bind/unbind, live/die and delegate/undelegate. So bind/unbind <a href="https://github.com/jquery/jquery/blob/86b775d036627ebd7242fbb4eb9f24e4ba1fa9c5/src/event.js#L954">now map to on and off</a>:  <pre class="brush: javascript"><br />bind: function( types, data, fn ) {<br />    return this.on( types, null, data, fn );<br />},<br />unbind: function( types, fn ) {<br />    return this.off( types, null, fn );<br />}<br /></pre> <p>The additional argument for the on/off method is the selector argument, which makes delegated events possible.<br>(Delegated events are bound to a parent element rather than the element that we want to handle the event for. So for example you can attach a click event to all buttons inside a div without having to add an event handler whenever a button is added. In this example on would be called on the div and the selector argument would be "button".<br>Once you've done that jQuery will handle click events on the div and check whether the original target element of the event or one of its parents is matched by the selector.) </p> <h3>Future of bind/unbind</h3> <p>While live and die are <a href="http://api.jquery.com/category/deprecated/">deprecated</a>, bind and unbind are merely "<a href="http://api.jquery.com/unbind/">preferred</a> for attaching and removing event handlers". </p> <h3>Some internals...</h3> <p>Internally the on method maps to jQuery.event.add. That function then actually adds a handler to the event using addEventListener (or attachEvent in IE).<br>When the event is triggered the handler calls jQuery.event.dispatch which will call all the event handlers you've added. </p></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

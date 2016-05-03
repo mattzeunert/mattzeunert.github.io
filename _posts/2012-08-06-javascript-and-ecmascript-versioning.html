@@ -1,0 +1,14 @@
+---
+layout: post
+title: Javascript and EcmaScript versioning
+date: 2012-08-06
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+I've been a bit confused by the Javascript version numbers. John Resig has a <a href="http://ejohn.org/blog/versions-of-javascript/">post about Javascript versions</a> that clears some things up:<br /><ul><li>Javascript 1.6 - 1.9 are Firefox-specific versions</li><li>Javascript 2.0 will be the new standardized version (EcmaScript)</li></ul><div>At the moment most browsers support Javascript 1.5 / EcmaScript 3.<br /><br /></div><h3> EcmaScript 3.1 vsEcmaScript 4 vs EcmaScript 5</h3>The next implemented Javascript standard will be <i>EcmaScript 5</i>. <br />At first the next version was supposed to be <i><a href="http://www.ecmascript.org/es4/spec/overview.pdf">EcmaScript 4</a></i>. It introduced a bunch of new features that prevented it from being backwards-compatible. For example <code>yield</code> is a keyword in EcmaScript 4, but isn't in version 3. So an old script that was valid EcmaScript 3 could have given you an error in EcmaScript 4, if you use <code>yield</code> as a variable or function name. <br /><br />Microsoft, Yahoo, Google<sup>1</sup> and others didn't like that and started working on the less radical <i>EcmaScript 3.1</i>. After a while of working separately the two working groups agreed to work on <i>EcmaScript Harmony</i>, which would settle the direction of future Javascript design decisions. EcmaScript 3.1 would turn into <i>EcmaScript 5</i>. <br /><br />So, for example, the yield keyword is not included in EcmaScript 5, but is "reserved for possible future use". If you put "use strict" in your script you will get an error when using yield as a variable name. <br />This was in mid-2008. The <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf"><i>EcmaScript 5.1</i> specification</a> was released in June 2011.<br />(EcmaScript 3 was published in December 1999.)<br /><br /><h3>EcmaScript 6</h3><div>This version is also called EcmaScript Harmony or ES.next<br /><br /></div><div><a href="http://en.wikipedia.org/wiki/ECMAScript#Version_correspondence">Wikipedia's article on EcmaScript</a>&nbsp;has some more information on the different versions. There's also a blog post by John Resig on&nbsp;<a href="http://ejohn.org/blog/ecmascript-harmony/">EcmaScript Harmony</a>. A&nbsp;<a href="http://www.youtube.com/watch?v=Kq4FpMe6cRs&amp;feature=player_detailpage#t=135s">Google Techtalk on EcmaScript 5</a>&nbsp;also includes a brief history.<br /><br /><span class="reference"><sup>1</sup>At least&nbsp;<a href="http://en.wikipedia.org/wiki/ECMAScript#ECMAScript.2C_5th_Edition">according to Wikipedia</a>.</span></div><br /></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

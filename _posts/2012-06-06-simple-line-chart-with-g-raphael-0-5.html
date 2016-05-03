@@ -1,0 +1,14 @@
+---
+layout: post
+title: Simple line chart with g.Raphael 0.5
+date: 2012-06-06
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+<a href="https://github.com/DmitryBaranovskiy/g.raphael">gRaphael</a> is a javascript charting library. Just like <a href="http://blog.mostlystatic.com/2012/05/icojs-and-bar-chart-example.html">Ico.js</a> it's based on <a href="http://raphaeljs.com/">Raphael.js</a>, but it supports more chart types and is a bit nicer to work with. <br>Unfortunately, the documentation is very sparse and sometimes out of date. The homepage tells you to use paper.g.linechart, which will give you this error:  <br /><blockquote>Uncaught TypeError: Cannot call method 'linechart' of undefined </blockquote>(paper is the Raphael object.)  The current version of g.Raphael uses paper.linechart directly:   <br /><pre class="brush: html"> <br />&lt;script src=&quot;raphael-min.js&quot;&gt;<br/>&lt;/script&gt;<br/>&lt;script src=&quot;g.raphael-min.js&quot;&gt;<br/>&lt;/script&gt;<br/>&lt;script src=&quot;g.line-min.js&quot;&gt;<br/>&lt;/script&gt;<br/><br/>&lt;div id=&quot;container&quot;&gt;<br/>&lt;/div&gt;<br/>&lt;script&gt;<br/>var paper = new Raphael(document.getElementById(&quot;container&quot;));<br/>paper.linechart(0, 0, 200, 200,<br/>  [1, 2, 3, 4],<br/>  [3, 2, 4, 2]<br/>  );<br/>&lt;/script&gt;<br /></pre><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-am38FRuPHWk/T8-74QypI1I/AAAAAAAAAAk/CfTxKr74Wm0/s1600/graphael-no-axes.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="211" src="http://4.bp.blogspot.com/-am38FRuPHWk/T8-74QypI1I/AAAAAAAAAAk/CfTxKr74Wm0/s320/graphael-no-axes.png" width="236" /></a></div><br /><h3>   Adding axes</h3>g.Raphael provides an axis option. It takes strings like "0 0 1 1", which will show axes at the <strike>top</strike>&nbsp;<strike>right</strike>&nbsp;bottom and left.  <br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-iQBhK4I8UBg/T8-894dwUQI/AAAAAAAAAAs/umroPhDTLkc/s1600/graphael-axes.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-iQBhK4I8UBg/T8-894dwUQI/AAAAAAAAAAs/umroPhDTLkc/s1600/graphael-axes.png" /></a></div><pre class="brush: html">&lt;script src=&quot;raphael-min.js&quot;&gt;<br/>&lt;/script&gt;<br/>&lt;script src=&quot;g.raphael-min.js&quot;&gt;<br/>&lt;/script&gt;<br/>&lt;script src=&quot;g.line-min.js&quot;&gt;<br/>&lt;/script&gt;<br/><br/>&lt;div id=&quot;container&quot;&gt;<br/>&lt;/div&gt;<br/>&lt;script&gt;<br/>var paper = new Raphael(document.getElementById(&quot;container&quot;));<br/>paper.linechart(10, 0, 200, 200,<br/>  [1, 2, 3, 4],<br/>  [3, 2, 4, 2],<br/>  {axis: &quot;0 0 1 1&quot;}<br/>  );<br/>&lt;/script&gt;<br /></pre></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

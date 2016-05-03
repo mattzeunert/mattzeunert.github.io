@@ -1,0 +1,14 @@
+---
+layout: post
+title: How to allow debugger statements when using ng-boilerplate
+date: 2013-10-05
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+ng-boilerplate uses jsHint to warn developers about potential low-quality code. One of jsHint's features is that it prevents debugger; breakpoints from slipping into production.<br /><br />When trying to compile an ng-boilerplate project containing a debugger statement you'll see this error:<br /><blockquote class="tr_bq">Forgotten 'debugger' statement?</blockquote>To remove this warning open your Gruntfile.js and search for the third occurance of "jsHint":<br /><br /><pre class="brush: javascript">jshint: {<br />&nbsp; src: [<br />&nbsp; &nbsp; '&lt;%= app_files.js %&gt;'<br />&nbsp; ],<br />&nbsp; test: [<br />&nbsp; &nbsp; '&lt;%= app_files.jsunit %&gt;'<br />&nbsp; ],<br />&nbsp; gruntfile: [<br />&nbsp; &nbsp; 'Gruntfile.js'<br />&nbsp; ],<br />&nbsp; options: {<br />&nbsp; &nbsp; curly: true,<br />&nbsp; &nbsp; immed: true,<br />&nbsp; &nbsp; newcap: true,<br />&nbsp; &nbsp; noarg: true,<br />&nbsp; &nbsp; sub: true,<br />&nbsp; &nbsp; boss: true,<br />&nbsp; &nbsp; eqnull: true<br />&nbsp; },<br />&nbsp; globals: {}<br />},</pre><br />In the options set `debug` to true allow the use of &nbsp;`debugger`:<br /><blockquote class="tr_bq">debug: true</blockquote>&nbsp;You can find a complete list of options on the <a href="http://www.jshint.com/docs/options/">jsHint website</a>.</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

@@ -1,0 +1,567 @@
+---
+---
+
+@mixin mobileAndTablet(){
+     @media (max-width: 1023px) {
+        @content;
+     }
+}
+
+@mixin mobile(){
+    @media (max-width: 660px) {
+        @content;
+    }
+}
+
+@mixin desktop(){
+     @media (min-width: 1023px) {
+        @content;
+     }
+}
+
+
+
+      * {
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+
+$blue: #44a;
+
+.writing-summary a {
+  display: block;
+}
+
+.content .non-techies-toc a{
+  text-decoration: none;
+}
+
+.non-techies-bottom-nav a.prev {
+  float: left;
+}
+.non-techies-bottom-nav a.next {
+  float: right;
+}
+
+.bx-wrapper .bx-controls-direction a {
+    padding-top: 180px;
+    @media (max-width: 600px) {
+        padding-top: 90px;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 1023px) {
+    // don't show recently worked for on tablet, because it looks awful
+    .recently-worked-for-h2,
+    .recently-worked-for
+     {
+        display: none
+    }
+}
+
+.me-links {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 20px;
+    > div {
+        overflow: hidden;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .img-wrapper {
+        float: left;
+        width: 30px;
+        text-align: center;
+    }
+}
+
+.top-of-homepage {
+    @media (max-width: 1023px) {
+        display: flex;
+        display: -webkit-flex;
+        flex-direction: column;
+        -webkit-flex-direction: column;
+    }
+}
+
+.homepage-intro {
+    margin-top: 26px;
+    margin-bottom: 10px;
+    max-width: 360px;
+    @include mobileAndTablet(){
+        max-width: none;
+    }
+}
+
+.recent-projects {
+    max-width: 600px;width: 100%;float:right;
+    @media (max-width: 1023px) {
+        width: 100%;
+        max-width: none;
+        order: 100;
+        -webkit-order: 100;
+    }
+}
+.bx-wrapper {
+    * {
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+    .bxslider {
+        margin: 0;
+    }
+    ul, li {
+        padding: 0;
+    }
+    .bx-caption span {
+        font-family: inherit !important;
+    }
+    .bx-viewport {
+        border: 5px solid #fafafa !important;
+    }
+}
+
+
+
+  #mc_embed_signup {
+    border: 1px solid #eee;
+  }
+    #mc_embed_signup input.email {
+      float: left;
+    }
+
+  #mc-embedded-subscribe{
+    background: #FF6819 !important;
+  }
+  #mc-embedded-subscribe:hover{
+    background: #F06010 !important;
+  }
+
+body
+{
+  color: #333;
+  line-height: 1.5em;
+  font-family: Arial;
+  margin: 0px;
+  font-family: 'Open Sans';
+  // background: url(/img/bg-pattern-crossword.png)
+}
+#main-container, .container
+{
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+a
+{
+  text-decoration: none;
+}
+.content {
+  width: 800px;
+  max-width: 100%;
+}
+.content a {
+  text-decoration: underline;
+  color: $blue;
+}
+.content blockquote {
+    margin: 0;
+    padding: 20px;
+    padding-left: 100px;
+    background: #fafafa;
+    padding-right: 200px;
+    position: relative;
+    min-height: 110px;
+    padding-top: 30px;
+}
+@media (max-width: 600px) {
+  .content blockquote {
+    padding-right: 50px;
+  }
+}
+.content blockquote:before {
+    content: '>';
+    position: absolute;
+    left: 30px;
+    font-size: 80px;
+    color: #44a;
+    top: 40px;
+    font-family: serif;      }
+.content .highlight {
+  background: #fafafa;
+  padding: 20px;
+  overflow: auto;
+}
+.content .highlight pre {
+  margin: 0;
+}
+.content p {
+  margin-top: 10px;
+  line-height: 1.5em;
+  font-size: 16px;
+  @include mobile{
+    font-size: 16px;
+  }
+}
+.content-h1 {
+  width: 800px;
+  max-width: 100%;
+  font-size: 36px;
+  line-height: 1.3em;
+  font-weight: normal;
+  border-bottom: 1px solid #ddd;
+  color: #44a;
+
+  @include mobile {
+    font-size: 24px;
+  }
+}
+.content h2 {
+    color: #44a;
+    font-size: 16px;
+    margin-top: 40px;
+    margin-bottom: 0px;
+    letter-spacing: 0px;
+    font-weight: bold;
+    text-transform: none;
+}
+.content h3 {
+    text-transform: uppercase;
+  font-size: 13px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  letter-spacing: 1px;
+}
+
+.content h3{
+  color: #e58e1a;
+}
+.content img{
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: block;
+  margin: auto;
+  box-shadow: 1px 1px gray;
+}
+@media (max-width: 600px) {
+    .content img {
+        max-width: 100%;
+    }
+}
+a:hover
+{
+  text-decoration: underline;
+}
+.small-title{
+  float:left;
+}
+.project-item
+{
+  width: 100%;
+  padding-bottom: 8px;
+  @include desktop (){
+    &.shifted-left {
+        margin-left: -100px;
+    }
+  }
+}
+.project-item h2{
+
+  font-size: 20px;
+  color: #333;
+  margin: 0px;
+  font-weight:normal;
+  text-transform: none;
+}
+.project-item a{
+  color: #333;
+  display: block;
+  overflow: hidden;
+}
+.project-item img
+{
+  padding: 4px;
+  border: 1px solid #ddd;
+  width: 20%;
+}
+@media (min-width: 600px) {
+    .project-item img {
+      height: 131px;
+    }
+}
+
+.need-a-dev {
+    border: 2px solid #eee;
+    padding: 10px;
+    width: 500px;
+}
+
+.need-a-dev .me {
+    background-image: url(/img/matt.png);
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-size: cover;
+    float: left;
+}
+.need-a-dev .title {
+    color: #44a;
+    font-size: 24px;
+    margin-top: 16px;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 600px){
+    .need-a-dev {
+      width: 100%;
+    }
+}
+
+.project-item img, .project-item a > div
+{
+  float: left;
+}
+.project-item .project-info {
+  width: 80%;
+}
+.project-item:hover h2{
+  color: #222;
+}
+.project-item h2.show-on-expanded{
+  margin-left: 16px;
+}
+.project-item a > div
+{
+  padding-left: 16px;
+}
+.project-item code
+{
+  float: left;
+  border: 1px solid #ddd;
+  margin-right: 4px;
+  padding: 4px;
+  line-height: 12px;
+}
+.project-item .technology-list
+{
+  margin-top: 4px;
+  display: none;
+}
+.project-item.expanded .technology-list{
+  display: block;
+}
+
+.project-item .view-project{
+  display: none;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  line-height: 4px;
+  border: none;
+  margin-top: 10px;
+}
+.project-item .view-project:before{
+  content: "\00BB";
+}
+.email {
+  float:right;
+}
+
+
+@media (max-width: 500px) {
+  .email{
+    float: none;
+  }
+  .small-title{
+    float: none;
+  }
+  .project-description {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .project-item{
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+  .project-item code{
+    display: block;
+    float: none;
+    border: none;
+    background: #eee;
+    border-radius: 20px;
+    margin-top: 4px;
+  }
+  .project-item.expanded .view-project{
+    display: block;
+  }
+  .project-item.expanded img{
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 10px;
+  }
+  .project-item.expanded .project-info {
+    width: 100%;
+  }
+}
+@include desktop{
+  .project-item h2 {
+    transition: color .2s;
+  }
+  .project-item:hover{
+    h2 {
+      color: $blue;
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .date {
+    display: none;
+  }
+  .blog-post-link {
+    margin-bottom: 6px;
+    display: inline-block;
+  }
+}
+
+
+.well{
+  padding: 10px;
+  background: #eee;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.well h2{
+  margin:0;
+  text-transform: uppercase;
+  font-size:12px;
+}
+
+h1 {
+  display: block;
+  font-size: 1.5em;
+}
+h2, .page-home h1
+{
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  letter-spacing: 1px;
+}
+a{
+  color: #222;
+}
+footer{
+  margin-top: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid black;
+}
+      footer img, footer a{
+          margin-bottom: -3px;
+      }
+footer{
+  background: black;
+  overflow: hidden;
+}
+header{
+  border-top: 3px solid #222;
+  padding-top: 25px;
+  padding-bottom: 15px;
+  letter-spacing: 1px;
+  @include desktop(){
+    height: 99px;
+  }
+}
+header a{
+  color: #222;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.clearfix {
+    *zoom: 1;
+}
+
+figure.highlight {
+    margin: 0;
+}
+
+
+
+.recently-worked-for {
+    overflow: hidden;
+    padding-left: 0;
+    li {
+        float: left;
+        cursor: pointer;
+        padding-right: 9px;
+        padding-left: 10px;
+        display: inline-block;
+        text-align: center;
+        &:first-child {
+          padding-left: 0;
+          text-align: left;
+        }
+        @media (max-width: 1023px) {
+            &, &:first-child {
+              width: 100%;
+              padding-left: 0px;
+              padding-bottom: 10px;
+              text-align: center;
+            }
+            &:first-child {
+              padding-top: 20px;
+            }
+
+        }
+        img{
+            max-width: 100%;
+            max-height: 62px;
+        }
+    }
+}
+
+
+.more-about-me {
+    h2 {
+        margin-top: 40px;
+    }
+    a {
+        color: $blue;
+    }
+}
+
+
+.youtube-container {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 100%;
+
+  display: block; // It's a span because Markdown/Jekyll don't seem to like a div, Markdown directly above div isn't compiled
+
+  iframe {
+    border: 1px solid #ddd;
+    max-width: 100%;
+  }
+}

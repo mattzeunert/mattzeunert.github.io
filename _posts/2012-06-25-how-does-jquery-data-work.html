@@ -1,0 +1,14 @@
+---
+layout: post
+title: How does jQuery .data() work?
+date: 2012-06-25
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+When you tell jQuery to store data on a particular element, where does the data go?<br /><pre class="brush: javascript">$("#sth").data("my key", "my value");<br /></pre><p>It goes into <b>$.cache</b>. jQuery generates an id to match the element with the cache entry. It then stores that id directly on the Html element, using the a key specific to the used jQuery instance. The key name used is stored in $.expando, which looks something like this: jQuery172015931390528314845. </p> <pre class="brush: javascript">$("#sth")[0][$.expando]<br />&gt; 1<br />$.cache[1]<br />&gt; Object<br />&gt;   data: Object<br />&gt;     my key: "my value"<br /></pre> <h3>Why not attach the data directly to the element?</h3> <p>Because of memory leaks in IE. When you use the jQuery remove() method the data associated with the element will always be garbage collected using $.clearData: </p> <pre class="brush: javascript"><br />$(&quot;#sth&quot;).remove()<br/>$.cache<br/>&gt;Object<br />&gt;   ...nothing<br /></pre> <p>jQuery 2.0 will drop support for IE < 9, so data will <a href="http://www.slideshare.net/dmethvin/jquery-conference-2012-keynote/20">likely be stored directly on the element</a>.</p> <h3>Using .data() with objects</h3> <p>When you call .data on an object $.cache isn't used:</p> <pre class="brush: javascript"><br />myObj = {}<br />$.data(myObj,"my key","my value")<br />> "my value"<br />myObj<br />> Object<br />>   jQuery17208736159270629287: Object<br />>      data: Object<br />>        my key: "my value"<br />>        toJSON: function () {}<br /></pre> <p>Also note the toJSON method: libraries like JSON-js will not store display data that was added to an object using $.data. </p> <h3>Two more things</h3><p>1) jQuery will try to camelCase keys if no value is found. So you can use "my-key" to fetch "myKey". (I don't see any reason to ever use this. It looks like it would only add confusion, maybe a legacy thing?)<br>2) jQuery uses .data("events") and internally, so you can fetch event handlers like this: </p> <pre class="brush: javascript"><br />$(&quot;#sth&quot;).click(function(){console.log(arguments)})<br />$(&quot;#sth&quot;).data(&quot;events&quot;)<br />&gt; Object<br />&gt;   click: Array[1]<br />&gt;     0: Object<br />&gt;       handler: function (){console.log(arguments)}<br />&gt;       namespace: &quot;&quot;<br />&gt;       origType: &quot;click&quot;<br /></pre> <p>You can still use a "events" as a key name though and you can't overwrite its internal value because it's stored in $.cache[1].events rather than $.cache[1].data. </p> <p>You may want to <a href="https://github.com/jquery/jquery/blob/9e0c056171d1a5cac407f8fedbf926be91eaba1a/src/data.js">have a look at $.data yourself</a>. </p></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

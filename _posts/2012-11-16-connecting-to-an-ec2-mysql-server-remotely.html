@@ -1,0 +1,14 @@
+---
+layout: post
+title: Connecting to an EC2 MySQL server remotely
+date: 2012-11-16
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+After <a href="http://blog.mostlystatic.com/2012/11/setting-up-mysql-on-awsfedora.html">setting up MySQL server</a> in the previous post it will only accept connections from other programs on the server. Follow the steps below to access it from your development computer.<br /><h3>Updating EC2 security groups</h3>By default EC2 instances don't allow traffic on port 3306, which is used by MySQL. So we need to add an exception to the inbound traffic rules:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-YYknycLR9fs/UKUH7n7qIpI/AAAAAAAAAEU/WyjhbJ1Dgjs/s1600/ec2-security-groups-mysql.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="186" src="http://4.bp.blogspot.com/-YYknycLR9fs/UKUH7n7qIpI/AAAAAAAAAEU/WyjhbJ1Dgjs/s400/ec2-security-groups-mysql.png" width="400" /></a></div><h3>Granting remote access in the MySQL security settings</h3>First log in to MySQL as root:<br /><br /><code>mysql -u root -p</code><br /><br />We can run this query to grant remote access to all tables in the database:<br /><br /><code>grant all on *.* to root identified by 'pw';</code><br /><code>flush privileges;<br />exit</code><div><br /><h3>Connecting remotely</h3><div>To log in run mysql and pass the public server address as the host-name (-h):<br /><br /><code>mysql -u root -h public-dns.compute-1.amazonaws.com -p</code><br /><div><br /></div></div>Or use MySQL Workbench:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-dFdbpHaBXa8/UKVCy1WrdBI/AAAAAAAAAEk/u1t0f0h0QWU/s1600/ec2-mysqlworkbench.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="218" src="http://3.bp.blogspot.com/-dFdbpHaBXa8/UKVCy1WrdBI/AAAAAAAAAEk/u1t0f0h0QWU/s400/ec2-mysqlworkbench.png" width="400" /></a></div><br /><br /><br /><br /></div></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

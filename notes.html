@@ -1,0 +1,18 @@
+---
+layout: root
+---
+
+<h1 class="content-h1">Notes</h1>
+
+{% for note in site.pages %}
+	{% if note.group == 'notes'%}
+			<a href="{{note.url}}">
+				<span style='text-transform: uppercase;
+float: left;
+display: block;
+width: 200px;'>{{note.date}}</span>
+				{{note.title}}
+			</a>
+      <br>
+	{% endif %}
+{% endfor %}

@@ -1,0 +1,129 @@
+---
+layout: root
+title: Twitter Language Maps
+---
+
+<div style="margin-bottom:10px;width: 620px;">
+    <h1>Twitter Language Maps</h1>
+    <div style="margin-bottom: 5px;">The following maps show the dominant language used on Twitter in a specific area. (Although results vary significantly between runs.)</div>
+
+    White areas indicate lack of tweets, unreliable language detection or languages that aren't listed.
+    <br>
+    Made using the <a href="https://dev.twitter.com/docs/api/1.1/get/search/tweets">Twitter API</a>, <a href="https://developers.google.com/maps/visualize">Google Maps</a> and a <a href="http://detectlanguage.com/">language detection API</a>.
+</div>
+
+<div class="well">
+	<h2>Maps</h2>
+	<div id="map-list"></div>
+</div>
+
+<h2>North America</h2>
+<img src="jpgs/north-america.jpg"></img>
+<div class="language-key">
+    <div data-color="#ff0000">English</div>
+    <div data-color="#00ff00">Spanish</div>
+    <div data-color="#0000ff">French</div>
+    <div data-color="#ffa500">Japanese</div>
+</div>
+
+<h2>Iberian Peninsula</h2>
+<img src="jpgs/iberian-peninsula.jpg"></img>
+<div class="language-key">
+    <div data-color="#0000ff">Spanish</div>
+    <div data-color="#ffa500">Portuguese</div>
+    <div data-color="#ff0000">English</div>
+    <div data-color="#00ff00">French</div>
+</div>
+
+<h2>Western Europe (South, ignoring English)</h2>
+<img src="jpgs/western-europe.jpg"></img>
+<div class="language-key">
+    <div data-color="#00ff00">French</div>
+    <div data-color="#0000ff">Italian</div>
+    <div data-color="#ffa500">Japanese</div>
+    <div data-color="#ff0000">Spanish</div>
+</div>
+
+<h2>Asia</h2>
+<img src="jpgs/asia.jpg"></img>
+<div class="language-key">
+    <div data-color="#ff0000">English</div>
+    <div data-color="#0000ff">Japanese</div>
+    <div data-color="#00ff00">Malay (Indonesia)</div>
+    <div data-color="#ffa500">Russian</div>
+</div>
+
+<h2>South America (ignoring English)</h2>
+<img src="jpgs/south-america.jpg"></img>
+<div class="language-key">
+    <div data-color="#ff0000">Japanese</div>
+    <div data-color="#0000ff">Portuguese</div>
+    <div data-color="#00ff00">Spanish</div>
+</div>
+
+<h2>Middle East</h2>
+<img src="jpgs/middle-east.jpg"></img>
+<div class="language-key">
+    <div data-color="#ff0000">English</div>
+    <div data-color="#0000ff">Japanese</div>
+    <div data-color="#ffa500">Arabic</div>
+    <div data-color="#00ff00">Spanish</div>
+</div>
+
+<h2>London (ignoring English)</h2>
+<img src="jpgs/london-no-english.jpg"></img>
+<div class="language-key">
+    <div data-color="#ff0000">Spanish</div>
+    <div data-color="#00ff00">Japanese</div>
+    <div data-color="#ffa500">Indonesian</div>
+    <div data-color="#007700">Malay (Indonesia)</div>
+</div>
+For comparison, with English:<br>
+<img style="width:200px" src="jpgs/london-with-english.jpg"></img>
+
+<h2>Berlin (ignoring English)</h2>
+<img src="jpgs/berlin-no-english.jpg"></img>
+<div class="language-key">
+    <div data-color="#ff0000">German</div>
+    <div data-color="#00ff00">Turkish</div>
+    <div data-color="#ffa500">Malay (Indonesia)</div>
+    <div data-color="#0000ff">Spanish</div>
+</div>
+
+<script>
+    $(".language-key").children("div").each(function(){
+        var color = $(this).data("color");
+        var languageName = $(this).text();
+        var colorDiv = $("<div>")
+            .width(25)
+            .height(25)
+            .css({
+                "background": color,
+                "float": "left"
+            });
+        var languageDiv = $("<div>")
+            .css({
+                "float": "left",
+                "margin-left": "5px"
+            })
+            .text(languageName);
+        $(this)
+            .empty()
+            .addClass("clearfix")
+            .append(colorDiv)
+            .append(languageDiv)
+
+    })
+
+    $("h2").filter(function(){
+    	return $(this).next().is("img");
+    }).each(function(){
+        var mapName = $(this).text().split("(")[0];
+        var mapHash = mapName.replace(/ /g, "-");
+        $(this).prepend("<a name='" + mapHash + "'>")
+        $("#map-list").append("<a href='#" + mapHash + "'>" + mapName + "</a><br>")
+    })
+
+</script>
+
+

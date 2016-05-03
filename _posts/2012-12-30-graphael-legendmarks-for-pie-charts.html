@@ -1,0 +1,14 @@
+---
+layout: post
+title: gRaphael legendmarks for pie charts
+date: 2012-12-30
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+According to the <a href="http://g.raphaeljs.com/reference.html#Paper.piechart">gRaphael documentation</a> you can use the legendmark option to set the shape of the bullet point next to the legend entry. The default is given as "circle" and I was trying to find out if there are any other options.<br /><br />The legendmark option doesn't seem to be functional at the moment. Take a look at <a href="https://github.com/DmitryBaranovskiy/g.raphael/blob/master/g.pie.js#L246">the code</a>:<br /><br /><pre class="brush: javascript">            mark = paper[mark &amp;&amp; mark.toLowerCase()] || "circle";<br />            chart.labels = paper.set();<br />            ...<br />            chart.labels[i].push(paper[mark](x + 5, h, 5).attr({ fill: clr, stroke: "none" }));</pre><br />The legendmark is drawn using the Raphael paper function of the same name as the legendmark (e.g. <a href="http://raphaeljs.com/reference.html#Paper.circle">"circle"</a>). But if you specify a legendmark gRaphael tries to fetch the function twice - the "paper[mark]" parts above, resulting in an error as the code tries to call <code>undefined</code> as a function. This is the case even if you pass "circle" as the option value.<br /><br />There's a <a href="https://github.com/DmitryBaranovskiy/g.raphael/pull/174">related pull request on github</a>, but gRaphael development seems dormant.</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

@@ -1,0 +1,27 @@
+<div id="header"></div>
+<script src="../shared.js"></script>
+<script>
+initHeader("console");
+</script>
+
+<script src="tag.js"></script>
+<script src="data.js"></script>
+<script>
+window.addSlugToTag = function(tag){
+    function slug(title){
+        return title.replace(/[^a-zA-Z0-9 ]/g, "").replace(/ /g, "-").toLowerCase();
+    }
+    return new Tag({
+        title: tag.title,
+        id: tag.id,
+        createdAt: tag.createdAt,
+        createdBy: tag.createdBy,
+        slug: slug(tag.title)
+    })
+}
+</script>
+<div class="page-content">
+
+
+    
+</div>

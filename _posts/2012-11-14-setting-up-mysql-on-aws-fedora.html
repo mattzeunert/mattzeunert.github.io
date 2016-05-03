@@ -1,0 +1,14 @@
+---
+layout: post
+title: Setting up MySQL on AWS/Fedora
+date: 2012-11-14
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+<div class="im-ignorant-warning">Warning: I'm not a sysadmin. While I got this working by following the steps below there are probably more secure and maintainable ways to achieve this.</div><h3>Installing MySQL</h3>MySQL can be installed quite simply using yum:<br /><br /><code>sudo yum install mysql -y<br />sudo yum install mysql-server -y</code><br /><code><br /></code>Then start the mysqld service to be able to access the database later:<br /><br /><code>sudo service mysqld start</code><br /><br /><h3>Setting a user, a database and adding some dummy date</h3>To run SQL queries against your RDBMS start mysql like this:<br /><br /><code>mysql -u root</code><br /><br />Then run the following commands one by one to create a new user root with "pw" as the password and set up a database called "testdb":<br /><br /><code>set password for 'root'@'localhost'=password('pw');<br />create database testdb;<br />use testdb;<br />create table tbl (id int, value varchar(50));<br />insert into tbl (id, value) values (5,"hello world");<br />insert into tbl (id, value) values (11,"hi things");<br />exit</code><br /><br />Now we also have a table called "tbl" that we can fetch some data from.<br /><br />If you want to access mysql again you'll enter the password of the user root. Run this command and enter the password when prompted:<br /><br /><code>mysql -u root -p</code><br /><code><br /></code><h3>Accessing the database in PHP</h3><div>First we need to install the php-mysql package to have access to the function used in the code further down:</div><div><br /></div><div><code>sudo yum install php-mysql -y</code></div><div><br /></div><div>Then open the test.php file:</div><div><br /></div><div><code>sudo nano /var/www/html/test.php&nbsp;</code><br /><code><br /></code></div><div>And enter this code:</div><div><br /></div><code></code><div><code>&lt;?php</code></div><code><div><div><div>$mysqli = new mysqli("localhost", "root", "pw", "testdb");</div><div>$query = $mysqli-&gt;query("select * from tbl");</div><div>while ($row = $query-&gt;fetch_array())</div><div>{</div><div>&nbsp; &nbsp; &nbsp; &nbsp; print_r($row);</div><div>&nbsp; &nbsp; &nbsp; &nbsp; echo "&lt;br&gt;";</div><div>}</div><div>?&gt;<br /><br /></div></div></div></code><div>When accessing test.php in the browser you should see this:</div><div><br /></div><code></code><div><code>Array ( [0] =&gt; 5 [id] =&gt; 5 [1] =&gt; hello world [value] =&gt; hello world )</code><br /><code>Array ( [0] =&gt; 11 [id] =&gt; 11 [1] =&gt; hi things [value] =&gt; hi things )&nbsp;</code><br /><code><br /></code></div><div>If it's not working try `sudo service httpd restart` or have a look at the logs in /etc/httpd/logs/error_log.</div></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

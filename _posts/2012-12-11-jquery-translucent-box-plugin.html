@@ -1,0 +1,14 @@
+---
+layout: post
+title: jQuery translucent box plugin
+date: 2012-12-11
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+I need to add a translucent box on top of a picture quite regularly. Unfortunately the CSS opacity property makes the full content of the div translucent which makes text hard to read. So I made a <a href="https://github.com/mostlystatic/jquery-translucent-box">jQuery translucent box plugin</a> that takes care of it and also uses "-ms-filter: alpha" in Internet Explorer.<div><br /></div><div>It uses an absolutely positioned background div that is the same size as the content box. The downside of this is that if the content changes size the background div stays the same - so it's not really useful for dynamic content at the moment. It also sets the z-index property of the content box to one, which could cause problems if other divs also use z-index.</div><div><br /></div><div><div class="separator" style="clear: both; text-align: center;"></div><div><br /></div><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-DyWkQV4MumY/UMeT0D8PNPI/AAAAAAAAAFY/eRVJ9rSiwG8/s1600/Screen+Shot+2012-12-11+at+20.12.43.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-DyWkQV4MumY/UMeT0D8PNPI/AAAAAAAAAFY/eRVJ9rSiwG8/s1600/Screen+Shot+2012-12-11+at+20.12.43.png" /></a></div><div><br /></div></div></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

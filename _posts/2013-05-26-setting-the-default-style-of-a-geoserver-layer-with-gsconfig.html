@@ -1,0 +1,14 @@
+---
+layout: post
+title: Setting the default style of a GeoServer layer with gsConfig
+date: 2013-05-26
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+The gsconfig layer classes have a _set_default_style method, after that Catalog.save commits the change:<br /><pre class="brush: python"># The last two arguments are the geoserver username and password</pre><pre class="brush: python">cat = Catalog("http://localhost:8080/geoserver/rest", "admin", "geoserver")<br />layer = cat.get_layer("layer_name")<br />layer._set_default_style("style_name")<br />cat.save(layer)</pre></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

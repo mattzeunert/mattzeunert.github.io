@@ -1,0 +1,14 @@
+---
+layout: post
+title: Javascript 1.7 - List comprehensions
+date: 2012-08-21
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+<p class="feature-support-warning">Javascript 1.7 is specific to Firefox (2.0+). List comprehensions are not part of EcmaScript 5.1. </p> <p>List comprehensions are a concise way to use <code>map</code> and <code>filter</code> on lists. Another name for them is <i>array comprehensions</i>. <br>The code below maps a list of numbers to their squares. </p> <pre class="brush: javascript"><br />&lt;script type=&quot;application/javascript; version 1.7;&quot;&gt;<br />var numbers = [1, 2, 3];<br />var squares = [n*n for each (n in numbers)]; // parentheses around "n in numbers" are required<br />// squares = [1, 4, 9]<br />&lt;/script&gt;<br /></pre> <p>Using jQuery.map, this is equivalent to: </p> <pre class="brush: javascript"><br />&lt;script&gt;<br />var numbers = [1, 2, 3];<br />var squares = $.map(numbers, function(n){<br /> return n * n;<br />});<br />&lt;/script&gt;<br /></pre> <h3>Using list comprehensions to filter lists</h3> <p>You can append an if clause to the list comprehension to filter the array: </p> <pre class="brush: javascript"><br />&lt;script type=&quot;application/javascript; version 1.7;&quot;&gt;<br />var prices = [2.25, 0.95, 1.39];<br />var filteredPrices = [&quot;$&quot; + price for each (price in prices) if (price &gt; 1.00)];<br />// ["$2.25", "$1.39"]<br />var message = &quot;Prices over $1.00: &quot; + filteredPrices.join(&quot;, &quot;);<br />// message = "Prices over $1.00: $2.25, $1.39"<br />&lt;/script&gt;<br /></pre></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

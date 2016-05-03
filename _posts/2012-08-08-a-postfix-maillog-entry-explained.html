@@ -1,0 +1,14 @@
+---
+layout: post
+title: A postfix maillog entry explained
+date: 2012-08-08
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+Log entries as probably found in /var/log/maillog or mail.log. <br /><table border="1" style="border-collapse: collapse; border-color: #ccc;"> <thead><tr><th>Log entry</th>  <th>Meaning</th> </tr></thead> <tbody><tr>  <td style="width: 150px;">Nov 18 19:03:20<br />ip-123-45-67-89<br />postfix/smtp[12345]:   </td>  <td>A standard syslog prefix: date/time, server hostname, process name and id.<br />In this case the process is the mail transfer agent.   </td> </tr><tr>  <td>84A3744BC1:   </td>  <td>Postfix Queue ID of the message   </td> </tr><tr>  <td>to=&lt;recipient@sth.com&gt;,   </td>  <td>Who the email is sent to.   </td> </tr><tr>  <td>relay=none   </td>  <td>Smtp mail relay.   </td> </tr><tr>  <td>delay=6000,   </td>  <td>Total sending delay time in seconds.   </td> </tr><tr>  <td>delays=   </td>  <td>Delay breakdown, quoting from the <a href="http://de.postfix.org/ftpmirror/official/postfix-2.3.19.RELEASE_NOTES">Postfix 2.3.19 release notes:</a>  </td>  </tr><tr>  <td>5920/   </td>  <td>"Time before queue manager, including message transmission."   </td> </tr><tr>  <td>0 .1/   </td>  <td>"Time in queue manager."   </td> </tr></tbody></table><br />80/   <br />   "Connection setup time including DNS,HELO and TLS."   <br />         0   <br />   "Message transmission time."   <br />        dsn: 4.4.1,   <br />   Delivery Status Notification: See this <a href="http://www.blogger.com/blogger.g?blogID=4847157853560515554">Internet Engineering Task Force Request for Comments</a> for a list of status codes.<br />4.x.x means the email will be sent later, 2.x.x means everything is fine and 5.x.x indicates a definite failure.   <br />        status=deferred   <br />   Status of the message being sent, some other values are "sent" and "bounce"   <br />        Connect to address Network is unreachable   <br />   Error message.   <br />    </div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

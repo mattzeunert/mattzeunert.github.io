@@ -1,0 +1,19 @@
+---
+layout: post
+title: Inheriting from a parent class without calling its constructor in Javascript
+date: 2013-10-21
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+A common way to make a Javascript object inherit from another object is to set it's constructor function's prototype property to an instance of it's parent:<br /><pre class="brush:javascript">Child.prototype = new Parent();</pre>However this means that the any instance properties of Parent will also be set in the prototype. Take this code for example:<br /><pre class="brush:javascript">function Animal(){<br />    console.log("Calling Animal constructor function");<br />    this.test = {};<br />}<br /><br />function Giraffe(){<br />    console.log("Calling Giraffe constructor function");<br />}<br />Giraffe.prototype = Object.create(Animal);<br /><br />var g = new Giraffe();<br />var g2 = new Giraffe();<br />console.log(g.test === g2.test);</pre>When setting the prototype the Parent function is called and the <code>test</code> objects of the two objects are identical as only the reference instead of the whole object is stored with the new instance:<br /><pre>#Program console output:</pre><pre>Calling Animal constructor function<br />Calling Giraffe constructor function<br />Calling Giraffe constructor function<br />true<br /></pre>To avoid this we can use <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create">Object.create</a></code> when inheriting from Animal:<br /><pre class="brush:javascript">function Animal(){}<br /><br />function Giraffe(){}<br />Giraffe.prototype = new Animal();<br /><br />var g = new Giraffe();<br />console.log(g instanceof Animal);<br /><br />function AlternateGiraffe(){}<br />AlternateGiraffe.prototype = Object.create(Animal.prototype);<br />g = new AlternateGiraffe();<br />console.log(g instanceof Animal);</pre>Notice how instanceof still returns true:<br /><pre>true<br />true </pre>With either way it's also worth setting the prototype.constructor prototype property to the correct function. After setting the prototype it points to the constructor function of the parent:<br /><pre class="brush: javascript">function Animal(){}<br />function Giraffe(){}<br />console.log("Giraffe constructor is Giraffe:", Giraffe.prototype.constructor==Giraffe);<br />Giraffe.prototype = Object.create(Animal.prototype);<br />console.log("Giraffe constructor is Giraffe:", Giraffe.prototype.constructor==Giraffe);<br />console.log("Giraffe constructor is Animal", Giraffe.prototype.constructor==Animal);<br />Giraffe.prototype.constructor = Giraffe;<br />console.log("Giraffe constructor is Giraffe", Giraffe.prototype.constructor==Giraffe);</pre>Output:<br /><pre>Giraffe constructor is Giraffe: true<br />Giraffe constructor is Giraffe: false<br />Giraffe constructor is Animal true<br />Giraffe constructor is Giraffe true</pre>John Resig's blog has a <a href="http://ejohn.org/blog/simple-javascript-inheritance/">minimal classical inheritance example</a>, using an init function and therefore avoiding the problem of using the new keyword </div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Daniele Polencic</div>
+<div class='content'>
+Nice ;)</div>
+</div>
+</div>

@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{{page.title}}</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href="/sass/main.css" rel="stylesheet"></link>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta charset="utf-8">
+	</head>
+	<body>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+		<header>
+			<div class="container">
+				<div class="clearfix">
+					<div style="float:left;font-size: 28px; line-height: 32px;">
+						<a href="/" style="text-decoration:none">Matt Zeunert</a>
+            {% if page.date %}
+              &gt;
+              {% if page.group == 'notes' %}
+                <a href='/writing.html' style="">Meetup notes</a>
+              {% else %}
+                <a href='/writing.html' style="">Blog</a>
+              {% endif %}
+            {% endif %}
+					</div>
+				</div>
+				<div class="clearfix" style="font-size: 13px">
+					<div class="small-title">
+						Web App Development
+					</div>
+          {% if page.date %}
+
+          {% else %}
+					<div class="email">
+						 <a href="mailto:matt@mostlystatic.com">matt@mostlystatic.com</a>
+					</div>
+          {% endif %}
+				</div>
+			</div>
+		</header>
+		<div id="main-container">
+			{{content}}
+		</div>
+		<footer>
+			<div class="container" style="text-align: center">
+                <a href="https://twitter.com/mattzeunert">
+                    <img src="/img/twitter.png">
+                </a>
+                <a href="https://www.linkedin.com/pub/matt-zeunert/68/260/a39">
+                    <img src="/img/linkedin.png">
+                </a>
+                <a style="color:white" href="mailto:matt@mostlystatic.com">matt@mostlystatic.com</a>
+			</div>
+		</footer>
+
+		<script>
+			var tooSmallForAllInfo = true;
+
+			$(".project-item > a").click(function(){
+        var projectItemDiv = $(this).parent();
+        if (tooSmallForAllInfo && !projectItemDiv.hasClass('expanded')){
+  				var oldSize = projectItemDiv.outerHeight();
+  				projectItemDiv.addClass("expanded");
+          projectItemDiv.addClass("explicitly-added-expanded");
+
+  				var newSize = projectItemDiv.outerHeight();
+  				projectItemDiv.height(oldSize);
+  				projectItemDiv.css("overflow", "hidden");
+  				projectItemDiv.animate({"height": newSize}, 250)
+					return false;
+				}
+			});
+
+			$("button.view-project").click(function(){
+				window.location.href = $(this).data("href");
+			})
+
+			$(window).on("resize", function(){
+				updateSize();
+			});
+
+			function updateSize(){
+        // this also seems to trigger randomly on iOS...
+				$(".project-item").css("height", "")
+				if ($(window).width() > 500){
+					$(".project-item").addClass("expanded");
+					tooSmallForAllInfo = false;
+				}
+				else {
+					tooSmallForAllInfo = true;
+					$(".project-item:not(.explicitly-added-expanded)").removeClass("expanded");
+				}
+			}
+			updateSize();
+		</script>
+
+    <script>
+    // https://remysharp.com/2010/07/21/throttling-function-calls
+    function throttle(fn, threshhold, scope) {
+      threshhold || (threshhold = 250);
+      var last,
+          deferTimer;
+      return function () {
+        var context = scope || this;
+
+        var now = +new Date,
+            args = arguments;
+        if (last && now < last + threshhold) {
+          // hold on to it
+          clearTimeout(deferTimer);
+          deferTimer = setTimeout(function () {
+            last = now;
+            fn.apply(context, args);
+          }, threshhold);
+        } else {
+          last = now;
+          fn.apply(context, args);
+        }
+      };
+    }
+
+    (function(){
+      function onScroll(){
+        var scrollPos = $(window).scrollTop() || $("html").scrollTop();
+        var scrollThreshold = $(window).height() + scrollPos;
+        $(".project-item:not(.animate-in)").each(function(){
+          var itemTop = $(this).offset().top;
+          if (itemTop < scrollThreshold) {
+            $(this).removeClass("shifted-left");
+            $(this).addClass("not-shifted-left");
+          }
+        });
+      }
+
+      onScroll = throttle(onScroll, 100);
+
+      onScroll();
+
+      $(".project-item").css("transition", "margin-left .5s ease-out");
+      $(".project-item:not(.not-shifted-left)").addClass("shifted-left")
+
+      $(window).on("scroll", onScroll);
+      $("html, body").on("scroll", onScroll);
+    })()
+
+
+    </script>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39253677-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+		<script type="text/javascript">
+
+          $("body").on("click", "[ga-link-track]", function(){
+            var el = $(this);
+            var trackingValue = el.attr("ga-link-track");
+            ga("send", "event", "Link Click", trackingValue);
+          });
+
+          $("body").on("click", "a", function(){
+            var el = $(this);
+            var url = el.prop("href");
+            if (url.indexOf("mattzeunert.com") === -1 && url.indexOf("localhost") === -1) {
+
+                ga("send", "event", "External link click", url, location.pathname);
+            }
+          });
+
+		</script>
+
+    <script>
+        // window.channelTraction = (function(window, document){
+        // function ct(){ct.queuedCalls.push(arguments);}
+        // ct.queuedCalls = [];
+        // var s = document.createElement('script');
+        // s.type = 'text/javascript';
+        // s.async = 1;
+        // s.src = "http://www.channeltraction.com/v1/tracking-script/ct.js";
+        // b = document.getElementsByTagName('body')[0];
+        // b.appendChild(s);
+        // return ct;
+        // })(window, document);
+        // channelTraction('init', '7');
+    </script>
+
+	</body>
+</html>
+
+
+

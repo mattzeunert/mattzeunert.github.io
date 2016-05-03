@@ -1,0 +1,14 @@
+---
+layout: post
+title: Deploying a Flask app to Ubuntu with Python Paste
+date: 2013-03-31
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+Here's a step by step guide to serving a Flask application.<br /><h3>Installing Paste, WSGI Utilities and Flask</h3><div>Pretty straightforward:<br /><br /><code class="brush: bash">apt-get update<br />apt-get install python-pastescript -y<br />apt-get install python-pip -y<br /><br />pip install wsgiutils<br />pip install flask</code></div><h3>Creating a wsgi.py file to expose the application</h3>The wsgi.py just contains a factory function that returns an instance of Flask's wsgi_app. The code assumes that your Flask application is called "app" and the file that contains it your_app_package.py:<br /><br /><code style="brush: python;">from your_app_package import app<br /><br />def app_factory(global_config, **local_config):<br />&nbsp; &nbsp; return app.wsgi_app<br /></code><br /><h3>Creating a config file for Paster</h3><div><div>Create a config.ini file like this:</div><pre>[app:main]<br />paste.app_factory = wsgi:app_factory<br />[server:main]<br />use = egg:PasteScript#wsgiutils<br />host = 123.45.67.8<br />port = 80</pre></div><div>Make sure to replace the host property with the IP address of your server.</div><h3>Running Paster</h3><div>Add the current directory to the python path and pass the config file to `paster serve`:<br /><br /><code class="brush: bash"> export PYTHONPATH=.<br />paster serve ./config.ini<br /> </code><br />Now your website should be served and at least accessible locally. Try `curl localhost` to confirm.</div><h3>Update firewall settings if necessary</h3>If the site is only available locally but con't be accessed by the IP address you might need to update firewall settings to allow traffic from port 80, both for your hosting service (e.g. rules in the EC2 security group) and on your machine (disable iptables to confirm this). Here's more information on this:&nbsp;<a href="http://cloud.lib.wfu.edu/blog/tech/2010/09/28/managing-firewall-rules-on-amazon-ec2-servers/">http://cloud.lib.wfu.edu/blog/tech/2010/09/28/managing-firewall-rules-on-amazon-ec2-servers/</a><br /><br /><br /></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

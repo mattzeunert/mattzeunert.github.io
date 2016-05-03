@@ -1,0 +1,19 @@
+---
+layout: post
+title: jQuery.Callbacks objects
+date: 2013-01-04
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+The <code><a href="http://api.jquery.com/category/callbacks-object/">jQuery.Callbacks</a></code> object provides functionality for callback lists: Callbacks can be collected and fired collectively when necessary. <br /><br />Initially I thought that callback lists would help when waiting for multiple callbacks to be called, for example when waiting for multiple Ajax responses. That's not the case, you can use <a href="http://api.jquery.com/category/deferred-object/">jQuery deferred objects</a> for that.<br /><br /><h3>Creating a callback list, adding a callback and triggering the list callbacks</h3>The necessary functions for this are <code>$.Callbacks</code>, <code>.add</code> and <code>fire:</code><br /><pre class="brush: javascript">var handler = function(){<br />     console.log("Handling whatever caused the callback list to fire");<br />};<br />var cb = $.Callbacks();<br />cb.add(handler);<br />cb.fire(); // Logs "Handling whatever caused the callback list to fire"<br /></pre>You can add multiple callbacks to the list, if you add the same one twice it will be called twice. Use `remove` to delete a handler and `empty` to remove all handlers.<br /><br /><h3>A playground for exploring other functions of callback objects</h3>I made a <a href="http://www.mostlystatic.com/playgrounds/jquery-callbacks.html">playground that let's you explore $.Callbacks' behavior and additional functions</a>. I'll describe some of them below.<br /><br /><h3>Functions of callback lists</h3><i>fireWith(execution context, arguments)</i><br />Invoke callbacks in the list with the given arguments and execution context ("this").<br /><br /><i>lock</i><br />Prevent changes to the callback list.<br /><i><br /></i><i>disable</i><br />Remove all callbacks and lock the callback list (i.e. prevent adding new handlers).<br /><br /><i>has(callback)</i><br />Returns a boolean indicating whether the given callback has been added to the callback list.<br /><br /><h3>Passing flags to the callback list</h3>You can pass flags to the callback list constructor to modify its behavior. The following flags are available:<br /><br /><i>memory</i><br />Remember arguments of last invocation and call any newly added callback with these arguments.<br /><br /><i>once</i><br />Only allow calling <code>fire</code> once.<br /><br /><i>unique</i><br />Ignore duplicates added with <code>add</code>.<br /><br /><i>stopOnFalse</i><br />As soon as one callback returns false stop going through the list of callbacks.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>chandra</div>
+<div class='content'>
+good one.</div>
+</div>
+</div>

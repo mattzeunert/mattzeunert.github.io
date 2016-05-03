@@ -1,0 +1,11 @@
+---
+layout: post
+title: Unnamed arguments with argparse
+date: 2012-02-12
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+To pass arguments to Python scripts like this<br /><pre class="brush: bash">python myscript file1.txt file2.py<br /></pre>you do<br /><pre class="brush: python">from argparse import ArgumentParser<br /><br />parser = ArgumentParser()<br />parser.add_argument("files",nargs="*")<br />args = parser.parse_args()<br /><br />print args.files # ['file1.txt', 'file2.py']<br /></pre><div><br />It's in the first example in the <a href="http://docs.python.org/dev/library/argparse.html">docs</a>, but somehow I managed to miss it.<br /><br />Nargs='*' means that any number of arguments will be read. If you use nargs='+' the script will bitch if doesn't get at least one argument. Nargs also takes integers like this: nargs=2.<br /><br />Another example:<br /><pre class="brush: python">from argparse import ArgumentParser<br /><br />parser = ArgumentParser()<br />parser.add_argument("first_arg",nargs=1)<br />parser.add_argument("items",nargs="+")<br />args = parser.parse_args()<br /><br />print "First argument: %s" % args.first_arg<br />print "The rest: %s" % args.items<br /></pre>Gives: <br /><pre class="brush: bash">$ python example2.py Hello there world<br />First argument: ['Hello']<br />The rest: ['there', 'world']<br />$ python example2.py Hi<br />usage: example2.py [-h] first_arg items [items ...]<br />example2.py: error: too few arguments<br /></pre></div></div>

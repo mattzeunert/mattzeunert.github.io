@@ -1,0 +1,125 @@
+<h1>jQuery.Callbacks Playground</h1>
+
+<div style="padding: 16px; background: #f4f4ff; border: 1px solid #d4d4df">
+	The playground uses <code>console.log</code> to indicate when a callback is called. <b>Open the debugging console</b> to see the messages.
+</div>
+
+<div style="border: 1px solid gray;padding: 16px;margin-top: 16px;margin-bottom: 16px">
+	<u>Instructions</u><br>
+	Add a handler and then click fire. Observe the messages in the debugging console. Then just click buttons randomly.
+	<br>
+	Here's <a href="http://blog.mostlystatic.com/2013/01/jquery-callbacks.html">a blog post on jQuery.Callbacks</a>.
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+
+<script>
+
+var cb = $.Callbacks();
+
+handlers = {
+    A: function(){
+        log("in handler A with", "arguments:", arguments, "this:", this);
+        return true;
+    },
+    B: function(){
+        log("in handler B with", "arguments:", arguments, "this:", this);
+        return false;
+    },
+    C: function(){
+        log("in handler C with", "arguments:", arguments, "this:", this);
+        return true;
+    }
+};
+
+function log()
+{
+	console.log.apply(console, arguments);
+    
+}
+
+function updateInfo(){
+	var info = [];
+    info.push("Has A: " + cb.has(handlers.A));
+    info.push("Has B: " + cb.has(handlers.B));
+    info.push("Has C: " + cb.has(handlers.C));
+    
+    info.push("Locked: " + cb.locked());
+    info.push("Fired: " + cb.fired())
+    $("#info").html(info.join("<br>"));
+}
+$(document).ready(function(){
+	updateInfo();
+});
+
+$(function(){
+    $("button").click(updateInfo)
+});
+
+function createNew(){
+	cb = new $.Callbacks(getCreateFlagsString());
+	updateInfo();
+}
+
+function getCreateFlagsString(){
+	var flagString = [
+		$("#flag-memory").prop("checked") ? "memory" : "",
+		$("#flag-once").prop("checked") ? "once" : "",
+		$("#flag-unique").prop("checked") ? "unique" : "",
+		$("#flag-stopOnFalse").prop("checked") ? "stopOnFalse" : "",
+	].join(" ");
+	return flagString;
+}
+
+function updateCreateFlags(){
+	$("#createFlags").html(getCreateFlagsString());
+}
+</script>
+
+<table>
+    <tr>
+        <td><button onclick="cb.add(handlers.A)">Add handler A</button></td>
+        <td><button onclick="cb.remove(handlers.A)">Remove handler A</button> (returns true)</td>
+    </tr>
+     <tr>
+        <td><button onclick="cb.add(handlers.B)">Add handler B</button></td>
+        <td><button onclick="cb.remove(handlers.B)">Remove handler B</button> (returns false)</td>
+    </tr>
+     <tr>
+        <td><button onclick="cb.add(handlers.C)">Add handler C</button></td>
+        <td><button onclick="cb.remove(handlers.C)">Remove handler C</button> (returns true)</td>
+    </tr>
+</table>
+<button onclick="cb.empty()">.empty()</button>
+<button onclick="cb.lock()">.lock()</button>
+<button onclick="cb.disable()">.disable()</button>
+<br>
+
+
+<button onclick="cb.fire()">.fire()</button>
+<button onclick="cb.fireWith({'context':'object'}, ['arg1', 'arg2'])">fireWith({'numbers':[1,2,3]}, ['arg1', 'arg2'])</button>
+
+<div id="info"></div>
+
+<div>
+	<button onclick="createNew()">Create a new callback object with the flags below: "cb = $.Callbacks('<span id='createFlags'></span>')"</button> 
+	<br>
+	<div onclick="updateCreateFlags()">
+		<label>
+			<input type="checkbox" id="flag-memory"></input>
+			memory
+		</label>
+		<label>
+			<input type="checkbox" id="flag-once"></input>
+			once
+		</label>
+		<label>
+			<input type="checkbox" id="flag-unique"></input>
+			unique
+		</label>
+		<label>
+			<input type="checkbox" id="flag-stopOnFalse"></input>
+			stopOnFalse
+		</label>
+	</div>
+</div>

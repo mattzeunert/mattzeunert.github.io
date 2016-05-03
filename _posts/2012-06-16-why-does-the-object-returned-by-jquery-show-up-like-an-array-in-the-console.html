@@ -1,0 +1,14 @@
+---
+layout: post
+title: Why does the object returned by jQuery() show up like an array in the console?
+date: 2012-06-16
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+<p>In Javascript an object with a length property and a splice function is an array-like object. Chrome and Firebug display these like arrays: </p> <pre class="brush:javascript">a = {length: 1, splice: function(){}, 0:"some value"}<br />&gt;&gt; ["some value"]<br />$(".tagged span").slice(0,2) // on Stackoverflow<br />&gt;&gt; [&lt;span class=​"item-multiplier"&gt;​…​&lt;/span&gt;​, &lt;span class=​"item-multiplier-x"&gt;​×​&lt;/span&gt;​]</pre> <p>The <a href="https://developer.mozilla.org/en/JavaScript/Reference/Functions_and_function_scope/arguments">arguments variable</a> is a special case because it is an array-like object even though it does not have a splice function. </p></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

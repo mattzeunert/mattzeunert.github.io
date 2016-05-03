@@ -1,0 +1,7 @@
+markdown: kramdown
+highlighter: rouge
+
+url: http://www.mattzeunert.com
+
+gems:
+  - jekyll-sitemap

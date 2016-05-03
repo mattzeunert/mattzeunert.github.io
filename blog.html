@@ -1,0 +1,38 @@
+---
+layout: root
+title: Blog
+---
+
+<h1 class="content-h1">Blog</h1>
+
+{% for post in site.posts %}
+<a href="{{post.url}}" class="blog-post-link">
+  <div style="float:right;" class="date">
+    {{post.date | date: "%-d %b %Y" }}
+  </div>
+  {{post.title}}
+</a>
+<br style="clear:both">
+{% endfor %}
+
+
+<h1 class="content-h1">Meetup Notes</h1>
+
+{% for note in site.pages reversed %}
+  {% if note.group == 'notes'%}
+      <a href="{{note.url}}" class="blog-post-link">
+        <div style="float:right;" class="date">
+          {{note.date | date: "%-d %b %Y" }}
+        </div>
+        {{note.title}}
+      </a>
+      <br style="clear:both">
+
+  {% endif %}
+{% endfor %}
+
+<h1 class="content-h1">
+  Ideas
+</h1>
+
+I have a <a href="/project-ideas.html" style="color: #e58e1a">list of project ideas</a> I think would be interesting to do, but don't have the time for right now.

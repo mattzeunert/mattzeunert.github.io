@@ -1,0 +1,32 @@
+---
+layout: post
+title: Uploading a file to S3 on the client
+date: 2012-04-09
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+For the upload a form is posted to amazonaws.com. I'll use Python and Django templates for it.<br /><h3>The form template</h3><pre class="brush: html">
+    &lt;title&gt;S3 POST Form&lt;/title&gt; 
+ 
+    &lt;form action=&quot;https://{{bucket}}.s3.amazonaws.com/&quot; enctype=&quot;multipart/form-data&quot; method=&quot;post&quot;&gt;
+		&lt;input name=&quot;key&quot; type=&quot;hidden&quot; value=&quot;uploads/${filename}&quot; /&gt;
+	      &lt;input name=&quot;AWSAccessKeyId&quot; type=&quot;hidden&quot; value=&quot;{{aws_access_key}}&quot; /&gt; 
+	      &lt;input name=&quot;acl&quot; type=&quot;hidden&quot; value=&quot;public-read&quot; /&gt; 
+	      &lt;input name=&quot;success_action_redirect&quot; type=&quot;hidden&quot; value=&quot;http://example.com&quot; /&gt;
+	      &lt;input name=&quot;policy&quot; type=&quot;hidden&quot; value=&quot;{{policy}}&quot; /&gt;
+	      &lt;input name=&quot;signature&quot; type=&quot;hidden&quot; value=&quot;{{signature}}&quot; /&gt;
+
+      	File to upload to S3: 
+      	&lt;input name=&quot;file&quot; type=&quot;file&quot; /&gt; 
+      
+		&lt;input type=&quot;submit&quot; value=&quot;Upload File to S3&quot; /&gt; 
+    &lt;/form&gt;
+
+
+</pre><h3>The python code</h3><pre class="brush: python">from django.http import HttpResponse<br />from django.template import loader, Context<br />import base64<br />import hmac, sha<br /><br />def upload(request):<br />    t = loader.get_template("upload.html")<br />    vars = {}<br />    <br />    policy = base64.b64encode(policy_json)<br />    aws_secret_key = "SEE BELOW"<br />    signature = base64.b64encode(hmac.new(aws_secret_key, policy, sha).digest())<br />    <br />    vars["signature"] = signature<br />    vars["policy"] = policy<br />    vars["aws_access_key"] = "SEE BELOW"<br />    vars["bucket"] = "your-bucket"<br />  <br />    return HttpResponse(t.render(Context(vars)))<br /><br />policy_json = """ <br />{"expiration": "2013-01-01T00:00:00Z",<br />  "conditions": [ <br />    {"bucket": "your-bucket"}, <br />    ["starts-with", "$key", "uploads/"],<br />    {"acl": "public-read"},<br />    {"success_action_redirect": "http://example.com"},<br />    ["content-length-range", 0, 1048576]<br />  ]<br />}<br />"""<br /></pre><b>Below:</b> You can find your keys at https://aws-portal.amazon.com/gp/aws/securityCredentials. The aws access key is public and will be sent to the client. The secret access key is used to calculate a signuature for the policy json.<br />Make sure to replace "your-bucket" with the name of your bucket. It should work now.<br /><h3>A problem I ran into</h3>Initially I got this error:<br /><blockquote>The request signature we calculated does not match the signature you provided. Check your key and signing method.</blockquote>That was because I had the json in my policy field, but actually it should contain the base64-encoded json.</div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

@@ -1,0 +1,64 @@
+<script src="immutable.min.js"></script>
+
+<script>
+function logImmutableObject(){
+    var i = Immutable.fromJS({
+      "title": "Logging values to the console",
+      "metadata": {
+        "createdAt": "2016-04-05T10:00:36.390Z",
+        "tags": [
+          {
+            "id": 55,
+            "title": "JavaScript",
+            "createdAt": "2016-03-02T00:00:00.000Z",
+            "createdBy": "Sally Green"
+          },
+          {
+            "id": 89,
+            "title": "HTML",
+            "createdAt": "2015-06-02T23:00:00.000Z",
+            "createdBy": "John Doe"
+          },
+          {
+            "id": 15,
+            "title": "CSS",
+            "createdAt": "2010-06-01T23:00:00.000Z",
+            "createdBy": "Sally Green"
+          },
+          {
+            "id": 13,
+            "title": "JS",
+            "createdAt": "2016-03-01T00:00:00.000Z",
+            "createdBy": "Sally Green"
+          },
+          {
+            "id": 27,
+            "title": "Debugging",
+            "createdAt": "2015-06-01T23:00:00.000Z",
+            "createdBy": "John Doe"
+          },
+          {
+            "id": 16,
+            "title": "Chrome DevTools",
+            "createdAt": "2010-07-01T23:00:00.000Z",
+            "createdBy": "Bob Orange"
+          }
+        ]
+      }
+    });
+
+    console.log(i);
+}
+</script>
+
+<div id="header"></div>
+<script src="../shared.js"></script>
+<script>
+initHeader("object-formatters");
+</script>
+
+<div class="page-content">
+    <button onclick="logImmutableObject()" class="btn-demo">Log Immutable object</button>
+    <button onclick="installImmutableDevTools()" class="btn-demo">Install Immutable DevTools</button>
+</div>
+<script src="bundle.js"></script>

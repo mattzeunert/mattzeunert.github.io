@@ -1,0 +1,14 @@
+---
+layout: post
+title: Backbone LocalStorage - Uncaught TypeError Object has no method 'parse' 
+date: 2013-01-21
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+This problem occurs for when using <a href="http://backbone.localstorage/">Backbone.localStorage</a> with Backbone&nbsp;0.9.10+. The synchronization success callback's signature <a href="https://github.com/documentcloud/backbone/pull/2005">changed in that version</a>, there's <a href="https://github.com/jeromegn/Backbone.localStorage/pull/63">a fix coming up on Gitub</a>.<br /><div><br /></div><div><b>The fix</b>: Change two lines in the sync function of Backbone.localStorage. They are:</div><div><pre class="brush: javascript">options.success(resp);<br />...<br />options.error(errorMessage);</pre></div><div>And they need to be:</div><div><pre class="brush: javascript">options.success(model, resp, options);<br />...<br />options.error(model, "Record not found", options);<br /></pre></div></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

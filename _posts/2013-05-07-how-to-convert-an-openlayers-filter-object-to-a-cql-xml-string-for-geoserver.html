@@ -1,0 +1,14 @@
+---
+layout: post
+title: How to convert an OpenLayers filter object to a CQL XML string for GeoServer
+date: 2013-05-07
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+You first need to convert the object to a filter node and then to XML:<br /><pre class="brush: javascript">filter = new OpenLayers.Filter.Comparison({<br />  type: OpenLayers.Filter.Comparison.EQUAL_TO,<br />  property: "prop",<br />  value: "val"<br />});<br />// OpenLayers.Filter.Comparison.OpenLayers.Class.initialize {type: "==", property: "prop", value: "val", type: null, property: null…}<br />node = new OpenLayers.Format.Filter({version: "1.1.0"}).write(filter);<br />// &lt;ogc:filter&gt;​…​&lt;/ogc:filter&gt;​<br />xml = new OpenLayers.Format.XML().write(node)<br />// "&lt;ogc:Filter xmlns:ogc="http://www.opengis.net/ogc"&gt;&lt;ogc:PropertyIsEqualTo matchCase="true"&gt;&lt;ogc:PropertyName&gt;prop&lt;/ogc:PropertyName&gt;&lt;ogc:Literal&gt;val&lt;/ogc:Literal&gt;&lt;/ogc:PropertyIsEqualTo&gt;&lt;/ogc:Filter&gt;"<br /></pre>You can then pass the xml string as a filter argument to the map layer in OpenLayers:<br /><pre class="brush: javascript"><br />new OpenLayers.Layer.WMS(<br />    layerName,<br />    layerUrl<br />     {<br />          filter: '&lt;ogc:Filter xmlns:ogc=&quot;http://www.opengis.net/ogc&quot;&gt;&lt;ogc:PropertyIsEqualTo matchCase=&quot;true&quot;&gt;&lt;ogc:PropertyName&gt;prop&lt;/ogc:PropertyName&gt;&lt;ogc:Literal&gt;val&lt;/ogc:Literal&gt;&lt;/ogc:PropertyIsEqualTo&gt;&lt;/ogc:Filter&gt;';<br />     },<br />     {/*...*/}<br /> );<br /></pre></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>

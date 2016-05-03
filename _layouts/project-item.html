@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{{page.title}}</title>
+	</head>
+	<body>
+		<style>
+			body
+			{
+				color: #444;
+				line-height: 1.5em;
+				font-family: Arial;
+				margin: 0px;
+			}
+			#main-container, .container
+			{
+				width: 1024px;
+				margin-left: auto;
+				margin-right: auto;	
+			}
+			a
+			{
+				text-decoration: none;
+			}
+			a:hover
+			{
+				text-decoration: underline;
+			}
+			.project-item
+			{
+				margin-bottom: 8px;
+			}
+			.project-item a{
+				font-size: 20px;
+			}
+			.project-item img
+			{	
+				padding: 4px;
+				border: 1px solid #ddd;
+			}
+			.project-item img, .project-item > div
+			{
+				float: left;
+			}	
+			.project-item > div
+			{
+				margin-left: 16px;
+			}
+			.project-item code
+			{
+				float: left;
+				border: 1px solid #ddd;
+				margin-right: 4px;
+				padding: 4px;
+				line-height: 12px;
+			}
+			.project-item .technology-list
+			{
+				margin-top: 4px;
+			}
+
+			.well{
+				padding: 10px;
+background: #eee;
+border: 1px solid #ddd;
+border-radius: 8px;
+			}
+			.well h2{
+				margin:0;
+				text-transform: uppercase;
+				font-size:12px;
+			}
+			
+			h1
+			{
+				color: #444;
+				text-transform: uppercase;
+				font-size: 12px;
+				margin-top: 16px;
+				margin-bottom: 8px;
+				letter-spacing: 1px;
+			}
+			a{
+				color: #37afd7;
+			}
+			.four-columns > div
+			{
+				float: left;
+				width: 25%;
+				
+			}
+			.four-columns .column-container{
+				border: 1px solid #ddd;
+				margin-right: 10px;
+			}
+			.four-columns div:last-child .column-container{
+				margin-right: 0px;
+			}
+			.four-columns div .column-container:hover{
+				border-color: #aaa;
+			}
+			.four-columns a{
+				padding: 15px;
+				display: block;
+			}
+			.four-columns a:hover{
+				text-decoration: none;
+				color: #777;
+				background: #fafafa;
+			}
+			.four-columns a div{
+				margin-left: auto;
+				margin-right: auto;
+			}
+			footer{
+				margin-top: 25px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				border-bottom: 3px solid black;
+			}
+			header, footer{
+				background: #37afd7;
+				color: white;
+			}
+			header{
+				border-top: 3px solid black;
+				padding-top: 25px;
+				padding-bottom: 25px;
+				letter-spacing: 1px;
+			}
+			header a{
+				color: white;
+			}
+
+			.clearfix:before,
+			.clearfix:after {
+			    content: " "; /* 1 */
+			    display: table; /* 2 */
+			}
+			
+			.clearfix:after {
+			    clear: both;
+			}
+			
+			/**
+			 * For IE 6/7 only
+			 * Include this rule to trigger hasLayout and contain floats.
+			 */
+			.clearfix {
+			    *zoom: 1;
+			}
+
+
+			
+		</style>
+		<header>
+			<div class="container">
+				<div class="clearfix">
+					<div style="float:left;font-size: 50px; line-height: 75px;">
+						<a href="/" style="text-decoration:none">{{page.bigTitle}}</a>
+					</div>
+				</div>
+				{% if page.hideSmallTitleAndEmail %}
+					
+				{% else %}
+					
+					<div class="clearfix" style="">
+						<div style="float:left;">
+							{{page.smallTitle}}
+						</div>
+						<div style="float:right;">
+							 <a href="mailto:matt@mostlystatic.com">matt@mostlystatic.com</a>
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</header>
+		<div id="main-container">
+			{{content}}
+		</div>
+		<footer>
+			<div class="container" style="text-align: center">
+				<a style="color:white" href="mailto:matt@mostlystatic.com">matt@mostlystatic.com</a>
+			</div>
+		</footer>
+
+
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-39253677-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
+		
+	</body>
+</html>
+
+
+

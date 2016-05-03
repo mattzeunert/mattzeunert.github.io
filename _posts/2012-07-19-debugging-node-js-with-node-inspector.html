@@ -1,0 +1,19 @@
+---
+layout: post
+title: Debugging Node.js with node-inspector
+date: 2012-07-19
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+<a href="https://github.com/dannycoates/node-inspector/">node-inspector</a> allows you to use the <a href="http://trac.webkit.org/wiki/WebInspector">Web Inspector Javascript debugger</a> for node.js (you probably know Web Inspector from Google Chrome). <br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-9DJezVxolpI/UAcxQphq7uI/AAAAAAAAABM/LWB9XFC6vX0/s1600/node-inspector.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="172" src="http://3.bp.blogspot.com/-9DJezVxolpI/UAcxQphq7uI/AAAAAAAAABM/LWB9XFC6vX0/s400/node-inspector.png" width="400" /></a></div><div class="separator" style="clear: both; text-align: center;"><br /></div><br />  <h3>Installing node-inspector</h3><p>Run <code>sudo npm install -g node-inspector</code> to install node-inspector. If it tells you that it couldn't install some "blazing fast native extensions" don't worry: it'll still work fine. </p> <h3>Using node-inspector</h3> <p>Now you'll need two terminal windows:<br>1) Run the program in debug mode: <code>node --debug-brk test.js</code><br>2) Start the debugger: <code>node-inspector</code><br>--debug-brk causes the node program to break immediately </p> <p>Node-inspector will tell you to got to <a href="http://0.0.0.0:8080/debug?port=5858">http://0.0.0.0:8080/debug?port=5858</a> to start debugging. <br><b>If it isn't loading properly:</b> Try just using <a href="http://localhost:8080/">http://localhost:8080/</a>, it did work that way for me. </p> <h3>--debug-brk and --debug options for node</h3> <p>When you use the --debug option you can set a breakpoint using <code>debugger;</code>. If your code finishes running before you can start node-inspector and go to the debugging page in the browser --debug-brk will set a breakpoint right at the beginning of the program.<br>Here's an example for using --debug: </p> <pre class="brush: javascript"><br />setTimeout(function(){<br />    var a = 5;<br />    debugger;<br />    a += 8;<br />}, 5000);<br /></pre> <h3>If you're getting 'connect ECONNREFUSED'</h3> <p>This probably means that you've tried to access the inspector in the browser while your node.js script isn't running. So first start your node process with --debug-brk and then run node-inspector. </p></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Jony..</div>
+<div class='content'>
+Thanks man! <br />That was exactly what i was looking for.</div>
+</div>
+</div>

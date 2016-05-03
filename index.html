@@ -1,0 +1,277 @@
+---
+layout: root
+title: Web App Development Matt Zeunert
+---
+
+<!-- bxSlider Javascript file -->
+<script src="/js/jquery.bxslider/jquery.bxslider.js"></script>
+<!-- bxSlider CSS file -->
+<link href="/js/jquery.bxslider/jquery.bxslider.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+<script>
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
+</script>
+
+<div class='page-home'>
+	<div style="margin-top: 10px" class="top-of-homepage">
+
+    <div class="recent-projects">
+        <div style="margin-bottom: 5px;color: #777;text-transform: uppercase;font-size: 10px;">Recent Projects</div>
+        <ul class="bxslider">
+          <li><img src="/portfolio-images/shufflehub.jpg" title="Ecommerce Aggregator - Implemented user interface and analytics." /></li>
+          <li><img src="/portfolio-images/sportlobster-events.jpg" title="Social Network - Work on user feed and event pages." /></li>
+          <li><img src="/portfolio-images/vw-small.jpg" title="Implemented new VW model comparison interface." /></li>
+          <li><img src="/portfolio-images/libon.jpg" title="App for messaging, in-browser phone calls and custom voicemail greeings - Worked on automated tests, debugging and feature implementation." /></li>
+          <li><img src="/portfolio-images/makethefuture-gallery.jpg" title="Contract for Digital Agency - Worked on marketing site for Shell's #makethefuture campaign." /></li>
+          <!-- <li><img src="/portfolio-images/report-bundle.jpg" title="Lead generation site for website feedback reports - Created and implemented design." /></li> -->
+          <li><img src="/portfolio-images/london-motor-concierge.jpg" title="Concierge Car Services - Marketing site for lead generation." /></li>
+          <!-- <li><img src="/portfolio-images/these-details.png" title="Fashion Video Reviews - Design implementation" /></li> -->
+        </ul>
+    </div>
+    <script>
+    $('.bxslider').bxSlider({
+      mode: 'fade',
+      captions: true,
+      adaptiveHeight: true
+    });
+    </script>
+
+		<div class="homepage-intro">
+			I'm a London-based web developer building web applications for mobile and desktop.
+            <br><br>
+            I've built many websites from scratch, as well as working on larger projects.
+            <br><br>
+            In terms of tech I'm currently work mostly with React. I'm trying to build better developer tools in my spare time.
+            <br><br>
+            <div style="color: white;background:#333;padding: 16px;">
+              Hire me: <a href="mailto:matt@mostlystatic.com" style="color:white">matt@mostlystatic.com</a>
+            </div>
+
+
+
+
+    <!--             I'm a full-stack developer focussing on JavaScript applications.
+            I've built many websites from scratch, building the front-end, backend and deploying the website.
+ -->
+
+
+            <div class="me-links">
+  <!--               <div>
+                    <div class="column-container">
+                        <a href="/matt-zeunert.pdf" style="text-align:center">
+                            <div class="" style="">
+                                <div class="img-wrapper">
+                                    <img style="height:20px;margin-top:2px;" src="img/user-card.png"></img>
+                                </div>
+                                <div style="float:left;margin-top:2px;margin-left: 5px;">CV / Resume</div>
+                            </div>
+                        </a>
+                    </div>
+                </div> -->
+                <div>
+                    <div class="column-container">
+                        <a href="/writing.html" style="text-align:center">
+                            <div class="" style="">
+                                <div class="img-wrapper">
+                                    <img style="height:20px;margin-top:4px;" src="img/speech-bubble-left-2.png"></img>
+                                </div>
+                                <div style="float:left;margin-top:2px;margin-left: 5px;">Blog</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <div class="column-container">
+                        <a href="https://github.com/mattzeunert" style="text-align:center">
+                            <div class="" style="">
+                                <div class="img-wrapper">
+                                    <img style="height: 25px" src="img/github.png"></img>
+                                </div>
+                                <div style="float:left;margin-top:2px;margin-left: 2px;">Github</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <div class="column-container">
+                        <a href="http://stackoverflow.com/users/1290545/matt" style="text-align:center">
+                            <div class="" style="">
+                                <div class="img-wrapper">
+                                    <img style="height: 22px" src="img/stackoverflow.png"></img>
+                                </div>
+                                <div style="float:left;margin-top:2px;margin-left: 4px;">StackOverflow</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+		</div>
+
+    <br style="clear:both">
+
+
+	</div>
+
+
+
+  <h2 style="margin-bottom: 2px;" class="recently-worked-for-h2">
+    I've recently done work for these companies:
+  </h2>
+  <ul class="recently-worked-for" style="margin-top: 2px;">
+      <li class="sl">
+          <a href="http://www.sportlobster.com">
+              <img src="/img/recently-worked-for/sportlobster.png">
+          </a>
+      </li>
+      <li class="shufflehub">
+          <a href="http://shufflehub.com" >
+              <img src="/img/recently-worked-for/shufflehub.svg">
+          </a>
+      </li>
+      <li>
+          <a href="http://possible.com">
+              <img src="/img/recently-worked-for/possible.png">
+          </a>
+      </li>
+      <li class="ssg">
+          <a href="http://www.solidstategroup.com">
+              <img src="/img/recently-worked-for/solid-state-group.png">
+          </a>
+      </li>
+      <li  class="">
+          <a href="http://www.orange.com">
+              <img src="/img/recently-worked-for/orange.png">
+          </a>
+      </li>
+  </div>
+
+	<h2 style="margin-top:35px;">Personal Projects</h2>
+
+
+	{% for weight in (0..100) %}
+		{% for project in site.pages %}
+			{% if project.group == 'projects' and project.weight == weight %}
+				<div class="clearfix project-item">
+          {% if project.link != "NONE" %}
+  					<a href="{{project.link}}">
+          {% else %}
+            <a href="javascript:void(0);">
+          {% endif %}
+  						<img src="img/{{project.image}}" ></img>
+  						<div class="project-info">
+  							<h2>{{project.projectName}}</h2>
+  							<div class="project-description">
+  								{{project.description}}
+  							</div>
+  							<div class="clearfix technology-list">
+  								{% for tag in project.tags %}
+  									<code>{{tag}}</code>
+  								{% endfor %}
+  							</div>
+  							<button class="view-project" data-href="{{project.link}}">
+  								View project
+  							</button>
+  						</div>
+  					</a>
+				</div>
+			{% endif %}
+		{% endfor %}
+	{% endfor %}
+
+
+  <div class="more-about-me">
+    <h2>Speaking</h2>
+    <p>
+      I've given talks at several user group meetups, including at FrontEndLondon, London Ajax User Group and  FrontEndgineers.
+    </p>
+    <ul>
+      <li>
+        <a href="/slides/bem-fel.pdf">
+          CSS modules and BEM
+        </a>
+      </li>
+      <li>
+        <a href="/2014/05/11/testing-and-debugging-cross-platform-websites.html">Mobile Debugging Tools</a>
+      </li>
+      <li>
+        <a href="/2015/09/16/react-and-immutable.html">React and Immutable.js</a>
+      </li>
+      <li>
+        Scraping websites with Node
+      </li>
+    </ul>
+    <p>
+        Upcoming talks:
+    </p>
+    <ul>
+        <li>
+            <a href="https://jsconf.uy">JS Conf Uruguay</a>
+        </li>
+        <li>
+            <a href="http://www.meetup.com/London-JavaScript-Community/events/228132238/">London JavaScript Community</a>
+        </li>
+    </ul>
+    <p>
+        I recently also started making screencasts:
+    </p>
+    <ul>
+        <li>
+            <a href="https://www.youtube.com/watch?v=8OxJnivoewA">Chrome DevTools: Advanced Breakpoints </a>
+        </li>
+        <li>
+            <a href="https://www.youtube.com/watch?v=cwk_ETFC-PQ">Chrome DevTools: Restart Frame</a>
+        </li>
+    </ul>
+  </div>
+
+  <div class="more-about-me">
+    <h2>Recommended blog posts</h2>
+    <ul>
+        <li>
+            <a href="/2016/01/13/running-a-free-front-end-development-course.html">
+                Lessons learned from running a free front-end development course
+            </a>
+        </li>
+      <li>
+        <a href="/2015/08/07/building-a-website-with-limited-developer-resources.html">
+          6 tips for building a website with limited developer resources
+        </a>
+      </li>
+      <li>
+        <a href="/2015/03/29/stepping-through-javascript-code-in-chrome.html">
+          Stepping through JavaScript code in Chrome
+        </a>
+      </li>
+      <li>
+        <a href="2015/11/30/not-yet-fallacy-of-startups.html" ga-link-track="homepage-not-yet-fallacy">
+          The "Not Yet" Fallacy of Startups
+        </a>
+      </li>
+      <li>
+        <a href="/2014/09/09/using-mixpanels-engage-api-to-filter-and-count-users.html">
+          Using Mixpanel's Engage API to count users
+        </a>
+      </li>
+      <li>
+        <a href="/2013/10/15/usability-of-the-tubby-custard-machine.html">
+          Usability of the Tubby Custard machine
+        </a>
+      </li>
+    </ul>
+    <p>
+      You can read <a href="/writing.html">the rest of my blog here</a>.
+    </p>
+  </div>
+
+  <div style="height: 100px;">
+  &nbsp;
+  </div>
+
+</div>
+
+

@@ -1,0 +1,20 @@
+<div id="header"></div>
+<script src="../shared.js"></script>
+<script>
+initHeader("blackboxing");
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+<script>
+function filterNumbers(){
+    debugger;
+    _.filter([1, 2, 3, 4], function(num){
+        return num > 2;
+    })
+}
+</script>
+<div class="page-content">
+    <button onclick="filterNumbers()" class="btn-demo"> 
+    Filter numbers
+    </button>
+</div>

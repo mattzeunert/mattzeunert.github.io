@@ -1,0 +1,14 @@
+---
+layout: post
+title: Vsftpd 530 login incorrect after adding user on Fedora
+date: 2012-11-19
+comments: false
+legacy: true
+---
+
+<h1>{{ page.title }}</h1>
+<div class='post'>
+For over an hour I got this error when trying to connect to my EC2 ftp server, even though the password was correct:<br /><br /><code>Command: USER username<br />Response: 331 Please specify the password.<br />Command: PASS <br />Response: 530 Login incorrect.</code><br /><code><br /></code>  <br /><div class="p2"><u>How to fix</u>:&nbsp;Vsftpd has an ftpusers file in /etc/vsftpd, users listed in that file will not be able to log in via ftp You can use nano to open the file and remove the username:<br /><br /></div><code>sudo nano /etc/vsftpd/ftpusers </code></div>
+<h2>Comments</h2>
+<div class='comments'>
+</div>
