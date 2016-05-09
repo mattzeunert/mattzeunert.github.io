@@ -1,0 +1,102 @@
+---
+layout: root
+title: Remove timestamps after copying from Slack
+---
+
+<p>
+    You <a href="https://twitter.com/SlackHQ/status/520662970003890176">can't</a> copy Slack messages without the timestamps and usernames. This tool removes the extra timestamps when you paste a conversation in the box on the left.
+</p>
+
+<style>
+#textareas {
+    overflow: hidden;
+    width: 100%;
+    background: #fafafa;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#textareas > div {
+    padding: 4px;   
+    float: left;
+    width: 50%;
+}
+#textareas textarea {
+    width: 100%;   
+    height: 300px;
+    padding: 4px;
+}
+a {
+    color: #000099;
+}
+</style>
+
+<div id="textareas" >
+    <div>
+        <span>Paste Slack conversation here</span>
+        <textarea id="before" onkeydown="convert()" onchange="convert()" onPaste="convert()" onFocus="onFocus()">Susie  5:50 PM
+Does anyone know how to fetch the todos for a project?
+5:51
+I can't find it in the docs...
+
+ali  5:58 PM
+Make a GET request to /project/{project_id}/todos
+5:58
+There's a wrapper method in ProjectApi.ts
+</textarea>
+    </div>
+    <div>
+        <span>Conversion output</span>
+        <textarea id="after" ></textarea>
+    </div>
+</div>
+<script>
+function convert() {
+
+    // set timeout so it works for onpaste
+    setTimeout(function(){
+        var before = document.querySelector("#before")
+        var after = document.querySelector("#after")
+        var withoutLineBreaks = before.value.replace(/\n\n/g, '\n').replace(/\n\n/gi, '\n').trim()
+        var withoutLonelyTimestamps = withoutLineBreaks.replace(/\n\s*[\dA-Z: ]+\s*\n/gm, '\n')
+        after.value = withoutLonelyTimestamps
+    })
+}
+
+function onFocus() {
+    if (document.querySelector("#before").value === sampleText) {
+        document.querySelector("#before").value = ''
+        convert()
+    }
+}
+
+var sampleText = document.querySelector("#before").value
+convert()
+</script>
+
+
+
+<div id="disqus_thread" style="max-width: 800px;"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//mattzeunertblog.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>

@@ -5,66 +5,65 @@ layout: root
 
 
 {% if page.legacy %}
-<link href='http://alexgorbatchev.com/pub/sh/current/styles/shCore.css' rel='stylesheet' type='text/css'/>
-	<style>
-
-	.syntaxhighlighter table td.gutter .line {
-	/* http://stackoverflow.com/questions/11804789/extra-lines-using-syntaxhighlighter-for-chrome-only */
-	padding: 0 5px  !important;
-	}
-	</style>
-	<link href='http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css' rel='stylesheet' type='text/css'/>
-	<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js' type='text/javascript'></script>
-	<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushBash.js' type='text/javascript'></script>
-	<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js' type='text/javascript'></script>
-	<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPython.js' type='text/javascript'></script>
-	<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js' type='text/javascript'></script>
-	<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js' type='text/javascript'></script>
-	<script language='javascript' type='text/javascript'>
-	SyntaxHighlighter.config.bloggerMode = true;
-	SyntaxHighlighter.all();
-	</script>
+<link href='https://alexgorbatchev.com/pub/sh/current/styles/shCore.css' rel='stylesheet' type='text/css' />
+<style>
+  .syntaxhighlighter table td.gutter .line {
+    /* https://stackoverflow.com/questions/11804789/extra-lines-using-syntaxhighlighter-for-chrome-only */
+    padding: 0 5px !important;
+  }
+</style>
+<link href='https://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css' rel='stylesheet' type='text/css' />
+<script src='https://alexgorbatchev.com/pub/sh/current/scripts/shCore.js' type='text/javascript'></script>
+<script src='https://alexgorbatchev.com/pub/sh/current/scripts/shBrushBash.js' type='text/javascript'></script>
+<script src='https://alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js' type='text/javascript'></script>
+<script src='https://alexgorbatchev.com/pub/sh/current/scripts/shBrushPython.js' type='text/javascript'></script>
+<script src='https://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js' type='text/javascript'></script>
+<script src='https://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js' type='text/javascript'></script>
+<script language='javascript' type='text/javascript'>
+  SyntaxHighlighter.config.bloggerMode = true;
+  SyntaxHighlighter.all();
+</script>
 
 {% else %}
-	<link href='/pygments.css' rel='stylesheet'>
-	<h1 class="content-h1">{{page.title}}</h1>
+<link href='/pygments.css' rel='stylesheet'>
+<h1 class="content-h1">{{page.title}}</h1>
 {% endif %}
 
-<link rel="alternate" type="application/rss+xml" 
-  title="RSS Feed for Matt Zeunert's blog" 
-  href="/tech.rss" />
+<link rel="alternate" type="application/rss+xml" title="RSS Feed for Matt Zeunert's blog" href="/tech.rss" />
 
 <div class='content'>
-{{content}}
+  {{content}}
 </div>
 
 <br>
 
 <style>
-.recommended-posts {
-  width: 800px;
-  padding: 10px;
-  border: 1px dotted #44a;
-  font-size: 24px;
-  line-height: 34px;
-  margin-bottom: 30px;
-}
-@media screen and (max-width: 600px){
   .recommended-posts {
+    width: 800px;
+    padding: 10px;
+    border: 1px dotted #44a;
+    font-size: 24px;
+    line-height: 34px;
+    margin-bottom: 30px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .recommended-posts {
       width: 100%;
       font-size: 16px;
       line-height: 20px;
+    }
   }
-}
-.recommended-posts a {
-  display: block;
-  color: #44a;
-}
-.recommended-posts-title {
-  font-weight: bold;
-  margin-bottom: 24px;
-}
 
+  .recommended-posts a {
+    display: block;
+    color: #44a;
+  }
+
+  .recommended-posts-title {
+    font-weight: bold;
+    margin-bottom: 24px;
+  }
 </style>
 <!-- <div class="recommended-posts">
     <div class="recommended-posts-title">Recommended Posts</div>
@@ -78,16 +77,40 @@ $('.recommended-posts a').on('click', function(e){
 });
 </script>
 <br> -->
-<hr>
-<br>
-{% if page.title == 'The "Not Yet" Fallacy of Startups' %}
-    <a href="https://twitter.com/mattzeunert" style="color:#44a">Follow me on Twitter</a>
-{% else %}
-    <a href="https://twitter.com/mattzeunert" style="color:#44a">Follow me on Twitter</a>
-    <!-- <a href="/2015/11/30/not-yet-fallacy-of-startups.html" style="color:#44a" ga-link-track="post-not-yet-fallacy">
+<a href="https://twitter.com/mattzeunert" style="color:#44a">Follow me on Twitter</a>
+
+<style>
+  .debugbear-promo>* {
+    float: left;
+  }
+
+  @media screen and (max-width: 800px) {
+    .debugbear-promo>* {
+      float: none;
+    }
+
+    .debugbear-promo {
+      text-align: center;
+    }
+  }
+</style>
+<div class="debugbear-promo" style="overflow: hidden; padding: 10px; border: 1px solid #eee; border-radius: 4px;margin-top: 10px;">
+  <img src="https://www.debugbear.com/public/title-bear.png" style="max-height: 100px; padding: 20px;" />
+  <div style="padding-left: 30px;margin-top: 10px;">
+    <div style="font-size: 16px; font-weight: bold;">I'm building monitoring tool for site speed and Core Web Vitals.</div>
+    <div style="margin-top: 10px; margin-bottom: 10px;"><a href="https://www.debugbear.com/?utm_campaign=mz" style="background: #1551af;
+      color: white;
+      border-radius: 4px;
+      font-weight: bold;
+      padding: 6px 12px;">➔ Start monitoring your website</a>
+      or <a href="https://www.debugbear.com/test/website-speed" style="text-decoration: underline;">run a free site speed test</a></div>
+  </div>
+</div>
+
+<!-- <a href="/2015/11/30/not-yet-fallacy-of-startups.html" style="color:#44a" ga-link-track="post-not-yet-fallacy">
     =&gt; Read this next: The "Not Yet" Fallacy of Startups
     </a> -->
-{% endif %}
+
 
 <br>
 
@@ -95,56 +118,73 @@ $('.recommended-posts a').on('click', function(e){
 <!-- Begin MailChimp Signup Form -->
 <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-  #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+  #mc_embed_signup {
+    background: #fff;
+    clear: left;
+    font: 14px Helvetica, Arial, sans-serif;
+  }
+
   /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
      We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-#mc_embed_signup form {
+  #mc_embed_signup form {
     max-width: 800px;
     padding-left: 0;
-}
-#mc_embed_signup {
+  }
+
+  #mc_embed_signup {
     background: transparent !important;
     border: none;
-}
+  }
 
-#mc_embed_signup .button {
-  margin-top: 10px;
-}
-#mc_embed_signup h2 {
+  #mc_embed_signup .button {
+    margin-top: 10px;
+  }
+
+  #mc_embed_signup h2 {
     text-transform: none;
     letter-spacing: 0;
-}
-#mc_embed_signup div.mce_inline_error {
+  }
+
+  #mc_embed_signup div.mce_inline_error {
     float: left;
     display: block;
     width: 100%;
     margin-top: 10px;
-}
+  }
 </style>
-<div id="mc_embed_signup">
-<form action="//mostlystatic.us8.list-manage.com/subscribe/post?u=6e1d1f58acfc60f4eb4adce31&amp;id=1d7f1671f7" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <div id="mc_embed_signup_scroll">
-  <h2>Want to read more about startups and making products?</h2>
-<!-- <div class="indicates-required"><span class="asterisk">*</span> indicates required</div> -->
-<div class="mc-field-group">
-  <label for="mce-EMAIL">Email Address  <!-- <span class="asterisk">*</span> -->
-  </label>
 
-  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
 
-</div>
-  <div id="mce-responses" class="clear">
-    <div class="response" id="mce-error-response" style="display:none"></div>
-    <div class="response" id="mce-success-response" style="display:none"></div>
-  </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style="position: absolute; left: -5000px;"><input type="text" name="b_6e1d1f58acfc60f4eb4adce31_1d7f1671f7" tabindex="-1" value=""></div>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-    </div>
-</form>
-</div>
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+
+
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+<script type='text/javascript'>(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
 <!--End mc_embed_signup-->
 {% endif %}
+
+
+<!-- <div id="disqus_thread" style="max-width: 800px;"></div>
+<script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+
+    s.src = '//mattzeunertblog.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript> -->
 
 <!-- <div class="need-a-dev">
   <div class="me"></div>
@@ -155,4 +195,3 @@ $('.recommended-posts a').on('click', function(e){
       Get in touch to discuss your project! <a href="mailto:matt@mostlystatic.com">matt@mostlystatic.com</a>
   </p>
 </div> -->
-

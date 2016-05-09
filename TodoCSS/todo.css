@@ -1,0 +1,206 @@
+/* Styling for new todo item input */
+.created-checkbox:not(:checked) ~ .todo-input {
+    position: absolute;
+    top: 0;
+    padding-left: calc(15px + 40px);
+    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+.created-checkbox:not(:checked) ~ .todo-input,
+.created-checkbox:not(:checked) ~ .created-checkbox-label {
+    border-bottom: 1px solid #e6e6e6;
+}
+
+/* Mark as done/not done */
+.done-checkbox,
+.mark-done-checkbox-label,
+.mark-undone-checkbox-label {
+    display: none;
+}
+
+.mark-done-checkbox-label,
+.mark-undone-checkbox-label {
+    cursor: pointer;
+    padding-top: 13px;
+    padding-bottom: 11px;
+    border-bottom: 1px solid #ededed;
+}
+/* Show mark as done if item is created and not marked as done yet */
+.created-checkbox:checked ~ .done-checkbox:not(:checked) ~ .mark-done-checkbox-label {
+    display: inline-block;
+}
+/* Show mark as undone if item is created and marked as done */
+.created-checkbox:checked ~ .done-checkbox:checked ~ .mark-undone-checkbox-label {
+    display: inline-block;
+}
+
+/* Item creation */
+.created-checkbox-label {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 40px;
+    cursor: pointer;
+    background: #d6d6d6;
+    font-weight: bold;
+    padding: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+.created-checkbox-label:hover {
+    background: #ddd;
+}
+/* Don't allow creating empty items */
+input:not(:valid) ~ .created-checkbox-label {
+    pointer-events: none;
+}
+
+.created-checkbox {
+    display: none;
+}
+.created-checkbox:checked + input {
+    border: none;
+}
+
+/* Item creation state */
+.created-checkbox:checked ~ .todo > .todo-input,
+.created-checkbox:checked ~ .todo > .created-checkbox-label {
+    display: inline-block;
+}
+
+.created-checkbox:checked ~ .created-checkbox-label {
+    display: none !important;
+}
+
+/* Item deletion */
+
+.deleted-checkbox-label,
+.deleted-checkbox {
+    display: none;
+}
+
+.deleted-checkbox-label {
+    display: none;
+	width: 60px;
+	margin: auto 0;
+	font-size: 30px;
+
+	transition: color 0.2s ease-out;
+    text-align: center;
+    color: transparent;
+    border-bottom: 1px solid #ededed;
+    box-sizing: border-box;
+    /* unequal padding because the x icon itself is not centered on the line of text*/
+    padding-top: 17px;
+    padding-bottom: 28px;
+    cursor: pointer;
+}
+
+.deleted-checkbox-label:hover {
+	color: #af5b5e !important;
+}
+
+.created-checkbox:checked ~ .deleted-checkbox-label {
+    display: inline-block;
+}
+
+/* Show the delete icon on hover over any of the item elements */
+.created-checkbox:checked ~ .deleted-checkbox-label:hover,
+.created-checkbox:checked ~ :not(.todo):hover ~ .deleted-checkbox-label {
+    color: #cc9a9a;
+}
+
+/* If item is deleted hide its elements */
+.deleted-checkbox:checked ~ :not(.todo) {
+    display: none !important;
+}
+
+/* Hide items marked as done if filter is active */
+.active-filter:target .created-checkbox:checked ~ .done-checkbox:checked ~ .todo-input,
+.active-filter:target .created-checkbox:checked ~ .done-checkbox:checked ~ .mark-done-checkbox-label,
+.active-filter:target .created-checkbox:checked ~ .done-checkbox:checked ~ .mark-undone-checkbox-label,
+.active-filter:target .created-checkbox:checked ~ .done-checkbox:checked ~ .deleted-checkbox-label {
+    display: none !important;
+}
+
+/* Hide items not marked done if filter is completed */
+.completed-filter:target .created-checkbox:checked ~ .done-checkbox:not(:checked) ~ .todo-input,
+.completed-filter:target .created-checkbox:checked ~ .done-checkbox:not(:checked) ~ .mark-done-checkbox-label,
+.completed-filter:target .created-checkbox:checked ~ .done-checkbox:not(:checked) ~ .mark-undone-checkbox-label,
+.completed-filter:target .created-checkbox:checked ~ .done-checkbox:not(:checked) ~ .deleted-checkbox-label {
+    display: none !important;
+}
+
+/* Indicate currently selected filter */
+.active-filter:target .filter-active,
+.completed-filter:target .filter-completed,
+.completed-filter:not(:target) .active-filter:not(:target) .filter-all {
+    border-color: rgba(175, 47, 47, 0.2);
+}
+
+/* items-left counter */
+body  {
+    counter-reset: items-left;
+}
+.created-checkbox:checked ~ .deleted-checkbox:not(:checked) ~ .done-checkbox:not(:checked) ~ .items-left-counter-helper {
+    /* items-left-counter-helper is an empty element that's not hidden by filters */
+    counter-increment: items-left;
+}
+#items-left:before {
+    content: counter(items-left);
+}
+
+/* Basic Item styles */
+
+#todo-1 {
+    position: relative;
+    padding-top: 65px;
+}
+
+#todo-0 > :not(.todo) { /* todo 0 is used to bootstrap the todo-1 as visible (because todo 0 is marked as created) */
+    display: none;
+}
+.todo-input {
+    white-space: pre-line;
+    word-break: break-all;
+    padding: 15px 60px 15px 15px;
+    margin-left: 45px;
+    display: block;
+    line-height: 1.2;
+    transition: color 0.4s;
+    border: 0;
+    border: none;
+    border-bottom: 1px solid #ededed;
+
+    background: rgba(0, 0, 0, 0.003);
+    position: relative;
+    margin: 0;
+    width: calc(100% - 175px);
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 1.4em;
+    outline: none;
+    color: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+.todo-input,
+.created-checkbox-label {
+    display: none;
+}
+
+.todo {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+
+@media (max-width: 600px) {
+    body {
+        padding: 5px;
+    }
+}

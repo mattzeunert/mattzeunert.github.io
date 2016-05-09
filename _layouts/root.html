@@ -2,15 +2,27 @@
 <html>
 	<head>
 		<title>{{page.title}}</title>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href="/sass/main.css" rel="stylesheet"></link>
-    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href="/sass/main.css?cachebust-jan-2022-2" rel="stylesheet"></link>
+    <meta name="viewport" content="width=device-width">
     <meta charset="utf-8">
+
+    <meta property="og:title" content="{{page.title}}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {{#if page.ogDescription}}
+    <meta property="og:description" content="{{page.ogDescription}}" />
+    <meta name="description" content="{{page.ogDescription}}"/>
+    <meta content="{{page.ogDescription}}" name="twitter:description">
+    {{/if}}
+    {%if page.ogImage %}
+    <meta property="og:image" content="https://www.mattzeunert.com/ogImages/{{page.ogImage}}" />
+    {% endif %}
+    {%if page.ogImageAbs %}
+    <meta property="og:image" content="{{page.ogImageAbs}}" />
+    {% endif %}
+    <script src="https://europe-west1-debugbear-us.cloudfunctions.net/debugbearrumproxy" async></script>
 	</head>
 	<body>
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
 		<header>
 			<div class="container">
 				<div class="clearfix">
@@ -21,7 +33,11 @@
               {% if page.group == 'notes' %}
                 <a href='/writing.html' style="">Meetup notes</a>
               {% else %}
-                <a href='/writing.html' style="">Blog</a>
+			  	{% if page.group == 'devtools' %}
+                	<a href='/devtools-diaries.html' style="">DevTools Diaries</a>
+              	{% else %}
+                	<a href='/writing.html' style="">Blog</a>
+				{% endif %}
               {% endif %}
             {% endif %}
 					</div>
@@ -54,6 +70,87 @@
                 <a style="color:white" href="mailto:matt@mostlystatic.com">matt@mostlystatic.com</a>
 			</div>
 		</footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script>
+
+if (window.onJQueryReady) {
+  window.onJQueryReady()
+}
+</script>
+
+{% if page.pageId == 'home' %}
+
+  <!-- bxSlider Javascript file -->
+  <script src="/js/jquery.bxslider/jquery.bxslider.js"></script>
+  <!-- bxSlider CSS file -->
+  <link href="/js/jquery.bxslider/jquery.bxslider.css" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+  <script>
+  if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body);
+      }, false);
+  }
+  </script>
+
+   <script>
+
+
+   $(document).ready(function(){
+    $(".recent-projects").show()
+
+      $('.bxslider').bxSlider({
+      mode: 'fade',
+      captions: true,
+      adaptiveHeight: true
+    });
+   })
+    
+    </script>
+
+{% endif %}
+{% if page.pageId == 'langmap' %}
+
+<script>
+    $(".language-key").children("div").each(function(){
+        var color = $(this).data("color");
+        var languageName = $(this).text();
+        var colorDiv = $("<div>")
+            .width(25)
+            .height(25)
+            .css({
+                "background": color,
+                "float": "left"
+            });
+        var languageDiv = $("<div>")
+            .css({
+                "float": "left",
+                "margin-left": "5px"
+            })
+            .text(languageName);
+        $(this)
+            .empty()
+            .addClass("clearfix")
+            .append(colorDiv)
+            .append(languageDiv)
+
+    })
+
+    $("h2").filter(function(){
+      return $(this).next().is("img");
+    }).each(function(){
+        var mapName = $(this).text().split("(")[0];
+        var mapHash = mapName.replace(/ /g, "-");
+        $(this).prepend("<a name='" + mapHash + "'>")
+        $("#map-list").append("<a href='#" + mapHash + "'>" + mapName + "</a><br>")
+    })
+
+</script>
+{% endif %}
 
 		<script>
 			var tooSmallForAllInfo = true;
@@ -147,54 +244,5 @@
 
 
     </script>
-
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-39253677-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-		<script type="text/javascript">
-
-          $("body").on("click", "[ga-link-track]", function(){
-            var el = $(this);
-            var trackingValue = el.attr("ga-link-track");
-            ga("send", "event", "Link Click", trackingValue);
-          });
-
-          $("body").on("click", "a", function(){
-            var el = $(this);
-            var url = el.prop("href");
-            if (url.indexOf("mattzeunert.com") === -1 && url.indexOf("localhost") === -1) {
-
-                ga("send", "event", "External link click", url, location.pathname);
-            }
-          });
-
-		</script>
-
-    <script>
-        // window.channelTraction = (function(window, document){
-        // function ct(){ct.queuedCalls.push(arguments);}
-        // ct.queuedCalls = [];
-        // var s = document.createElement('script');
-        // s.type = 'text/javascript';
-        // s.async = 1;
-        // s.src = "http://www.channeltraction.com/v1/tracking-script/ct.js";
-        // b = document.getElementsByTagName('body')[0];
-        // b.appendChild(s);
-        // return ct;
-        // })(window, document);
-        // channelTraction('init', '7');
-    </script>
-
 	</body>
 </html>
-
-
-
