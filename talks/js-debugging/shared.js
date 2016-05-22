@@ -24,7 +24,7 @@ var demoList = [
     path: "backbone-todomvc/index.html"
 }, {
     id: "never-pause-here",
-    title: "Never Pause Here",
+    title: "Pause on Exceptions",
     path: "never-pause-here/index.html"
 }//,
 //{
@@ -65,4 +65,3 @@ function initHeader(demoId) {
 
 
 setTimeout("\n          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');\n\n  ga('create', 'UA-39253677-1', 'auto');\n  ga('send', 'pageview');\n\n  var aTags = document.getElementsByTagName(\"a\");\n  for (var i=0;i<aTags.length;i++) {\n    aTags[i].addEventListener(\"click\", function(){\n        var url = this.href;\n        if (url.indexOf(\"mattzeunert.com\") === -1 && url.indexOf(\"localhost\") === -1) {\n            ga(\"send\", \"event\", \"External link click\", url, location.pathname);\n        }\n    })\n  }\n", 500);
-
