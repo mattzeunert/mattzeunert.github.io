@@ -39,6 +39,13 @@ $blue: #44a;
 
 .content .highlight {
     line-height: 20px;
+    .err {
+        border: none;
+    }
+}
+
+.content code {
+    color: green;
 }
 
 .non-techies-bottom-nav a.prev {
@@ -224,13 +231,12 @@ a
 }
 .content h2 {
     // color: #44a;
-    font-size: 16px;
     margin-top: 40px;
     margin-bottom: 0px;
     letter-spacing: 0px;
-    font-weight: bold;
+    font-weight: normal;
     text-transform: none;
-    font-size: 20px;
+    font-size: 26px;
     padding-bottom: 6px;
 }
 .content h3 {

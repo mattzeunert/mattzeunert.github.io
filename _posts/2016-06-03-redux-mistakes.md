@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Three mistakes I made working with Redux
+title: Two mistakes I made working with Redux
 date: 2016-05-31
 ---
 
@@ -69,25 +69,49 @@ Whereas if I denormalize the data first the access is simpler:
 
 ## 2) Exporting action types and creators using ES6 module syntax
 
-- advantages according to redux docs, and explain how i worked around it
-- samples recommend it!!
+Looking through the Redux documentation you will find code like this:
 
-- most of my actioncreators are the same!
+{% highlight javascript %}
+export const ADD_TODO = 'ADD_TODO'
 
-- could instead generate things/maybe use ORM
+export function addTodo(text) {
+  return { type: ADD_TODO, text }
+}
+{% endhighlight %}
 
-- btw that samenesss thing also applies to reducers
+This code uses the ES6 module syntax to export values that can then be imported using `import {addTodo} from "./actions.js"`.
 
+This has some advantages that are mentioned in the redux docs, for example it's easy to keep track of all availalble action types. if an action type is mis-typed it will be obvious right away (since the imported value will be undefined, unlike if you typed the string literal every time).
 
+In theory it also allows static import checking, since every exported value is explicitly defined. However I assume most projects don't currently do anything like that.
 
-## 3) Not separating between container and UI components
+However I eventually found this structure very limiting. A lot of my actions did similar things to different data types. `ADD_TODO`, `ADD_POST`, `ADD_USER`, etc.
+
+Using the ES6 export made it harder to split up my code into different files and then mass export all imported todo or user related actions.
+
+It also meant that even once I had written a re-usable generator function for actions and actionCreators it still had to manually import them.
+
+### What I should have done
+
+My Redux logic was basically a database running on the front-end. I should have used some kind of ORM, either as a library or just writing my own generator logic from the start.
+
+Rather than separating actions, action creators and reducers I ended up writing a generator function.
+
+I pass the name of the data type (e.g. "users") into the generator function. The generator function is then able to generate common actions like "add" and handle them in the reducer.
+
+I can still create custom action creators when necessary.
+
+I can also add my own action handlers to the generated reducer, but most of the time the generated handler will be sufficient.
+
+I keep track of all action types I create, so I can still do these two things:
+
+- see what actions and actionCreators are available
+- check that no reducer is trying to handle an action type that doesn't exist
 
 ## Do you even need Redux?
 
-- just global store with mutations in one place
-- does perf even matter?
-- if you do immutable data you can easily add shouldcompupdate without much cost
+I'm happy with my Redux setup now, and I enjoy working with it. However, it does add a bunch of extra work to make how your app interacts with your data more explicit.
 
-## notes
+It's easy to get carried away worrying about performance, but unless you are actually running into issues you'll be better off focussing on improving your product.
 
-- make sure throughout you descirbe the mistake and what you should have done instead / what you're doing now
+Before starting on a project, think about whether you really need Redux/Flux, or whether some global state is good enough. Doing a full app re-render might not be so bad, and you can still opt out selectively where appropriate.
