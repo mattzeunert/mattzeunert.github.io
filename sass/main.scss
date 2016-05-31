@@ -37,6 +37,10 @@ $blue: #44a;
   text-decoration: none;
 }
 
+.content .highlight {
+    line-height: 20px;
+}
+
 .non-techies-bottom-nav a.prev {
   float: left;
 }
@@ -191,8 +195,7 @@ a
     top: 40px;
     font-family: serif;      }
 .content .highlight {
-  background: #fafafa;
-  padding: 20px;
+  padding: 4px;
   overflow: auto;
 }
 .content .highlight pre {
@@ -213,20 +216,22 @@ a
   line-height: 1.3em;
   font-weight: normal;
   border-bottom: 1px solid #ddd;
-  color: #44a;
+  // color: #44a;
 
   @include mobile {
     font-size: 24px;
   }
 }
 .content h2 {
-    color: #44a;
+    // color: #44a;
     font-size: 16px;
     margin-top: 40px;
     margin-bottom: 0px;
     letter-spacing: 0px;
     font-weight: bold;
     text-transform: none;
+    font-size: 20px;
+    padding-bottom: 6px;
 }
 .content h3 {
     text-transform: uppercase;
