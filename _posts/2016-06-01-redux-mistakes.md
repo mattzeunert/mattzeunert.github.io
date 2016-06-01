@@ -4,11 +4,11 @@ title: Two mistakes I made working with Redux
 date: 2016-06-01
 ---
 
-For the last six months, I've been working on a my first project using React/Redux. I did a bunch of things wrong along the way. This post will focus on how I could have worked more productively with Redux.
+For the last six months, I've been working on a my first project using React/Redux. I did a bunch of things wrong along the way. This post will focus on how I could have used Redux more productively.
 
-## 1) Not denormalizing store data in mapStateToProps
+## 1) Using normalized data throughout the component tree
 
-With Redux your store will generally contain normalized data. The data might look like this:
+With Redux your store will generally contain normalized data. Your data might look like this:
 
 {% highlight javascript %}
 {
@@ -41,15 +41,15 @@ This is the equivalent denormalized data:
 }
 {% endhighlight %}
 
-It makes sense to store the store data in a normalized way, since it avoids duplicating data.
+It makes sense to store keep the store data normalized, since it avoids duplicating data.
 
 If you update a user you only have to make the change in one place. The change then propagates to all posts that reference that user.
 
 Where I screwed up was passing normalized data deep down into the component tree.
 
-That means I had to pass both the `post` and the `users` list as props into my `<Post>` component. That data needed to be passed through at every level of the component tree, from `<TopPostsPage>` to `<PostsList>` to `<Post>`.
+That meant I had to pass both the `post` and the `users` list as props into my `<Post>` component. That data needed to be passed through at every level of the component tree, from `<TopPostsPage>` to `<PostsList>` to `<Post>`.
 
-That makes changes in the data a component requires tedious. Every time I want to add data to a component I have to go through all parent components and add the new data as props.
+That makes changes in the data a component requires tedious. To add data to a component I had to go through all parent components and add the new data as props.
 
 ### What I should have done
 
@@ -58,7 +58,8 @@ I should have denormalized my data inside `mapStateToProp`.
 My components would have had direct access to the data they needed, rather than having to assemble the data themselves.
 
 Denormalizing data in mapStateToProp instead of in the component's render method would also have made it easier to re-use denormalization code. The code could have been moved into selector functions and used across different `mapStateToProps` functions.
-In addition to the amount of code required to pass data through the component tree, normalized data also makes it harder to fetch the data inside the component code. To display the author of a post I have to do this with normalized data:
+
+In addition to the amount of code required to pass data through the component tree, normalized data also makes it harder to fetch the data in the component's render method. To display the author of a post I have to do this with normalized data:
 
 {% highlight javascript %}
 
@@ -74,7 +75,7 @@ post.author.name
 
 {% endhighlight %}
 
-## 2) Exporting action types and creators using ES6 module syntax
+## 2) Exporting action types and creators using ES6 named exports
 
 Looking through the Redux documentation you will find code like this:
 
@@ -94,17 +95,15 @@ import {addTodo} from "./actions.js"
 
 {% endhighlight %}
 
-This has some advantages that [are mentioned](http://redux.js.org/docs/recipes/ReducingBoilerplate.html) in the redux docs, for example it's easy to keep track of all available action types. If an action type is mis-typed it will be obvious right away, since the imported value will be `undefined`. When using a string literal it would be more difficult to spot a typo.
+This has some advantages that [are mentioned](http://redux.js.org/docs/recipes/ReducingBoilerplate.html) in the redux docs. For example, if an action type is mistyped it will be obvious right away, since the imported value will be `undefined`. It also makes it easy to keep track of all available actions since they are explicitly listed.
 
-==> todo: this section seems confused, talks about es6 modules thing but also about action type constants
-
-In theory it also allows static import checking, since every exported value is explicitly defined. But, I assume most projects don't currently don't actually do anything like that.
+In theory it also allows static import checking, since every exported value is explicitly defined. But, I suspect most projects don't currently take advantage of that.
 
 I eventually found the suggested structure very limiting. A lot of my actions did similar things to different data types, e.g. `ADD_TODO`, `ADD_POST`, `ADD_USER`, ...
 
-Using the ES6 export made it harder to split my code into different files, import all actions, and then re-export all of them from one central actions file.
+Using the ES6 export made it harder to split my code into different files, import all actions, and then re-export all of them in one go.
 
-It also meant that even once I had written a re-usable generator function for actions and actionCreators it still had to manually import them.
+It also meant that even once I had written a re-usable generator function for common actions and action creators I still had to manually import them.
 
 ### What I should have done
 
@@ -126,8 +125,8 @@ I keep track of all action types I create, so I'm still able to do all of these 
 
 ## General Advice
 
-I'm happy with my Redux setup now, and I enjoy working with it. However, it took me a bunch of work to get there. Making how your app interacts with your data more explicit takes a bunch of work.
+I'm happy with my Redux setup now, and I enjoy working with it. However, it took me a bunch of work to get there. Making how your app interacts with your data more explicit takes time.
 
-It's easy to get carried away worrying about performance and purity. But I found React to be very fast, and re-running some data logic a few times didn't affect my app's performance in a noticable way.
+It's easy to get carried away worrying about performance and purity. But I found React to be very fast, and re-running some data logic a few times didn't affect my app's performance in a noticeable way. Denormalizing data even when not strictly necessary made it easier to build my app.
 
 For small projects it's also worth asking yourself if you really need Redux. Maybe some global state is enough. Doing a full app re-render might not be so bad, and you can still opt out selectively where appropriate.
