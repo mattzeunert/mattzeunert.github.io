@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Two mistakes I made working with Redux
-date: 2016-05-31
+date: 2016-06-01
 ---
 
 For the last six months, I've been working on a my first project using React/Redux. I did a bunch of things wrong along the way. This post will focus on how I could have worked more productively with Redux.
