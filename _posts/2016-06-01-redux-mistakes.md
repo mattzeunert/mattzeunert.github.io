@@ -49,9 +49,9 @@ If you update a user you only have to make the change in one place. The change t
 
 Where I screwed up was passing normalized data deep down into the component tree.
 
-That meant I had to pass both the `post` and the `users` list as props into my `<Post>` component. That data needed to be passed through at every level of the component tree, from `<TopPostsPage>` to `<PostsList>` to `<Post>`.
+That meant I had to pass both the `post` and the `users` list as props into my `<Post>` component. This data needed to be passed through at every level of the component tree, from `<TopPostsPage>` to `<PostsList>` to `<Post>`.
 
-That made changes in the data a component requires tedious. To add data to a component I had to go through all parent components and add the new data as props.
+As a result, changes to the data a component required were very tedious. To add data to a component I had to go through all parent components and add the new data as props.
 
 ### What I should have done
 
@@ -59,7 +59,7 @@ I should have denormalized my data inside `mapStateToProp`.
 
 My components would have had direct access to the data they needed, rather than having to assemble the data themselves.
 
-Denormalizing data in mapStateToProp instead of in the component's render method would also have made it easier to re-use denormalization code. The code could have been moved into selector functions and used across different `mapStateToProps` functions.
+Denormalizing data in mapStateToProp instead of in the component's render method would also have made it easier to re-use denormalization code. The code could have been moved into selector functions and used in the `mapStateToProp` function of different components.
 
 In addition to the amount of code required to pass data through the component tree, normalized data also makes it harder to fetch the data in the component's render method. To display the author of a post I have to do this with normalized data:
 
