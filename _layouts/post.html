@@ -30,8 +30,8 @@ layout: root
 	<h1 class="content-h1">{{page.title}}</h1>
 {% endif %}
 
-<link rel="alternate" type="application/rss+xml" 
-  title="RSS Feed for Matt Zeunert's blog" 
+<link rel="alternate" type="application/rss+xml"
+  title="RSS Feed for Matt Zeunert's blog"
   href="/tech.rss" />
 
 <div class='content'>
@@ -78,16 +78,12 @@ $('.recommended-posts a').on('click', function(e){
 });
 </script>
 <br> -->
+<a href="https://twitter.com/mattzeunert" style="color:#44a">Follow me on Twitter</a>
 <hr>
-<br>
-{% if page.title == 'The "Not Yet" Fallacy of Startups' %}
-    <a href="https://twitter.com/mattzeunert" style="color:#44a">Follow me on Twitter</a>
-{% else %}
-    <a href="https://twitter.com/mattzeunert" style="color:#44a">Follow me on Twitter</a>
     <!-- <a href="/2015/11/30/not-yet-fallacy-of-startups.html" style="color:#44a" ga-link-track="post-not-yet-fallacy">
     =&gt; Read this next: The "Not Yet" Fallacy of Startups
     </a> -->
-{% endif %}
+
 
 <br>
 
@@ -142,9 +138,36 @@ $('.recommended-posts a').on('click', function(e){
     </div>
 </form>
 </div>
+
+
+
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 <!--End mc_embed_signup-->
 {% endif %}
+
+
+<div id="disqus_thread" style="max-width: 800px;"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//mattzeunertblog.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
 <!-- <div class="need-a-dev">
   <div class="me"></div>
@@ -155,4 +178,3 @@ $('.recommended-posts a').on('click', function(e){
       Get in touch to discuss your project! <a href="mailto:matt@mostlystatic.com">matt@mostlystatic.com</a>
   </p>
 </div> -->
-
