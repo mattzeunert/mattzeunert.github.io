@@ -4,11 +4,11 @@ title: Two mistakes I made working with Redux
 date: 2016-05-31
 ---
 
-I've been working on a project using Redux for about 6 months. It was my first major project using React/Redux and I did a bunch of things wrong.
+For the last six months, I've been working on a my first project using React/Redux. I did a bunch of things wrong along the way. This post will focus on how I could have worked more productively with Redux.
 
 ## 1) Not denormalizing store data in mapStateToProps
 
-In Redux you will generally use normalized data in your store. So your store will look like this:
+With Redux your store will generally contain normalized data. The data might look like this:
 
 {% highlight javascript %}
 {
@@ -28,44 +28,51 @@ In Redux you will generally use normalized data in your store. So your store wil
 }
 {% endhighlight %}
 
-The equivalent denormalized data would look like this:
+This is the equivalent denormalized data:
 
 {% highlight javascript %}
 {
-    posts: [
-        {
-            title: "Redux mistakes",
-            author: {
-                name: "Matt Zeunert"
-            }
+    posts: [{
+        title: "Redux mistakes",
+        author: {
+            name: "Matt Zeunert"
         }
-    ]
+    }]
 }
 {% endhighlight %}
 
-It makes sense to store the store data in a normalized way, since it means updates only have to be applied once and then automatically propagate once.
+It makes sense to store the store data in a normalized way, since it avoids duplicating data.
 
-Where I screwed up was passing normalized data deep down into the component tree. This has two downsides.
+If you update a user you only have to make the change in one place. The change then propagates to all posts that reference that user.
 
-The main one is that I now have to pass both the post and the users list into my `<Post>` component. And that data (both the posts and the users) needs to be passed through at every level, from `<TopPostsPage>` to `<PostsList>` before finally reaching `<Post>`.
+Where I screwed up was passing normalized data deep down into the component tree.
 
-That makes any code change very tedious to work with. Adding new data to one component means I have to go through all parent components to pass the data through from the upper-most component that has access to the store.
+That means I had to pass both the `post` and the `users` list as props into my `<Post>` component. That data needed to be passed through at every level of the component tree, from `<TopPostsPage>` to `<PostsList>` to `<Post>`.
+
+That makes changes in the data a component requires tedious. Every time I want to add data to a component I have to go through all parent components and add the new data as props.
 
 ### What I should have done
 
 I should have denormalized my data inside `mapStateToProp`.
 
-My components would then have had direct access to the data they need, rather than having to assemble the data themselves.
+My components would have had direct access to the data they needed, rather than having to assemble the data themselves.
 
-Doing the denormalization in mapStateToProp instead of in the components also makes it much easier to re-use denormalization code and create selectors that are used to denoramlize data across different mapStateToProp methods.
+Denormalizing data in mapStateToProp instead of in the component's render method would also have made it easier to re-use denormalization code. The code could have been moved into selector functions and used across different `mapStateToProps` functions.
+In addition to the amount of code required to pass data through the component tree, normalized data also makes it harder to fetch the data inside the component code. To display the author of a post I have to do this with normalized data:
 
-In addition to the amount of code required to pass data through the component tree, With normalized data it's also harder to actually get hold of the post author's name. To display the author of a post I have to do this with normalized data:
+{% highlight javascript %}
 
-`users[post.author.id].name`
+users[post.author.id].name
+
+{% endhighlight %}
 
 Whereas if I denormalize the data first the access is simpler:
 
-`post.author.name`
+{% highlight javascript %}
+
+post.author.name
+
+{% endhighlight %}
 
 ## 2) Exporting action types and creators using ES6 module syntax
 
@@ -79,39 +86,48 @@ export function addTodo(text) {
 }
 {% endhighlight %}
 
-This code uses the ES6 module syntax to export values that can then be imported using `import {addTodo} from "./actions.js"`.
+This code uses the ES6 module syntax to export values that can then be imported individually:
 
-This has some advantages that are mentioned in the redux docs, for example it's easy to keep track of all availalble action types. if an action type is mis-typed it will be obvious right away (since the imported value will be undefined, unlike if you typed the string literal every time).
+{% highlight javascript %}
 
-In theory it also allows static import checking, since every exported value is explicitly defined. However I assume most projects don't currently do anything like that.
+import {addTodo} from "./actions.js"
 
-However I eventually found this structure very limiting. A lot of my actions did similar things to different data types. `ADD_TODO`, `ADD_POST`, `ADD_USER`, etc.
+{% endhighlight %}
 
-Using the ES6 export made it harder to split up my code into different files and then mass export all imported todo or user related actions.
+This has some advantages that [are mentioned](http://redux.js.org/docs/recipes/ReducingBoilerplate.html) in the redux docs, for example it's easy to keep track of all available action types. If an action type is mis-typed it will be obvious right away, since the imported value will be `undefined`. When using a string literal it would be more difficult to spot a typo.
+
+==> todo: this section seems confused, talks about es6 modules thing but also about action type constants
+
+In theory it also allows static import checking, since every exported value is explicitly defined. But, I assume most projects don't currently don't actually do anything like that.
+
+I eventually found the suggested structure very limiting. A lot of my actions did similar things to different data types, e.g. `ADD_TODO`, `ADD_POST`, `ADD_USER`, ...
+
+Using the ES6 export made it harder to split my code into different files, import all actions, and then re-export all of them from one central actions file.
 
 It also meant that even once I had written a re-usable generator function for actions and actionCreators it still had to manually import them.
 
 ### What I should have done
 
-My Redux logic was basically a database running on the front-end. I should have used some kind of ORM, either as a library or just writing my own generator logic from the start.
+My Redux logic was essentially  a database running on the front-end. I should have used some kind of ORM, either as a library or just writing my own generator logic from the start.
 
-Rather than separating actions, action creators and reducers I ended up writing a generator function.
+Rather than separating actions, action creators and reducers I ended up writing a generator function that can create all three at once.
 
 I pass the name of the data type (e.g. "users") into the generator function. The generator function is then able to generate common actions like "add" and handle them in the reducer.
 
-I can still create custom action creators when necessary.
+Where necessary I can still create my own custom action creators.
 
-I can also add my own action handlers to the generated reducer, but most of the time the generated handler will be sufficient.
+I can also add custom handler functions to the reducer, but often the generated handler will be enough.
 
-I keep track of all action types I create, so I can still do these two things:
+I keep track of all action types I create, so I'm still able to do all of these things:
 
-- see what actions and actionCreators are available
-- check that no reducer is trying to handle an action type that doesn't exist
+- See what actions and actionCreators are available
+- Check that no reducer is trying to handle an action type that doesn't exist
+- Check that no action creator is creating an action object with an unknown type
 
-## Do you even need Redux?
+## General Advice
 
-I'm happy with my Redux setup now, and I enjoy working with it. However, it does add a bunch of extra work to make how your app interacts with your data more explicit.
+I'm happy with my Redux setup now, and I enjoy working with it. However, it took me a bunch of work to get there. Making how your app interacts with your data more explicit takes a bunch of work.
 
-It's easy to get carried away worrying about performance, but unless you are actually running into issues you'll be better off focussing on improving your product.
+It's easy to get carried away worrying about performance and purity. But I found React to be very fast, and re-running some data logic a few times didn't affect my app's performance in a noticable way.
 
-Before starting on a project, think about whether you really need Redux/Flux, or whether some global state is good enough. Doing a full app re-render might not be so bad, and you can still opt out selectively where appropriate.
+For small projects it's also worth asking yourself if you really need Redux. Maybe some global state is enough. Doing a full app re-render might not be so bad, and you can still opt out selectively where appropriate.
