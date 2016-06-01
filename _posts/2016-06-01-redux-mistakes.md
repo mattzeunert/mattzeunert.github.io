@@ -4,7 +4,9 @@ title: Two mistakes I made working with Redux
 date: 2016-06-01
 ---
 
-For the last six months, I've been working on a my first project using React/Redux. I did a bunch of things wrong along the way. This post will focus on how I could have used Redux more productively.
+For the last six months, I've been working on a my first major project using React/Redux. I did a bunch of things wrong along the way.
+
+This post will focus on how I could have used Redux more productively.
 
 ## 1) Using normalized data throughout the component tree
 
@@ -49,7 +51,7 @@ Where I screwed up was passing normalized data deep down into the component tree
 
 That meant I had to pass both the `post` and the `users` list as props into my `<Post>` component. That data needed to be passed through at every level of the component tree, from `<TopPostsPage>` to `<PostsList>` to `<Post>`.
 
-That makes changes in the data a component requires tedious. To add data to a component I had to go through all parent components and add the new data as props.
+That made changes in the data a component requires tedious. To add data to a component I had to go through all parent components and add the new data as props.
 
 ### What I should have done
 
@@ -77,7 +79,7 @@ post.author.name
 
 ## 2) Exporting action types and creators using ES6 named exports
 
-Looking through the Redux documentation you will find code like this:
+Looking through the Redux documentation you will find code [like this](http://redux.js.org/docs/basics/Actions.html):
 
 {% highlight javascript %}
 export const ADD_TODO = 'ADD_TODO'
@@ -103,7 +105,7 @@ I eventually found the suggested structure very limiting. A lot of my actions di
 
 Using the ES6 export made it harder to split my code into different files, import all actions, and then re-export all of them in one go.
 
-It also meant that even once I had written a re-usable generator function for common actions and action creators I still had to manually import them.
+It also meant that even when I had written a re-usable generator function for common actions and action creators I still had to manually import them.
 
 ### What I should have done
 
@@ -119,7 +121,7 @@ I can also add custom handler functions to the reducer, but often the generated 
 
 I keep track of all action types I create, so I'm still able to do all of these things:
 
-- See what actions and actionCreators are available
+- See what actions and action creators are available
 - Check that no reducer is trying to handle an action type that doesn't exist
 - Check that no action creator is creating an action object with an unknown type
 
