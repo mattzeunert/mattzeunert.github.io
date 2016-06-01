@@ -6,7 +6,7 @@ date: 2016-06-01
 
 For the last six months, I've been working on a my first major project using React/Redux. I did a bunch of things wrong along the way.
 
-This post will focus on how I could have used Redux more productively.
+This post will show two things I did wrong and show how I could have used Redux more productively.
 
 ## 1) Using normalized data throughout the component tree
 
