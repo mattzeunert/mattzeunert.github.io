@@ -45,8 +45,14 @@ $blue: #44a;
     }
 }
 
+// generated from `code` in markdown
 .content code {
     color: green;
+}
+.content pre code {
+    // generated from ```code``` in markdown
+    display: block;
+    overflow: auto;
 }
 
 .non-techies-bottom-nav a.prev {
@@ -262,6 +268,7 @@ a
   padding: 10px;
   display: block;
   margin: auto;
+  max-width: 100%;
   box-shadow: 1px 1px gray;
 }
 @media (max-width: 600px) {
