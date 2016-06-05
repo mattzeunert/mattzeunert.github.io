@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How is node --inspect different from using Node-Inspector?
+title: How is node --inspect different from using Node Inspector?
 date: 2016-06-01
 ---
 
