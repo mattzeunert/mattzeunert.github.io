@@ -6,7 +6,7 @@ date: 2016-06-01
 
 The developers working on Chrome at Google recently opened a [pull request](https://github.com/nodejs/node/pull/6792) on the Node project to "add v8_inspector support".
 
-There are already a bunch of Node debugging tools out there. Many of them re-use the DevTools frontend code for their UI. However, behind the scenes they work differently from the approach enabled by the pull request.
+There are already a bunch of Node debugging tools out there. Many of them re-use the DevTools frontend code for their UI. However, behind the scenes they work differently from the normal DevTools approach.
 
 This post explains how [Node Inspector](https://github.com/node-inspector/node-inspector) works and how the new `node --inspect` command is different.
 
