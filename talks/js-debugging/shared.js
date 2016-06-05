@@ -2,6 +2,11 @@
 
 // compile with `6to5 shared.es6.js > shared.js`
 var demoList = [
+    {
+        id: "conditional-breakpoints",
+        title: "Conditional Breakpoints",
+        path: "conditional-breakpoints/index.html"
+    },
 {
     id: "object-formatters",
     title: "Custom Object Formatters",
