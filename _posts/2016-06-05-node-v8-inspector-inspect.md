@@ -73,8 +73,10 @@ This is what Node-Inspector does. When you interact with the DevTools UI it has 
 
 v8_inspector is ["is an implementation of the DevTools debug protocol"](https://github.com/nodejs/node/pull/6792#issuecomment-219570244). That means DevTools can now connect directly to the Node process!
 
+`--inspect` tells Node to expose the new debugging protocol, `--debug-brk` means Node will wait for DevTools to connect before starting execution.
+
 ```
-./node --inspect --debug-brk /tmp/test.js
+./node --inspect --debug-brk test.js
 Debugger listening on port 5858.
 To start debugging, open the following URL in Chrome:
     chrome-devtools://devtools/remote/serve_file/@521e5b7e2b7cc66b4006a8a54cb9c4e57494a5ef/inspector.html?experiments=true&v8only=true&ws=localhost:5858/node
