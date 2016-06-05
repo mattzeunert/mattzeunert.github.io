@@ -6,7 +6,7 @@ date: 2016-06-01
 
 The developers working on Chrome at Google recently opened a [pull request](https://github.com/nodejs/node/pull/6792) on the Node project to "add v8_inspector support".
 
-There are already a bunch of Node debugging tools out there. Many of them re-use the DevTools frontend code for their UI. However, behind the scenes they work differently from the normal DevTools approach.
+There are already a bunch of Node debugging tools out there. Many of them re-use the DevTools frontend code for their UI. However, behind the scenes they work differently from the normal DevTools.
 
 This post explains how [Node Inspector](https://github.com/node-inspector/node-inspector) works and how the new `node --inspect` command is different.
 
@@ -19,10 +19,10 @@ Node already ships with an [integrated debugger](https://nodejs.org/api/debugger
 You can launch this debugger using `node debug`.
 
 ```
-$nwode debug test.js
+$node debug test.js
 < Debugger listening on port 5858
 debug> . ok
-break in /private/tmp/test.js:1
+break in test.js:1
 > 1 var a= 5;
   2 a = a*a
   3 a += 2;
@@ -33,7 +33,7 @@ It shows you where it's paused and then lets you control execution with commands
 
 ```
 debug> next
-break in /private/tmp/test.js:2
+break in test.js:2
   1 var a= 5;
 > 2 a = a*a
   3 a += 2;
@@ -55,14 +55,14 @@ That means Node Inspector has to step between the two and translate.
 If passed the `--debug` option the Node process will expose the debugger connection on a port, rather than directly on the command line.
 
 ```
-node --debug-brk test.js
+$ node --debug-brk test.js
 Debugger listening on port 5858
 ```
 
 That means a different process can connect to it.
 
 ```
-node debug localhost:5858
+$ node debug localhost:5858
 connecting to localhost:5858 ... ok
 debug>
 ```
@@ -73,8 +73,10 @@ This is what Node Inspector does. When you interact with the DevTools UI it has 
 
 v8_inspector is ["is an implementation of the DevTools debug protocol"](https://github.com/nodejs/node/pull/6792#issuecomment-219570244). That means DevTools can now connect directly to the Node process!
 
+(I'm using a locally compiled `./node` binary.)
+
 ```
-./node --inspect --debug-brk test.js
+$ ./node --inspect --debug-brk test.js
 Debugger listening on port 5858.
 To start debugging, open the following URL in Chrome:
     chrome-devtools://devtools/remote/serve_file/@521e5b7e2b7cc66b4006a8a54cb9c4e57494a5ef/inspector.html?experiments=true&v8only=true&ws=localhost:5858/node
