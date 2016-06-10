@@ -92,9 +92,9 @@ Index 12 is the second `a` in `var a = 5; a += 10;`. Tern tells us it's defined 
 
 ## Finding all variables in a file
 
-In the examples above we always supplied Tern with a specific character index for our variable. That works well when the end user has selected a specific character and you want to do a lookup..
+In the examples above we always supplied Tern with a specific character index for our variable. That works well when the end user has selected a specific character and you want to do a lookup.
 
-However, it makes it difficult to find all variable definitions at once. As far as I can tell Tern doesn't include any special features for that use case.
+However, it makes it difficult to find all variables at once. As far as I can tell Tern doesn't include any special features for that use case.
 
 That means you have to traverse the abstract syntax tree (AST) yourself in order to identify variable declarations. Tern provides an event hook called `postParse` that gives us access to the AST.
 
