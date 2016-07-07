@@ -8,7 +8,9 @@ JavaScript compilation and bundling tools usually output a source map file in ad
 
 DevTools can use the source map to find the correct line number of each call frame in your code. It can also use the source map to find the correct function name of each call stack item.
 
-However, if all you have is a stack trace obtained from production, the debugger doesn't help much.
+Logging exceptions on production lets you find out if things are breaking for your end users. You can use `error.stack` to get a stack trace that you want to log.
+
+However, if all you have is a stack trace obtained from production, the debugger doesn't help much. You can't load the minified call frames into DevTools.
 
 It's very hard to work with the stack production stack trace directly. Finding column 23912 in line 1 for every call frame is going to take some time.
 
