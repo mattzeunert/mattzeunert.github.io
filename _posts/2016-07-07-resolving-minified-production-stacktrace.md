@@ -47,7 +47,7 @@ var productionStackTrace = `Error
 </script>
 {% endhighlight %}
 
-Now, in order to resolve the stack trace StackTrace.JS needs to have access to all the original code and source maps. That means we need to do a bit of work before we can continue.
+Now, in order to resolve the stack trace, StackTrace.JS needs to have access to all the original code and source maps. That means we need to do a bit of work before we can continue.
 
 First, we need to put all the referenced code into our working directory.
 
@@ -55,7 +55,7 @@ You can see the production call stack mentions an "all.js" file, which has a sou
 
 ![File setup for StackTrace.JS frame resolution](/img/blog/stacktrace-js/file-setup.png)
 
-Next, let's strip out the original domain name. In this example that's "localhost:6001". If we wouldn't do this StackTrace.JS would try to load the files from that domain, and we'd get an error because of an unallowed the cross origin request.
+Next, let's strip out the original domain name. In this example that's "localhost:6001". If we didn't do this StackTrace.JS would try to load the files from that domain, and we'd get an error because of an unallowed the cross origin request.
 
 {% highlight javascript %}
 productionStackTrace = productionStackTrace.replace(/http:\/\/localhost:6001\//g, "")
