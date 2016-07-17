@@ -18,21 +18,21 @@ Let's go through some examples.
 
 ## Where does the todo item data come from?
 
-After loading the demo app you can see two todo items. To find out where the data for the todo items came from we can click on one of them.
+The demo app shows two todo items. We can click on one of them to find out where the data for it came from.
 
 ![Selected "Buy milk" todo item in FromJS](/img/blog/fromjs-demo/todo-item-selected.png)
 
-FromJS selects the "B" character of "Buy milk" todo by default and shows its origin in a sidebar.
+FromJS selects the "B" character of "Buy milk" by default and shows its origin in a sidebar.
 
-The selected HTML element is at the top of the sidebar, with the inspected character highlighted.
+![FromJS sidebar showing "Buy milk" origin](/img/blog/fromjs-demo/sidebar-after-selecting-todo-item.png)
 
-Below it you can see the path the character travelled before reaching the screen.
+At the top is the selected HTML element, with the inspected character highlighted.
+
+Below it you can see the path the character traveled before reaching the screen.
 
 The first step shows that the todo item was originally loaded from localStorage using `localStorage.getItem`.
 
 The last step shows how the string was added to the DOM, in this case by an `innerHTML` assignment in jQuery.
-
-![FromJS sidebar showing "Buy milk" origin](/img/blog/fromjs-demo/sidebar-after-selecting-todo-item.png)
 
 ## Where does the label tag come from?
 
