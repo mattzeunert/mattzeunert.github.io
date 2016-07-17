@@ -22,7 +22,7 @@ The demo app shows two todo items. We can click on one of them to find out where
 
 ![Selected "Buy milk" todo item in FromJS](/img/blog/fromjs-demo/todo-item-selected.png)
 
-FromJS selects the "B" character of "Buy milk" by default and shows its origin in a sidebar.
+FromJS selects the "B" character of "Buy milk" by default and shows its origin.
 
 ![FromJS sidebar showing "Buy milk" origin](/img/blog/fromjs-demo/sidebar-after-selecting-todo-item.png)
 
@@ -52,7 +52,7 @@ First of all, we can see where in the code the template is read from the `script
 
 This is happening in jquery.js, but by clicking the arrow in the top right we can see the full call stack.
 
-The an `$("#item-template").html` call in todo-view.js is used to get access to the template string (which is then passed into `_.template`).
+The `$("#item-template").html` call in todo-view.js is used to get access to the template string (which is then passed into `_.template`).
 
 ![Full call stack and code inside todo-view.js](/img/blog/fromjs-demo/read-element-innerhtml-todo-view.png)
 
