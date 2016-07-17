@@ -12,7 +12,7 @@ This post walks through that demo and clarifies the functionality and purpose of
 
 ## Getting started
 
-At the moment, FromJS lets you do precisely one thing. You can select a character from the page HTML and find out where that character came from in either the code or in any data loaded by the app.
+At the moment, FromJS lets you do precisely one thing. You can select a character from the page HTML and find out where that character came from. That can either be code, like a string literal in a JavaScript file, or a data source such as local storage.
 
 Let's go through some examples.
 
