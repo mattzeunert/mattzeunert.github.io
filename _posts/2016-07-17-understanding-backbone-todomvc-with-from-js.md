@@ -73,3 +73,11 @@ Each todo item in TodoMVC appears as an `<li>` tag in the DOM. It's hard to sele
 By clicking on the class name we can see where the `<li>` tag was marked as completed. The class is added in todo-view.js if the view's model has been marked as completed.
 
 ![Completed class origin](/img/blog/fromjs-demo/completed-class-origin.png)
+
+## Going beyond the demo
+
+FromJS currently only works with a small subset of JavaScript features - the ones used by Backbone TodoMVC.
+
+It'll take me a while to make it work for other apps. [Sign up for updates on the FromJS website](http://www.fromjs.com/).
+
+If you have any thoughts or feedback please leave a comment or [create an issue on Github](https://github.com/mattzeunert/fromjs).
