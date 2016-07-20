@@ -95,11 +95,11 @@ Here's a list of steps a JavaScript engine goes through when converting an objec
 4. Else,
     a. Let methodNames be «"valueOf", "toString"».
 5. For each name in methodNames in List order, do
-    a. Let method be Get(Object, name).
-    b. ReturnIfAbrupt(method).
-    c. If IsCallable(method) is true, then
-         i. Let result be Call(method, Object).
-         ii. ReturnIfAbrupt(result).
+    a. Let method be Get(Object, name).  
+    b. ReturnIfAbrupt(method).  
+    c. If IsCallable(method) is true, then  
+         - i. Let result be Call(method, Object).  
+         - ii. ReturnIfAbrupt(result).  
 6. Throw a TypeError exception.
 
 If you compare that to the console output above you can see that they match.
@@ -112,7 +112,7 @@ After that I had a look at the [Chrome source code](https://cs.chromium.org/chro
 
 A good starting point when looking at the Chrome code is an error message. Try searching for ["Cannot convert object to primitive value"](https://cs.chromium.org/chromium/src/v8/src/messages.h?q=%22Cannot+convert+object+to+primitive+value%22&sq=package:chromium&l=103&dr=C).
 
-The main reason why I wanted to point out the source code is because I was surprised how remarkably similar it is to the spec.
+The main reason why I want to point out the source code is because I was surprised how remarkably similar it is to the spec.
 
 Check out `OrdinaryToPrimitive`:
 
