@@ -90,10 +90,7 @@ Here's a list of steps a JavaScript engine goes through when converting an objec
 
 1. Let exoticToPrim be GetMethod(input, @@toPrimitive).
 2. ReturnIfAbrupt(exoticToPrim).
-3. If hint is "string", then
-    a. Let methodNames be «"toString", "valueOf"».
-4. Else,
-    a. Let methodNames be «"valueOf", "toString"».
+3. Let methodNames be «"valueOf", "toString"».
 5. For each name in methodNames in List order, do
     a. Let method be Get(Object, name).  
     b. ReturnIfAbrupt(method).  
