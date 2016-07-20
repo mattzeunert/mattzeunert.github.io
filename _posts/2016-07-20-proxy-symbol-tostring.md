@@ -36,7 +36,7 @@ console.log("First character: ", p[0])
 p + " world!"
 {% endhighlight %}
 
-Looking up the chracter works fine, but then I get an error:
+Looking up the character works fine, but then I get an error:
 
 ```
 First character:  H
@@ -64,7 +64,7 @@ It turned out that the implicit conversion of the object to a string was the pro
 
 Writing `p.toString() + " world!"` works fine!
 
-So what happens when Chrome tries to convert an object to a string? Let's log all property access on an object.
+So what happens when Chrome tries to convert an object to a string? Let's log all property access on an object that's being converted.
 
 {% highlight javascript %}
 var p = new Proxy({}, {
@@ -95,10 +95,10 @@ Here's a list of steps a JavaScript engine goes through when converting an objec
 4. Else,
     a. Let methodNames be «"valueOf", "toString"».
 5. For each name in methodNames in List order, do
-    a. Let method be Get(O, name).
+    a. Let method be Get(Object, name).
     b. ReturnIfAbrupt(method).
     c. If IsCallable(method) is true, then
-         i. Let result be Call(method, O).
+         i. Let result be Call(method, Object).
          ii. ReturnIfAbrupt(result).
 6. Throw a TypeError exception.
 
@@ -106,7 +106,7 @@ If you compare that to the console output above you can see that they match.
 
 ## Looking at the code
 
-When investigating this issue I didn't actually run straight to the spec. First, I narrowed down the issue in my code by cutting chunks of it and seeing if the I kept getting the Symbol lookup.
+When investigating this issue I didn't run straight to the spec. First, I narrowed down the issue in my code by cutting out chunks of it and seeing if I was still getting the Symbol lookup.
 
 After that I had a look at the [Chrome source code](https://cs.chromium.org/chromium/src/v8/src/objects.cc?q=CannotConvertToPrimitive&sq=package:chromium&dr=C&l=8072). The online UI makes it really easy to search and navigate.
 
