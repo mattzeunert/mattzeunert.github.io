@@ -62,7 +62,7 @@ Somehow Chrome is doing an object property lookup, even though there isn't one i
 
 It turned out that the implicit conversion of the object to a string was the problem.
 
-Writing `p.toString() + " world!"` works fine!
+Doing an explicit conversion with `p.toString() + " world!"` works fine!
 
 So what happens when Chrome tries to convert an object to a string? Let's log all property access on an object that's being converted.
 
@@ -89,9 +89,12 @@ It turns out that `toString` isn't the first thing Chrome tries when stringifyin
 Here's a list of steps a JavaScript engine goes through when converting an object to a string. It's based on the [ES2015 spec](http://www.ecma-international.org/ecma-262/6.0/#sec-toprimitive), but I've cut out the steps that aren't important to this article.
 
 1. Let exoticToPrim be GetMethod(input, @@toPrimitive).
-2. ReturnIfAbrupt(exoticToPrim).
-3. Let methodNames be «"valueOf", "toString"».
-5. For each name in methodNames in List order, do
+2. ReturnIfAbrupt(exoticToPrim). (We've found our string/primitive, so return it.)
+3. If hint is "string", then  
+    a. Let methodNames be «"toString", "valueOf"».
+4. Else,
+    a. Let methodNames be «"valueOf", "toString"».
+5. For each name in methodNames in List order, do  
     a. Let method be Get(Object, name).  
     b. ReturnIfAbrupt(method).  
     c. If IsCallable(method) is true, then  
@@ -100,6 +103,26 @@ Here's a list of steps a JavaScript engine goes through when converting an objec
 6. Throw a TypeError exception.
 
 If you compare that to the console output above you can see that they match.
+
+The `hint` isn't really important, usually it's `"number"` or `"default"`. However, there are some exceptions like when creating an object property name.
+
+{% highlight javascript %}
+var p = new Proxy({}, {
+    get: function(target, name){
+        console.log(name)
+    }
+});
+Object.defineProperty({}, p, {})
+{% endhighlight %}
+
+In this case Chrome tries `toString` before `valueOf`, because the `hint` is `"string"`.
+
+```
+Symbol(Symbol.toPrimitive)
+Proxy String:3 toString
+Proxy String:3 valueOf
+Proxy String:6 Uncaught TypeError: Cannot convert object to primitive value(…)
+```
 
 ## Looking at the code
 
