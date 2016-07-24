@@ -72,7 +72,7 @@ The particular problem I was running into was that I created lots of empty lists
 
 I don't fully understand these results. They depend on the internals of the JavaScript engine.
 
-The size for empty fields makes sense. Each item takes up exactly 8 bytes.
+The size for empty fields makes sense. Each item takes up exactly 8 bytes. (The whole array actually takes up 8,000,048 bytes, so we've got 48 bytes of overhead for the array itself.)
 
 However, my expectations don't match up for the numbers array. JavaScript uses double-precision (64-bit) floating point numbers. 64 bits are 8 bytes, but each number actually takes up an average of 9.7 bytes.
 
@@ -90,7 +90,7 @@ It's also interesting to see what the table looks like with only item in each ar
     <thead>
         <tr>
             <th></th>
-            <th>Bytes</th>
+            <th>Total Array Size</th>
         </tr>
     </thead>
     <tbody>
@@ -107,7 +107,7 @@ It's also interesting to see what the table looks like with only item in each ar
             <td>184</td>
         </tr>
         <tr>
-            <td>Identical String</td>
+            <td>String</td>
             <td>216</td>
         </tr>
         <tr>
