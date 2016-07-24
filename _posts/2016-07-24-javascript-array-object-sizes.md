@@ -38,32 +38,32 @@ The particular problem I was running into was that I created lots of empty lists
     </thead>
     <tbody>
         <tr>
-            <td>(Empty Field)</td>
+            <td>Empty Fields</td>
             <td>7.63</td>
             <td>8.00</td>
         </tr>
         <tr>
-            <td>Boolean</td>
+            <td>Booleans</td>
             <td>9.27</td>
             <td>9.72</td>
         </tr>
         <tr>
-            <td>Number</td>
+            <td>Numbers</td>
             <td>9.27</td>
             <td>9.72</td>
         </tr>
         <tr>
-            <td>String</td>
+            <td>Identical Strings</td>
             <td>9.27</td>
             <td>9.72</td>
         </tr>
         <tr>
-            <td>Array</td>
+            <td>Arrays</td>
             <td>39.79</td>
             <td>41.72</td>
         </tr>
         <tr>
-            <td>Empty Object</td>
+            <td>Empty Objects</td>
             <td>62.68</td>
             <td>65.72</td>
         </tr>
@@ -95,27 +95,27 @@ It's also interesting to see what the table looks like with only item in each ar
     </thead>
     <tbody>
         <tr>
-            <td>(Empty Fields)</td>
+            <td>Empty Field</td>
             <td>56</td>
         </tr>
         <tr>
-            <td>Booleans</td>
+            <td>Boolean</td>
             <td>184</td>
         </tr>
         <tr>
-            <td>Numbers</td>
+            <td>Number</td>
             <td>184</td>
         </tr>
         <tr>
-            <td>Identical Strings</td>
+            <td>Identical String</td>
             <td>216</td>
         </tr>
         <tr>
-            <td>Arrays</td>
+            <td>Array</td>
             <td>216</td>
         </tr>
         <tr>
-            <td>Empty Objects</td>
+            <td>Empty Object</td>
             <td>240</td>
         </tr>
     </tbody>
