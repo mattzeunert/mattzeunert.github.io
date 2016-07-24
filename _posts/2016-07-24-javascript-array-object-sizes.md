@@ -4,7 +4,7 @@ title: How much memory do JavaScript arrays take up in Chrome?
 date: 2016-07-24
 ---
 
-My code was taking up too much memory, so I had a look at home much memory a bunch of strings, objects, numbers and arrays take up.
+My code was using too much memory, so I had a look at how much memory a bunch of strings, objects, numbers and arrays take up.
 
 Here are the results:
 
