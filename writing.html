@@ -3,8 +3,8 @@ layout: root
 title: Writing
 ---
 
-<link rel="alternate" type="application/rss+xml" 
-  title="RSS Feed for Matt Zeunert's blog" 
+<link rel="alternate" type="application/rss+xml"
+  title="RSS Feed for Matt Zeunert's blog"
   href="/tech.rss" />
 
 <!-- <h1 class="content-h1">Overview</h1> -->
@@ -20,7 +20,7 @@ title: Writing
 
 </div> -->
 
-<h1 class="content-h1" id="blog">Startup Posts</h1>
+<!-- <h1 class="content-h1" id="blog">Startup Posts</h1>
 
 {% for post in site.posts %}
   {% if post.startups %}
@@ -32,7 +32,7 @@ title: Writing
     </a>
     <br style="clear:both">
   {% endif %}
-{% endfor %}
+{% endfor %} -->
 
 
 <h1 class="content-h1" id="blog">Blog</h1>
@@ -45,6 +45,22 @@ title: Writing
   {{post.title}}
 </a>
 <br style="clear:both">
+{% endfor %}
+
+
+
+<h1 class="content-h1">DevTools Diaries</h1>
+
+{% for note in site.pages reversed %}
+  {% if note.group == 'devtools'%}
+      <a href="{{note.url}}" class="blog-post-link">
+        <div style="float:right;" class="date">
+          {{note.date | date: "%-d %b %Y" }}
+        </div>
+        {{note.title}}
+      </a>
+      <br style="clear:both">
+  {% endif %}
 {% endfor %}
 
 
