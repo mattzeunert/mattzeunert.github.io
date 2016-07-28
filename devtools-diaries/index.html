@@ -1,0 +1,47 @@
+---
+layout: root
+title: ""
+---
+
+<h1 class="content-h1">DevTools Diaries</h1>
+
+<p>
+    I'm trying to do some work on DevTools.
+    The codebase can be quite confusing and there's a lot of functionality,
+    so I'm writing down what I learn about it.
+</p>
+
+<style>
+.devtools-contribution-resources a{
+    color: #44a
+}
+</style>
+<div style="margin-bottom: 0px;">
+        <u>DevTools Contribution Resources:</u>
+    </div>
+<p class="devtools-contribution-resources">
+
+    <a href="https://docs.google.com/document/d/1WNF-KqRSzPLUUfZqQG5AFeU_Ll8TfWYcJasa_XGf7ro/edit#">
+        DevTools Contribution Guide
+    </a><br/>
+    <a href="https://bugs.chromium.org/p/chromium/issues/list?q=component:Platform%3EDevTools">
+        DevTools Bug Tracker
+    </a><br/>
+    <a href="https://cs.chromium.org/">
+        Chromium Code Search
+    </a>
+
+</p>
+
+{% for note in site.pages %}
+	{% if note.group == 'devtools'%}
+			<a href="{{note.url}}">
+				<span style='text-transform: uppercase;
+float: left;
+display: block;
+width: 200px;'>{{note.date}}</span>
+				{{note.title}}
+			</a>
+      <br>
+	{% endif %}
+{% endfor %}
