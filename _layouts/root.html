@@ -21,7 +21,11 @@
               {% if page.group == 'notes' %}
                 <a href='/writing.html' style="">Meetup notes</a>
               {% else %}
-                <a href='/writing.html' style="">Blog</a>
+			  	{% if page.group == 'devtools' %}
+                	<a href='/devtools-diaries.html' style="">DevTools Diaries</a>
+              	{% else %}
+                	<a href='/writing.html' style="">Blog</a>
+				{% endif %}
               {% endif %}
             {% endif %}
 					</div>
@@ -195,6 +199,3 @@
 
 	</body>
 </html>
-
-
-
