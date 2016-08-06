@@ -127,4 +127,4 @@ At the top of my post I mentioned how looking at small intervals gives inaccurat
 
 ![](/img/blog/profile-native-functions/new-error-stack-2.png)
 
-(The total execution time here is ~1ms, the example above took ~10ms because I called `Error().stack` 10 times.)
+(The total execution time here is ~1ms, which means Chrome took 10 samples of the call stack. The example above took ~10ms because I called `Error().stack` 10 times in a loop.)
