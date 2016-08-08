@@ -78,7 +78,7 @@ However, my expectations don't match up for the numbers array. JavaScript uses d
 
 Likewise, Chrome shows the size of each individual empty array as 32 bytes and the size of each empty object as 56 bytes. The whole array however gives an average size of 39.8 and 62.7 respectively.
 
-My guess is that part of this discrepancy comes from V8 storing metadata (e.g. type) for the array items. Also, not all arrays are the same internally in V8. I tried to get a better understanding, but didn't manage to make much sense of [the code](https://cs.chromium.org/chromium/src/v8/src/objects.h?type=cs&q=jsarra&sq=package:chromium&l=10334). [This blog post](https://wingolog.org/archives/2011/05/18/value-representation-in-javascript-implementations) from 2011 could also be interesting.
+My guess is that part of this discrepancy comes from V8 storing metadata (e.g. type) for the array items, and from Chrome making more space for the array than the minimum it requires. Also, not all arrays are the same internally in V8. I tried to get a better understanding, but didn't manage to make much sense of [the code](https://cs.chromium.org/chromium/src/v8/src/objects.h?type=cs&q=jsarra&sq=package:chromium&l=10334). [This blog post](https://wingolog.org/archives/2011/05/18/value-representation-in-javascript-implementations) from 2011 could also be interesting.
 
 If you want to play with the memory profiler in Chrome you can use [this CodePen](http://codepen.io/anon/pen/AXaoGr) or get the code from [Github](https://github.com/mattzeunert/javascript-array-memory-consumption).
 
