@@ -52,33 +52,13 @@ if ('addEventListener' in document) {
               Hire me: <a href="mailto:matt@mostlystatic.com" style="color:white">matt@mostlystatic.com</a>
             </div>
 
-
-
-
-    <!--             I'm a full-stack developer focussing on JavaScript applications.
-            I've built many websites from scratch, building the front-end, backend and deploying the website.
- -->
-
-
             <div class="me-links">
-  <!--               <div>
-                    <div class="column-container">
-                        <a href="/matt-zeunert.pdf" style="text-align:center">
-                            <div class="" style="">
-                                <div class="img-wrapper">
-                                    <img style="height:20px;margin-top:2px;" src="img/user-card.png"></img>
-                                </div>
-                                <div style="float:left;margin-top:2px;margin-left: 5px;">CV / Resume</div>
-                            </div>
-                        </a>
-                    </div>
-                </div> -->
                 <div>
                     <div class="column-container">
                         <a href="/writing.html" style="text-align:center">
                             <div class="" style="">
                                 <div class="img-wrapper">
-                                    <img style="height:20px;margin-top:4px;" src="img/speech-bubble-left-2.png"></img>
+                                    <img style="height:20px;margin-top:4px;" src="img/speech-bubble-left-2.png"><
                                 </div>
                                 <div style="float:left;margin-top:2px;margin-left: 5px;">Blog</div>
                             </div>
@@ -90,7 +70,7 @@ if ('addEventListener' in document) {
                         <a href="https://github.com/mattzeunert" style="text-align:center">
                             <div class="" style="">
                                 <div class="img-wrapper">
-                                    <img style="height: 25px" src="img/github.png"></img>
+                                    <img style="height: 25px" src="img/github.png">
                                 </div>
                                 <div style="float:left;margin-top:2px;margin-left: 2px;">Github</div>
                             </div>
@@ -102,7 +82,7 @@ if ('addEventListener' in document) {
                         <a href="http://stackoverflow.com/users/1290545/matt" style="text-align:center">
                             <div class="" style="">
                                 <div class="img-wrapper">
-                                    <img style="height: 22px" src="img/stackoverflow.png"></img>
+                                    <img style="height: 22px" src="img/stackoverflow.png">
                                 </div>
                                 <div style="float:left;margin-top:2px;margin-left: 4px;">StackOverflow</div>
                             </div>
@@ -148,21 +128,21 @@ if ('addEventListener' in document) {
               <img src="/img/recently-worked-for/orange.png">
           </a>
       </li>
-  </div>
+  </ul>
 
 	<h2 style="margin-top:35px;">Personal Projects</h2>
 
 
-	{% for weight in (0..100) %}
-		{% for project in site.pages %}
-			{% if project.group == 'projects' and project.weight == weight %}
+	{% for weight in (0..100) %}{% comment %}
+		{% endcomment %}{% for project in site.pages %}{% comment %}
+			{% endcomment %}{% if project.group == 'projects' and project.weight == weight %}
 				<div class="clearfix project-item">
           {% if project.link != "NONE" %}
   					<a href="{{project.link}}">
           {% else %}
             <a href="javascript:void(0);">
           {% endif %}
-  						<img src="img/{{project.image}}" ></img>
+  						<img src="img/{{project.image}}" >
   						<div class="project-info">
   							<h2>{{project.projectName}}</h2>
   							<div class="project-description">
@@ -179,9 +159,9 @@ if ('addEventListener' in document) {
   						</div>
   					</a>
 				</div>
-			{% endif %}
-		{% endfor %}
-	{% endfor %}
+			{% endif %}{% comment %}
+		{% endcomment %}{% endfor %}{% comment %}
+	{% endcomment %}{% endfor %}
 
 
   <div class="more-about-me">
