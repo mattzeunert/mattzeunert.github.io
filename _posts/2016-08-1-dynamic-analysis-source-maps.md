@@ -4,7 +4,7 @@ title: Trying to generate source maps by performing dynamic analysis on the comp
 date: 2016-08-19
 ---
 
-Sometimes the source maps Babel generates aren't super accurate or lack information. Then you get something like this:
+Sometimes the source maps Babel generates aren't super accurate. Then you get something like this:
 
 ![](/img/blog/dynamic-analysis-sourcemaps/breakpoint-moves.gif)
 
@@ -12,9 +12,9 @@ Often this isn't actually Babel's fault, but rather a problem with the Babel plu
 
 ## Generating source maps through dynamic analysis
 
-The project I'm working, [FromJS](http://www.fromjs.com/), collects information about JavaScript code while it's running. Specifically, it allows you to see how two strings relate to each other.
+The project I'm working on, [FromJS](http://www.fromjs.com/), collects information about JavaScript code while it's running. Specifically, it allows you to see how two strings relate to each other.
 
-By running Babel while FromJS is tracing it I can find out how the compiled source code relates to the original source code.
+By running Babel while FromJS is tracing it I can find out how the compiled code relates to the original source code.
 
 For example, let's compile the arrow function `var square = x => x * x`. I can look at the compiled code and see where the `square` variable was defined in the original code.
 
@@ -34,11 +34,11 @@ A little bit, maybe.
 
 As I showed above, the mappings tend to work on literals or variable identifiers. But if you look at something like a variable declaration you can see that the `"var"` string isn't taken directly from the uncompiled source code.
 
-Rather, `"var"` appears directly in the source code for the compiler. (Babel is in sm-test-compield.js).
+Rather, `"var"` appears directly in the source code for the compiler. (The Babel code is in sm-test-compield.js).
 
 ![](/img/blog/dynamic-analysis-sourcemaps/mapping-var.png)
 
-So in practice I have to discard a lot of the collected data, because the relationship it describes isn't the relationship between the original source code and the compiled code.
+So in practice I have to discard a lot of the collected data, because the relationship it describes isn't the relationship between the original code and the compiled code.
 
 While stepping through certain parts of the code works well, there are other parts where the source map doesn't work at all.
 
