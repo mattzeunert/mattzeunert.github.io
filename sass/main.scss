@@ -20,6 +20,19 @@
 }
 
 
+.content td, .content th{
+
+    border: 1px solid #bbb;
+}
+.content td:first-child{
+    text-align: left;
+}
+.content table {
+    border-collapse: collapse;
+}
+.content table caption {
+    margin-bottom: 5px;
+}
 
       * {
         -moz-box-sizing: border-box;

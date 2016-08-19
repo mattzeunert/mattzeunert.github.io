@@ -15,17 +15,10 @@ I think my main takeaway from this data is that even empty arrays and lists are 
 The particular problem I was running into was that I created lots of empty lists, rather than re-using the same empty list every time.
 
 <style>
-    .js-memory-post-table td, .js-memory-post-table th{
+    .content td, .content th{
         min-width: 90px;
         text-align: right;
         padding: 4px;
-        border: 1px solid black;
-    }
-    .js-memory-post-table td:first-child{
-        text-align: left;
-    }
-    .js-memory-post-table {
-        border-collapse: collapse;
     }
 </style>
 <table class="js-memory-post-table">
