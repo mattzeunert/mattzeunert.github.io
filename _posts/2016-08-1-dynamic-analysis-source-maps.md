@@ -16,11 +16,11 @@ The project I'm working, [FromJS](http://www.fromjs.com/), collects information 
 
 By running Babel while FromJS is tracing it I can find out how the compiled source code relates to the original source code.
 
-For example, I can see where the `square` variable is defined in the original code.
+For example, let's compile the arrow function `var square = x => x * x`. I can look at the compiled code and see where the `square` variable was defined in the original code.
 
 ![](/img/blog/dynamic-analysis-sourcemaps/mapping-s.png)
 
-And I can do the same for the x `x` parameter.
+And I can do the same for the `x` parameter.
 
 ![](/img/blog/dynamic-analysis-sourcemaps/mapping-x.png)
 
@@ -34,7 +34,7 @@ A little bit, maybe.
 
 As I showed above, the mappings tend to work on literals or variable identifiers. But if you look at something like a variable declaration you can see that the `"var"` string isn't taken directly from the uncompiled source code.
 
-Rather, `"var"` appears directly in the compiler code, in this case Babel. (sm-test-compield.js is basically the Babel compiler).
+Rather, `"var"` appears directly in the source code for the compiler. (Babel is in sm-test-compield.js).
 
 ![](/img/blog/dynamic-analysis-sourcemaps/mapping-var.png)
 
@@ -48,6 +48,4 @@ My original idea wasn't to generate complete source maps from scratch. Rather, I
 
 However, I think most of the places where I can collect mapping data are already well covered by Babel. The problems with Babel source maps seem to come mostly from new code that was generated, rather than code that's based directly on the input source code.
 
-Chrome also doesn't always interpret source maps correctly, which makes it harder to figure out where the problem lies.
-
-Overall, I don't think this is very useful, but it was a fun experiment.
+Overall, it was a fun experiment, but it doesn't seem useful in practice.
