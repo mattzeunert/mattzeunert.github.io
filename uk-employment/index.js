@@ -1,8 +1,17 @@
 
 
+window.onerror = function(err){
+    alert(JSON.stringify(err))
+    try {
+        ga("send", "event", "UK Employment Map Error", JSON.stringify(err))
+    } catch (err){
 
+    }
+}
 
-
+Math.log10 = Math.log10 || function(x) {
+  return Math.log(x) * Math.LOG10E;
+};
 
 if (isMobile()) {
     $("body").addClass("isMobile")
@@ -25,9 +34,39 @@ var appState = new AppState();
 var lastTrackedIndustry = null;
 var lastTrackedRegion = null;
 
+function getUrlName(str){
+    str = str.replace(/ /g, "-").toLowerCase().replace(/[^a-z\-]/g, "")
+    if (str.length > 30) {
+        var parts = str.split("-")
+        str = ""
+        while (str.length < 30) {
+            str += parts.shift() + "-"
+        }
+        str = str.slice(0, -1)
+    }
+    return str
+}
+
 appState.on("change:selectedRegion change:selectedSector", function(){
+
+    updateHash()
     gaTrack()
 })
+function updateHash(){
+    var region =appState.get("selectedRegion")
+    var industry =appState.get("selectedSector")
+
+    if (!industry || !region) {
+        // close enough i think...
+        return
+    }
+
+    industry = getUrlName(industry)
+    region = getUrlName(region)
+
+    if (!location.replace) { return }
+    location.replace("#" + region + "/" + industry)
+}
 var gaTrack = _.debounce(function(){
     var region =appState.get("selectedRegion")
     var industry =appState.get("selectedSector")
@@ -123,8 +162,22 @@ function checkIfReady(){
         initMap()
 
         selectRandomSectors();
-        appState.set("selectedRegion", "London")
-        appState.set("selectedSector", "Activities of head offices; management consultancy activities")
+
+        var initialRegion = "London"
+        var initialSector = "Activities of head offices; management consultancy activities"
+        var hash = _.escape(location.hash).replace("#", "");
+        if (hash && hash.indexOf("/") !== -1) {
+            var parts = hash.split("/")
+            initialRegion = _.find(regions, function(region){
+                return getUrlName(region) === parts[0]
+            })
+            initialSector = _.find(ukSectorsByName, function(sector){
+                return getUrlName(sector.sector) === parts[1]
+            }).sector
+        }
+
+        appState.set("selectedRegion", initialRegion)
+        appState.set("selectedSector", initialSector)
 
         appState.on("change:randomSectors", function(){
             updateDisplayedRegion();
@@ -238,7 +291,9 @@ function loadEmploymentData(callback) {
 
         employeeData = data;
 
-        window.regions = _.keys(data).filter((r) => r !== "United Kingdom")
+        window.regions = _.keys(data).filter(function(r) {
+            return r !== "United Kingdom"
+        })
         callback()
     })
 }
@@ -293,7 +348,7 @@ function showSectorOnMap(sector){
         if (el.length === 0) {
             return
         }
-        Array.from(el).forEach(function(el){
+        [].slice.call(el).forEach(function(el){
             el.setAttribute("fill", scale(sector.percentage))
         })
 
@@ -302,6 +357,8 @@ function showSectorOnMap(sector){
 
 
 }
+
+
 
 function displaySectorDetails(sector){
     var sectorObject = ukSectorsByName[sector]
@@ -379,7 +436,7 @@ function updateSectorHighlight(){
             var cls = getClassFromRegion(region)
             var el = document.querySelectorAll("." + cls)
             if (!el.length) {return}
-            Array.from(el).forEach(function(e){
+            [].slice.call(el).forEach(function(e){
                 e.setAttribute("fill", defaultGray)
             })
         })
@@ -420,6 +477,13 @@ function drawMap(){
          .on("mouseleave", function(d){
              appState.set("previewRegion", null)
          });
+
+    // svg.append("path")
+    //      .datum(topojson.mesh(window.mapData, window.mapData.objects.uk, function(a, b){
+    //         return a !== b
+    //      }))
+    //      .attr('d', d3.geo.path().projection(projection))
+    //      .attr('class', 'boundary');
 
     FastClick.attach(document.querySelector("#map svg"));
 }
@@ -468,17 +532,23 @@ appState.on("change:previewRegion", function(){
 
     updateDisplayedRegion()
 })
+var lastSelectionDisplayedOnTable = "London";
 function updateDisplayedRegion(){
     if (appState.get("previewRegion")) {
-        displayRegionDetails(appState.get("previewRegion"))
+        displayRegionDetails(appState.get("previewRegion"), false)
     }
     else {
-        displayRegionDetails(appState.get("selectedRegion"))
-
+        displayRegionDetails(appState.get("selectedRegion"), lastSelectionDisplayedOnTable !== appState.get("selectedRegion"))
+        lastSelectionDisplayedOnTable = appState.get("selectedRegion")
     }
 }
 
-function displayRegionDetails(region){
+var lastDisplayedRegion = null;
+var lastRandomSectors = null;
+function displayRegionDetails(region, animate){
+    if (region === lastDisplayedRegion && appState.get("randomSectors") === lastRandomSectors) {return}
+    lastDisplayedRegion = region
+    lastRandomSectors = appState.get("randomSectors")
     // console.trace("display table")
 
     $(".select2-container").remove();
@@ -500,7 +570,7 @@ function displayRegionDetails(region){
      html += "<div style='overflow: hidden;' class='region-title'>"
         //  html += "<h2 style='float: left; font-size: 2em;margin-bottom: 10px;'>" + region + "</h2>"
          html += "<select class='region-dropdown needsclick'>"
-         regions.forEach(function(r){
+         regions.sort().forEach(function(r){
              html += "<option " + (r==region ? "selected" :"") + ">" + r + "</option>"
          })
          html += "</select>"
@@ -590,10 +660,10 @@ function displayRegionDetails(region){
 
         }
 
-        html += "<tr data-sector='" + ee.sector + "'>"
+        var isSelected = ee.sector ===  appState.get("selectedSector")
+        html += "<tr data-sector='" + ee.sector + "' class='" + (isSelected ? "sector-table__selected-sector" : "") + "'>"
             html += "<td>" + getUISectorName(ee.sector) + "</td>"
-            var specialness = false ? ` (${Math.round(ee.specialness)})` : "" // for debugging
-            html += "<td class='sector-table__percentage'>" + ee.percentage.toFixed(1) + specialness+ "%" + "</td>"
+            html += "<td class='sector-table__percentage'>" + ee.percentage.toFixed(1) + "%" + "</td>"
             html += "<td class='sector-table__employment'>" + employmentValue(ee.employees) +  "</td>"
             html += "<td class='sector-table__percentage'>" + ukSector.percentage.toFixed(1) + "%</td>"
             html += "<td class='sector-table__employment'>" + employmentValue(ukSector.employees) + "</td>"
@@ -603,6 +673,10 @@ function displayRegionDetails(region){
 
 
     detailsEl.innerHTML = html;
+    if (animate) {
+        $(detailsEl).css("opacity", .5)
+        $(detailsEl).animate({opacity: 1}, 800)
+    }
 
     $(".region-dropdown").select2({
         formatResult: function(result, container, query, escapeMarkup) {

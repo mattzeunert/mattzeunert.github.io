@@ -6,12 +6,16 @@
         <title>Employment across the UK by Industry</title>
         <style>
 
+        /* CSS goes here. */
         .boundary {
             fill: transparent;
             stroke: black;
+            stroke-width: 2px;
         }
+
         body {
-            font-family: Arial;
+            font-family: Myriad Pro, "PT Sans", Arial;
+            /*font-family: "PT Sans", Arial;*/
             background: black;
             color: #eee;
             font-size: 14px;
@@ -32,7 +36,7 @@
             font-weight: bold;
             font-size: 10px;
             margin-left: 4px;
-vertical-align: top;
+            vertical-align: top;
         }
 
 
@@ -387,7 +391,7 @@ vertical-align: top;
     <body>
         <h1 style="background: #191c33;padding: 5px;font-size: 16px;text-align: center;border-bottom: 4px solid #303556;border-top: 4px solid #191c33;margin: 0">Employment across the UK by Industry</h1>
         <div style="margin-left: auto; margin-right: auto; max-width: 1024px;">
-            <div class="left">
+            <div class="left" style="overflow: hidden">
                 <div id="map"><span style="color: #999">Loading map...</span></div>
                 <div style="padding-left: 10px;padding-right: 10px;margin-top: 5px">
                     <div id="sector-details"></div>
@@ -454,6 +458,18 @@ vertical-align: top;
 
 </script>
         <script src="index.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js" async></script>
+        <script>
+        WebFontConfig = {
+          google: {
+            families: [
+              "PT Sans"
+            ],
+          },
+          timeout: 500
+        };
+        </script>
 
 
     </body>
