@@ -4,7 +4,7 @@ title: How FromJS works
 date: 2016-10-04
 ---
 
-[FromJS](http://www.fromjs.com/) can find the JavaScript source that's responsible for a particular part of the DOM.
+When inspecting a page with [FromJS](http://www.fromjs.com/) you can find the JavaScript code that's responsible for a particular part of the UI.
 This article explains how that works.
 
 We'll take a look at this example:
@@ -15,11 +15,9 @@ greeting += " World!"
 document.getElementById("welcome").innerHTML = greeting
 {% endhighlight %}
 
-Inspecting the final body HTML lets us go back to the source code:
+Inspecting the final body HTML leads us back to the source code:
 
 ![](/img/blog/how-fromjs/hello.png)
-<br/>
-![](/img/blog/how-fromjs/world.png)
 
 ## Step 1: What are we looking at?
 
@@ -32,9 +30,9 @@ The user has selected an element from the DOM. Its outerHTML looks like this, an
 The outerHTML came about as the combination of two events:
 
 1. The `<div id="welcome"></div>` in the initial page HTML
-2. The `innerHTML` assignment
+2. The `innerHTML` assignment in JavaScript
 
-Since the user clicked on the "H" character it's straightforward which event we'll need to look at: the `innerHTML` assignment.
+Since the user clicked on the "H" character in the tag content it's straightforward which event we'll need to look at in more detail: the `innerHTML` assignment.
 
 ## Step 2: Finding out where the innerHTML value was set
 
@@ -51,11 +49,11 @@ Object.defineProperty(Element.prototype, "innerHTML", {
 document.body.innerHTML = "Hello" // logs "Assigning html Hello"
 {% endhighlight %}
 
-Now, the downside is that we are no longer actually updating the `innerHTML` of our element, because we overwrote the original setter function.
+Now, the downside is that we are no longer actually updating the `innerHTML` of our element, because we overwrote the original setter function that did that.
 
-We want to call the original setter function in addition to running our tracking code. The details of a property -  such as its getter, setter, or whether it's enumerable - are stored in something called a property descriptor. We can obtain the descriptor of a property using `Object.getOwnPropertyDescriptor`.
+We want to call this native setter function in addition to running our tracking code. The details of a property -  such as its getter, setter, or whether it's enumerable - are stored in something called a property descriptor. We can obtain the descriptor of a property using `Object.getOwnPropertyDescriptor`.
 
-Once we have the original property descriptor we can call the original setter method that updates the DOM.
+Once we have the original property descriptor we can call the original setter method in the new setter. This will restore the ability to update the DOM by assigning to `innerHTML`.
 
 {% highlight javascript %}
 var originalInnerHTMLDescriptor = Object.getOwnPropertyDescriptor(Element.prototype, "innerHTML")
@@ -69,7 +67,7 @@ Object.defineProperty(Element.prototype, "innerHTML", {
 
 Now, in the setter we want to record some metadata about the assignment. We put that data into an `__elOrigin` object that we store on the DOM element.
 
-Most importantly, we want to capture a stack trace so we know where the assignment happened. We can capture a stack trace by creating an `Error` object and reading its `stack` property.
+Most importantly, we want to capture a stack trace so we know where the assignment happened. We can capture a stack trace by creating a new `Error` object.
 
 {% highlight javascript %}
 {
@@ -86,24 +84,26 @@ Most importantly, we want to capture a stack trace so we know where the assignme
 }
 {% endhighlight %}
 
-Going back to the "Hello World!" code at the top of the article, we can now inspect the `#welcome` element and see where its `innerHTML` property is assigned:
+Let's run the "Hello World!" example code from we saw earlier after overwriting the setter. We can now inspect the `#welcome` element and see where its `innerHTML` property is assigned:
 
 {% highlight javascript %}
-document.getElementById("welcome").__elOrigin
+document.getElementById("welcome").__elOrigin.stack
 // Error
 //    at HTMLDivElement.set [as innerHTML] (eval at evaluate (unknown source), <anonymous>:6:20)
 //    at http://localhost:1234/example.js:3:46"
 {% endhighlight %}
 
-<!-- this.__ (fix Atom Markdown highlighting)-->
+<!-- 0__ (fix Atom Markdown highlighting) -->
 
 ## Step 3: Going from "Hello World!" to "Hello"
 
 We now have a starting point in our quest to find the origin of the "H" character in the `#example` div.
 
-The metadata `__elOrigin` object above is the first step in our journey to the "Hello" string definition.
+The `__elOrigin` object above is the first step in our journey to the "Hello" back to the string declaration.
 
-The `__elOrigin` object keeps track of the value that was assigned. It's actually an array of `inputValues` - we'll see why later. Unfortunately, the assigned value doesn't contain any metadata that tells us where it comes from. Let's change that!
+The `__elOrigin` object keeps track of the value that was assigned. It's actually an array of `inputValues` - we'll see why later.
+
+Unfortunately, the assigned value is a plain string that doesn't contain any metadata telling us where the string comes from. Let's change that!
 
 This is a bit trickier than tracking the HTML assignments. We could try overriding the constructor of the `String` object, but unfortunately that constructor is only called when we explicitly run `new String("abc")`.
 
@@ -111,9 +111,9 @@ To capture a call stack when the string is created we need to make changes to th
 
 ### Writing a Babel plugin that turns native string operations into function calls
 
-Babel is usually used to compile ES 2015 code into ES5 code, but you can also write your own Babel plugins that change your code in the way you want.
+Babel is usually used to compile ES 2015 code into ES5 code, but you can also write your own Babel plugins that contain your own code transformation rules.
 
-Strings aren't objects, so you can't store metadata on them. Instead of creating a string literal we want to create a wrapper object for each string.
+Strings aren't objects, so you can't store metadata on them. Therefore, instead of creating a string literal we want to wrap each string in an object.
 
 So, instead of running the original code:
 
@@ -140,7 +140,9 @@ Putting an object literal in the code is a bit verbose and generating code in Ba
 var greeting = f__StringLiteral("Hello")
 {% endhighlight %}
 
-We do something similar for string concatenation. `greeting += " World!"` becomes `greeting = f__add(greeting, " World!")`. Or, since we're replacing every string literal, `greeting = f__add(greeting, f__StringLiteral(" World!"))`.
+We do something similar for string concatenation.
+
+`greeting += " World!"` becomes `greeting = f__add(greeting, " World!")`. Or, since we're replacing every string literal, `greeting = f__add(greeting, f__StringLiteral(" World!"))`.
 
 After this, the value of `greeting` is as follows:
 
@@ -172,13 +174,15 @@ After this, the value of `greeting` is as follows:
 }
 {% endhighlight %}
 
-We can now track the character "H" character in "Hello World!" from the DOM HTML back to the string literal.
+## Going through the nested origin data to find the string literal
 
-Starting from the `__elOrigin` we traverse the metadata objects until we find the string literal. We do that by recursively looking at the `inputValues`, until `inputValues` is an empty array.
+We can now track the character "H" character in "Hello World!" from the `innerHTML` assignment back to the string literal.
 
-Our first step is the `innerHTML` assignment. It has only one `inputValue` - the `greeting` value above. The next step must therefore be the string concatenation above.
+Starting from the div's `__elOrigin` we navigate through the metadata objects until we find the string literal. We do that by recursively looking at the `inputValues`, until `inputValues` is an empty array.
 
-The concatenation has two input values, "Hello" and " World!". We need to figure out which of them contains the "H" character, that is, the character at index 0 in the string "Hello World!".
+Our first step is the `innerHTML` assignment. It has only one `inputValue` - the `greeting` value shown above. The next step must therefore be the `greeting += " World!"` string concatenation.
+
+The object returned by `f__add` has two input values, "Hello" and " World!". We need to figure out which of them contains the "H" character, that is, the character at index 0 in the string "Hello World!".
 
 This is not actually difficult. "Hello" has 5 characters, so the indices 0-4 in the concatenated string come from "Hello". Everything after index 4 comes from the " World!" string literal.
 
@@ -188,11 +192,11 @@ The `inputValues` array of our object is now empty, which means we've reached th
 
 ### How do the string wrapper objects interact with native code?
 
-If you actually tried running the code above you'd notice that it breaks the `innerHTML` assignment. When we call the native innerHTML setter, rather than setting the content to the original string it's set to "[object Object]".
+If you actually tried running the code above, you'd notice that it breaks the `innerHTML` assignment. When we call the native innerHTML setter, rather than setting the content to the original string, it's set to "[object Object]".
 
 That's because `innerHTML` needs a string and all Chrome has is an object, so it converts the object into a string.
 
-The solution is to add a toString method to our object. Something like this:
+The solution is to add a toString method to our object, which tells Chrome how to convert the object into a string. Something like this:
 
 {% highlight javascript %}
 document.body.innerHTML = {
@@ -212,7 +216,7 @@ Now when we call code that's unaware of our string wrappers the calls will still
 
 I won't go into too much detail about this, but the example below should give you a basic idea of how this works.
 
-Babel allows you to specify "visitors" for certain types in the JavaScript parse tree. The function below is called for every string literal that Babel finds in the original code.
+Babel allows you to specify "visitors" for certain types in the JavaScript parse tree. The function below is called for every string literal that Babel finds in the source code.
 
 {% highlight javascript %}
 StringLiteral: function(path) {
@@ -228,6 +232,6 @@ StringLiteral: function(path) {
 
 ### Call stacks and source maps
 
-Because Chrome executes the compiled code, the line and column numbers in the call stack will refer to the compiled code, not the original code.
+Because Chrome runs the compiled code rather than the original source code, the line and column numbers in the call stack will refer to the compiled code.
 
-Luckily Babel generates a source map that lets us convert the call to refer to the original code. FromJS uses [StackTrace.JS](http://www.mattzeunert.com/2016/07/07/resolving-minified-production-stacktrace.html) to handle the source mapping logic.
+Luckily Babel generates a source map that lets us convert the stack trace to match the original code. FromJS uses [StackTrace.JS](http://www.mattzeunert.com/2016/07/07/resolving-minified-production-stacktrace.html) to handle the source mapping logic.
