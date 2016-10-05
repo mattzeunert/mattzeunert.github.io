@@ -174,7 +174,7 @@ After this, the value of `greeting` is as follows:
 }
 {% endhighlight %}
 
-## Going through the nested origin data to find the string literal
+## Traversing the nested origin data to find the string literal
 
 We can now track the character "H" character in "Hello World!" from the `innerHTML` assignment back to the string literal.
 
