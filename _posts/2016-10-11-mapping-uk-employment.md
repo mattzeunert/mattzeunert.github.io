@@ -22,8 +22,8 @@ For example, the 2 digit SIC code 86 comprises "Human health" and the 3 digit SI
 
 The dataset gave me a breakdown of firms by 2 digit SIC code and UK region (e.g. "South East").
 
-Unfortunately, this dataset had one big downside: it showed the number of businesses, not how many people work in them industry. So initially I had guess that number based on the employment size band information in the dataset.
-If the range for the number of employees was 20-49 I counted that as 35 employees.
+Unfortunately, this dataset had one big downside: it showed the number of businesses, not how many people work in them industry. I could only guess that number based on the employment size band information in the dataset.
+If the number of employees was in the 20-49 range I counted that as 35 employees.
 
 That allowed me to start mapping the data, but I couldn't use it to make any reliable claims. Looking further, I eventually found an [Excel file](http://www.ons.gov.uk/ons/rel/bus-register/business-register-employment-survey/2010/rft-bres-2010-table-5--region-by-industry--3-digit-.xls) with employment numbers for each region and sector. (Employment includes part-time and full-time employees, as well as working business owners.)
 
