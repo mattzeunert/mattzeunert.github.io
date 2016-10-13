@@ -4,7 +4,7 @@ title: Mapping UK Employment
 date: 2016-10-11
 ---
 
-This article describes how some of the technical and design problems I ran into making [a map of employment sectors across the UK](http://www.mattzeunert.com/uk-employment).
+This article describes some of the technical and design problems I ran into while making [a map of employment sectors across the UK](http://www.mattzeunert.com/uk-employment).
 
 ![Computer programming employment by region](/img/blog/uk-employment/programmer-employment.png)
 
@@ -27,7 +27,7 @@ If the number of employees was in the 20-49 range I counted that as 35 employees
 
 That allowed me to start mapping some data, but I couldn't use it to make any reliable claims. Looking further, I eventually found an [Excel file](http://www.ons.gov.uk/ons/rel/bus-register/business-register-employment-survey/2010/rft-bres-2010-table-5--region-by-industry--3-digit-.xls) with Employment numbers for each region and sector. (Employment includes part-time and full-time employees, as well as working business owners.)
 
-Still, this data was from 2010. I emailed the ONS to ask if there's a newer version of that spreadsheet, but the link they sent me as a reply didn't include a regional breakdown.
+Still, this data was from 2010. I emailed the ONS to ask if there's a newer version of that spreadsheet, but the link they replied with didn't include a regional breakdown.
 
 ![](/img/blog/uk-employment/source-data.png)
 
