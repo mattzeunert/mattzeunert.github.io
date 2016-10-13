@@ -14,7 +14,7 @@ The end goal of the project was to get a more accurate idea of what industries a
 
 I didn't have a preference to use either turnover or employment as a measurement of industry size. It was easy to find employment data, so I went with that.
 
-To get started I used a dataset from the Office for National Statistics, containing a breakdown of ["Enterprise/local units by 2 Digit SIC, Employment size band and Region"](http://web.ons.gov.uk/ons/data/web/explorer/dataset-finder/-/q/dcDetails/Economic/UKBABa?p_p_lifecycle=1&_FOFlow1_WAR_FOFlow1portlet_dataset_navigation=datasetCollectionDetails).
+To get started I used a dataset from the Office for National Statistics (ONS), containing a breakdown of ["Enterprise/local units by 2 Digit SIC, Employment size band and Region"](http://web.ons.gov.uk/ons/data/web/explorer/dataset-finder/-/q/dcDetails/Economic/UKBABa?p_p_lifecycle=1&_FOFlow1_WAR_FOFlow1portlet_dataset_navigation=datasetCollectionDetails).
 
 For statistical purposes UK businesses are grouped by SIC codes. SIC stands for Standard Industrial Classification of Economic Activities.
 
