@@ -4,17 +4,17 @@ title: Mapping UK Employment
 date: 2016-10-11
 ---
 
-I made a map showing [employment across industries in different parts of the UK](http://www.mattzeunert.com/uk-employment). This article describes how some of the technical and design problems I ran into.
-
-The end goal of the project was to get a more accurate idea of what industries are more prevalent in a particular regions.
+This article describes how some of the technical and design problems I ran into making [a map of employment sectors across the UK](http://www.mattzeunert.com/uk-employment).
 
 ![Computer programming employment by region](/img/blog/uk-employment/programmer-employment.png)
 
 ## Finding employment data
 
-I didn't have a preference to map either turnover or employment as a measurement of industry size. It was easy to find employment data, so I went with that.
+The end goal of the project was to get a more accurate idea of what industries are more prevalent in a particular region.
 
-To get started I used an Office for National Statistics dataset containing a breakdown of ["Enterprise/local units by 2 Digit SIC, Employment size band and Region"](http://web.ons.gov.uk/ons/data/web/explorer/dataset-finder/-/q/dcDetails/Economic/UKBABa?p_p_lifecycle=1&_FOFlow1_WAR_FOFlow1portlet_dataset_navigation=datasetCollectionDetails).
+I didn't have a preference to use either turnover or employment as a measurement of industry size. It was easy to find employment data, so I went with that.
+
+To get started I used a dataset from the Office for National Statistics, containing a breakdown of ["Enterprise/local units by 2 Digit SIC, Employment size band and Region"](http://web.ons.gov.uk/ons/data/web/explorer/dataset-finder/-/q/dcDetails/Economic/UKBABa?p_p_lifecycle=1&_FOFlow1_WAR_FOFlow1portlet_dataset_navigation=datasetCollectionDetails).
 
 For statistical purposes UK businesses are grouped by SIC codes. SIC stands for Standard Industrial Classification of Economic Activities.
 
@@ -22,36 +22,36 @@ For example, the 2 digit SIC code 86 comprises "Human health" and the 3 digit SI
 
 The dataset gave me a breakdown of firms by 2 digit SIC code and UK region (e.g. "South East").
 
-Unfortunately, this dataset had one big downside: it showed the number of businesses, not how many people work in them industry. I could only guess that number based on the employment size band information in the dataset.
+Unfortunately, this dataset had one big downside: it showed the number of businesses, not how many people work in that industry. I could only guess that number based on the employment size band information in the dataset.
 If the number of employees was in the 20-49 range I counted that as 35 employees.
 
-That allowed me to start mapping the data, but I couldn't use it to make any reliable claims. Looking further, I eventually found an [Excel file](http://www.ons.gov.uk/ons/rel/bus-register/business-register-employment-survey/2010/rft-bres-2010-table-5--region-by-industry--3-digit-.xls) with employment numbers for each region and sector. (Employment includes part-time and full-time employees, as well as working business owners.)
+That allowed me to start mapping some data, but I couldn't use it to make any reliable claims. Looking further, I eventually found an [Excel file](http://www.ons.gov.uk/ons/rel/bus-register/business-register-employment-survey/2010/rft-bres-2010-table-5--region-by-industry--3-digit-.xls) with Employment numbers for each region and sector. (Employment includes part-time and full-time employees, as well as working business owners.)
 
 Still, this data was from 2010. I emailed the ONS to ask if there's a newer version of that spreadsheet, but the link they sent me as a reply didn't include a regional breakdown.
 
 ![](/img/blog/uk-employment/source-data.png)
 
-Eventually I read an ONS article that contained a footnote saying that you can get detailed data from [Nomis](https://www.nomisweb.co.uk/), an ONS service for labor market statistics. I used the [query form](https://www.nomisweb.co.uk/query/select/getdatasetbytheme.asp?opt=3&theme=&subgrp=) to get the data I needed from the "Business Register and Employment Survey" data.
+Eventually I read an ONS article that mentioned that you can get detailed data from [Nomis](https://www.nomisweb.co.uk/), an ONS service for labor market statistics. I used the [query form](https://www.nomisweb.co.uk/query/select/getdatasetbytheme.asp?opt=3&theme=&subgrp=) to get the data I needed from the "Business Register and Employment Survey" data.
 
 The new data didn't include Northern Ireland, so the final map still uses 2010 data for it.
 
 For each of the three datasets I had to write a Node script to convert one or more CSV files into a JSON file. In retrospect, I could have saved some time by picking a better dataset upfront.
 
-It also turned out that the customized Nomis data download was by far the most convenient to work with, since I could configure the download to only include the breakdown I was interested in.
+It also turned out that the customized Nomis data download was by far the most convenient to work with, since I could configure it to only include the information I was interested in.
 
 ## Finding a regional map of the UK
 
-Martin Chorley has a Github repository that contains [UK map data](http://martinjc.github.io/UK-GeoJSON/). Finding the correct files in the repo was difficult, since Github only displays GeoJSON data, but not the more compact TopoJSON that is contained in the repository.
+Martin Chorley has a Github repository that contains [UK map data](http://martinjc.github.io/UK-GeoJSON/). Finding the correct files in the repo was difficult, as it wasn't always clear what the files contained. Github only displays GeoJSON data, but not the more compact TopoJSON that is contained in the repository.
 
 Because of that I used the [demo website](http://martinjc.github.io/UK-GeoJSON/) to select and download the map data I needed.
 
 ![](/img/blog/uk-employment/uk-geojson.png)
 
-Instead of a single TopoJSON file for the UK I had to download one file each for England, Wales, Scotland and Northern Ireland. To avoid requiring 4 separate downloads when loading my map they needed to be joined together into one file.
+Instead of a single TopoJSON file for the UK I had to download one file each for England, Wales, Scotland and Northern Ireland. To avoid requiring 4 separate requests on page load they needed to be merged into one file.
 
-Also, the TopoJSON for Northern Ireland was split into different electoral wards which needed to be merged into one region. I ultimately ended up manually calling [`topojson.mesh`](https://github.com/mbostock/topojson/wiki/API-Reference#mesh) in the console and copy-pasting GeoJSON into an online TopoJSON converter.
+Also, the TopoJSON for Northern Ireland was split into different electoral wards which needed to be merged into a single region. I ultimately ended up manually calling [`topojson.mesh`](https://github.com/mbostock/topojson/wiki/API-Reference#mesh) in the console and copy-pasting GeoJSON into an online TopoJSON converter.
 
-To merge the different map files I ran this [topojson](https://www.npmjs.com/package/topojson) command in a the terminal:
+I used this [topojson](https://www.npmjs.com/package/topojson) command to merge the separate map files:
 
 {% highlight bash %}
 // Note: make sure that the object names are unique, e.g. not all called "eer"
@@ -59,7 +59,7 @@ To merge the different map files I ran this [topojson](https://www.npmjs.com/pac
 topojson -p -o uk.json -- scotland.json wales.json england.json northern-ireland.json
 {% endhighlight %}
 
-And simplified the map data to reduce its file size:
+And then simplified the map data to reduce its file size:
 
 {% highlight bash %}
 topojson -p -o  uk-simplified.json --simplify-proportion .10 -- uk.json
@@ -89,29 +89,29 @@ Originally I also had a bar at the bottom of the page where the entire width wou
 
 This visualization made it clear that the industries that were shown in the table weren't necessarily the most important ones. It also made it possible to select many more industries than were shown in the table.
 
-However, the bar didn't quite fit into the design and small sectors were difficult to click on. For these reasons I ultimately removed the bar from the page.
+However, the bar didn't quite fit into the design, and small sectors were difficult to click on. For these reasons I ultimately removed the bar from the page.
 
-To substitute for the information and interactions provided by the stacked bar I added a list of the largest regional industries to the table.
+To substitute for the information provided by the stacked bar I added a list of the largest regional industries to the table.
 
-To allow serendipitous discoveries I also added a section with random industries.
+To continue to allow serendipitous discoveries I also added a section with random industries.
 
 ![Northern Ireland Employment Table](/img/blog/uk-employment/table.png)
 
 ### Designing with screenshots in mind
 
-One design goal was to make it easy to create re-usable screenshots showing the distribution of different industries across the UK.
+One design goal was to make it easy to create re-usable maps for a particular industry.
 
-Primarily, that meant showing the industry name below the map, so the screenshots don't need further explanation.
+Primarily, that meant showing the industry name below the map, so screenshots don't need further explanation.
 
 ![](/img/blog/uk-employment/no-region-selected.png)
 
-I also made it possible to deselect a region. While this isn't a useful when interacting with the map, it removes the region outline and makes the resulting screenshots look cleaner.
+I also made it possible to deselect a region. While this is slightly confusing when interacting with the map it removes the region outline, resulting in a cleaner-looking screenshot.
 
 ### Mobile
 
 ![Mobile Portrait Regional UK Employment Map](/img/blog/uk-employment/mobile-portrait.png)
 
-Moving the table below the map makes it harder to explore the data, as you end up scrolling up and down to look at the map after selecting an industry.
+Moving the table below the map makes it harder to explore the data. You need to scroll up to look at the map after selecting an industry, and then back down again.
 
 So, in portrait mode, I made the map as small as possible to reduce the amount of scrolling required.
 
