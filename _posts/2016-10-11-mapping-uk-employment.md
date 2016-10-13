@@ -41,7 +41,7 @@ It also turned out that the customized Nomis data download was by far the most c
 
 ## Finding a regional map of the UK
 
-Martin Chorley has a Github repository that contains [UK map data](http://martinjc.github.io/UK-GeoJSON/). Finding the correct files in the repo was difficult, as it wasn't always clear what the files contained. Github only displays GeoJSON data, but not the more compact TopoJSON that is contained in the repository.
+Martin Chorley has a Github repository that contains [UK map data](http://martinjc.github.io/UK-GeoJSON/). Finding the correct files in the repo was difficult, as it wasn't clear what each file contained. Github can only display GeoJSON files, but not the more compact TopoJSON that's used in the repository.
 
 Because of that I used the [demo website](http://martinjc.github.io/UK-GeoJSON/) to select and download the map data I needed.
 
@@ -49,7 +49,7 @@ Because of that I used the [demo website](http://martinjc.github.io/UK-GeoJSON/)
 
 Instead of a single TopoJSON file for the UK I had to download one file each for England, Wales, Scotland and Northern Ireland. To avoid requiring 4 separate requests on page load they needed to be merged into one file.
 
-Also, the TopoJSON for Northern Ireland was split into different electoral wards which needed to be merged into a single region. I ultimately ended up manually calling [`topojson.mesh`](https://github.com/mbostock/topojson/wiki/API-Reference#mesh) in the console and copy-pasting GeoJSON into an online TopoJSON converter.
+Also, the TopoJSON for Northern Ireland was split into different electoral wards which needed to be merged into a single region. I ultimately ended up manually calling [`topojson.mesh`](https://github.com/mbostock/topojson/wiki/API-Reference#mesh) in the Chrome console and copy-pasting GeoJSON into an online TopoJSON converter.
 
 I used this [topojson](https://www.npmjs.com/package/topojson) command to merge the separate map files:
 
@@ -75,13 +75,13 @@ Maybe spending more time looking for files in the Github repo could have saved m
 
 The design came about as a combination of paper sketches and a lot of trial and error.
 
-![](/img/blog/uk-employment/progress.gif)
+![UK Employment map design evolution](/img/blog/uk-employment/progress.gif)
 
 ### Table Data
 
 Looking at the largest industries for each region is incredibly boring. You'll always see education, retail, health, and food/beverage service as the largest sectors.
 
-To avoid that, I compared the regional employment value to the UK average and showed the industries with the starkest differences.
+To avoid that, I compared the regional employment percentage to the UK average and showed the industries with the starkest differences.
 
 ![Bar visualization instead of a longer table](/img/blog/uk-employment/bar.png)
 
@@ -93,7 +93,7 @@ However, the bar didn't quite fit into the design, and small sectors were diffic
 
 To substitute for the information provided by the stacked bar I added a list of the largest regional industries to the table.
 
-To continue to allow serendipitous discoveries I also added a section with random industries.
+In order to continue allowing serendipitous discoveries I also added a section with random industries.
 
 ![Northern Ireland Employment Table](/img/blog/uk-employment/table.png)
 
@@ -101,11 +101,11 @@ To continue to allow serendipitous discoveries I also added a section with rando
 
 One design goal was to make it easy to create re-usable maps for a particular industry.
 
-Primarily, that meant showing the industry name below the map, so screenshots don't need further explanation.
+Primarily, that meant showing the industry name below the map, so screenshots wouldn't need further explanation.
 
 ![](/img/blog/uk-employment/no-region-selected.png)
 
-I also made it possible to deselect a region. While this is slightly confusing when interacting with the map it removes the region outline, resulting in a cleaner-looking screenshot.
+I also made it possible to deselect a region. While this is slightly confusing when interacting with the map, it removes the region outline, resulting in a cleaner-looking screenshot.
 
 ### Mobile
 
@@ -121,19 +121,19 @@ The landscape view uses the same two-column layout as on desktop, to avoid the s
 
 Since it's hard to select a small region on the map, particularly London, I had to add a dropdown to make the interaction easy on mobile.
 
-![UK Region Dropdown](/img/blog/uk-employment/dropdown.png)
-
 A native dropdown wouldn't have fit into the design, so I used [Select2](http://select2.github.io/) to be able to customize the CSS.
+
+![UK Region Dropdown](/img/blog/uk-employment/dropdown.png)
 
 ## Code
 
 I spent around 40h on the project in total, so I really prioritized speed of development over maintainability.
 
-As this was a side project there was also a risk that I'd give up after 20h. It was important to get some kind of result quickly, even if that meant the work would have taken a bit longer than it otherwise would have.
+As this was a side project, there was also a risk that I'd give up after 10 or 20 hours. It was important to get some kind of result quickly, even if that meant the work would take a bit longer than it otherwise would have.
 
 ### Views
 
-The JavaScript code is very old-fashioned. For example, I'm building my dropdown by slowly concatenating strings:
+The JavaScript code is very old-fashioned. For example, I'm building the HTML by slowly concatenating strings:
 
 {% highlight javascript %}
 html += "<div style='overflow: hidden;' class='region-title'>"
@@ -145,13 +145,13 @@ html += "<div style='overflow: hidden;' class='region-title'>"
 html += "</div>"
 {% endhighlight %}
 
-One downside of doing it this way is that I can only replace the full table at once, which makes transitions difficult. It is also less performant, but I didn't find the impact to be meaningful.
+One downside of doing it this way is that I can only replace the full table at once, making transitions difficult. It is also less performant, but I didn't find the impact to be meaningful.
 
-I considered using ES 2015 template strings, but the site had to work in iOS Safari, and I didn't want to set up Babel.
+I considered using ES 2015 template strings, but the site had to work in iOS Safari, and I setting up Babel seemed like too much effort.
 
 ### Application state
 
-I used a Backbone model to manage the application state. The app has an `appState` model like this:
+I used a Backbone model to manage the application state. The app has an `appState` object that looks like this:
 
 {% highlight json %}
 {
