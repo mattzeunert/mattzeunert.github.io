@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Babel Plugin Playground</title>
+    </head>
+    <body>
+        <style>
+            body {
+                font-family: Arial;
+                margin: 0;
+            }
+            .title {
+                background: black;
+                color: white;
+                padding: 20px;
+                
+                height: 80px;
+            }
+            .title a {
+                color: white;
+            }
+            h1 {
+                margin:0;
+                display: inline-block;
+            }
+            h2 {
+                margin: 0;
+                padding-top: 10px;
+                padding-bottom: 5px;
+            }
+            textarea {
+                width: 100%;
+                resize: none;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+            .CodeMirror {
+                height: 100% !important;
+            }
+        </style>
+        <div class="title">
+            <div style="float: right">
+                <a href="https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md" target="_blank">Babel Plugin Handbook</a>
+                <a href="https://astexplorer.net/" target="_blank">AST Explorer</a>
+            </div>
+            <h1> Babel Plugin Playground</h1>
+        </div>
+        <div style="overflow: hidden;padding: 10px;">
+            <div style="float: left;width: 50%">
+                <h2>Plugin Code</h2>
+                <div style="height: calc(100vh - 80px - 20px - 42px - 2px)">
+                <textarea id="plugin-code">
+var template = require("babel-template")
+
+module.exports = function(babel) {
+  return {
+    visitor: {
+        BinaryExpression(path){
+                      var thing = template(`
+  var IMPORT_NAME = "cake";
+`)({IMPORT_NAME: babel.types.identifier("hi")})
+
+path.replaceWith(thing)
+
+
+                      if (path.node.ignore){return}
+
+              var replacements = {
+                  "+": "f__add",
+                  "-": "f__subtract",
+                  "/": "f__divide",
+                  "*": "f__multiply"
+              }
+
+              var replacement = replacements[path.node.operator]
+              if (replacement) {
+                  var call = babel.types.callExpression(
+                      babel.types.identifier(replacement),
+                      [path.node.left, path.node.right]
+                  )
+                  call.loc = path.node.loc
+
+                  path.replaceWith(call)
+              }
+          }
+        }
+    }
+}</textarea>
+</div>
+<div id="plugin-code-errors"></div>
+            </div>
+            <div style="float: left;width: 50%">
+                <div>
+                    <h2>Uncompiled Code</h2>
+                    <div style="height: calc(50vh - 40px - 54px)">
+                        <textarea id="uncompiled-code">var square = n => n * n</textarea>
+                    </div>
+                    <div id="uncompiled-code-errors"></div>
+                </div>
+                <div>
+                    <h2>Compiled code</h2>
+                    <div style="height: calc(50vh - 40px - 54px)">
+                        <textarea id="compiled-code" readonly></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <link rel="stylesheet" href="codemirror/codemirror.css"></link>
+        <script src="codemirror/codemirror.js"></script>
+        <script src="codemirror/javascript.js"></script>
+        <script src="playground-dist.js"></script>
+    </body>
+</html>
