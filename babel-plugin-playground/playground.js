@@ -49,18 +49,25 @@ window.run = function(){
     var uncompiledCode = uncompiledCodeEditor.getValue();
 
     try {
+        checkCodeIsValid(pluginCode)
         var plugin = getPlugin(pluginCode)    
     } catch (err) {
         setError("plugin-code-errors", err.toString())
         return;
     }
 
+    try {
+        checkCodeIsValid(uncompiledCode) 
+    } catch (err) {
+        setError("uncompiled-code-errors", err.toString())
+        return;
+    }
     
     try {
         var compiledCode = babel.transform(uncompiledCode, {plugins: plugin}).code    
 
     } catch (err) {
-        setError("uncompiled-code-errors", err.toString())
+        setError("plugin-code-errors", err.toString())
         return;
     }
     setError(null)
@@ -68,6 +75,11 @@ window.run = function(){
 
     compiledCodeEditor.setValue(compiledCode);
 }
+
+function checkCodeIsValid(code){
+    babel.transform(code, {plugins: []})
+}
+
 function getPlugin(pluginCode){
     var module = {};
     eval(pluginCode);
@@ -76,10 +88,13 @@ function getPlugin(pluginCode){
 function setError(type, message){
     console.log("setError", type, message)
     pluginCodeErrors.textContent = "";
+    pluginCodeErrors.setAttribute("style", "")
     uncompiledCodeErrors.textContent = "";
+    uncompiledCodeErrors.setAttribute("style", "")
 
     if (type !== null){
-        document.querySelector("#" + type).textContent = message
+        document.querySelector("#" + type).innerHTML = message.replace(/\n/g, "<br>")
+        document.querySelector("#" + type).setAttribute("style", "display: block");
     }
 }
 

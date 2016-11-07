@@ -32,6 +32,18 @@
                 width: 100%;
                 resize: none;
             }
+            #plugin-code-errors,
+            #uncompiled-code-errors {
+                position: absolute;
+                bottom: 0;
+                z-index: 99999;
+                background: #eee;
+                color: #d01919;
+                padding: 10px;
+                width: 100%;
+                display: none;
+                font-family: monospace;
+            }
 
             * {
                 box-sizing: border-box;
@@ -89,7 +101,9 @@ path.replaceWith(thing)
     }
 }</textarea>
 </div>
-<div id="plugin-code-errors"></div>
+<div style="position: relative">
+    <div id="plugin-code-errors"></div>
+</div>
             </div>
             <div style="float: left;width: 50%">
                 <div>
@@ -97,7 +111,9 @@ path.replaceWith(thing)
                     <div style="height: calc(50vh - 40px - 54px)">
                         <textarea id="uncompiled-code">var square = n => n * n</textarea>
                     </div>
-                    <div id="uncompiled-code-errors"></div>
+                    <div style="position: relative">
+                        <div id="uncompiled-code-errors"></div>
+                    </div>
                 </div>
                 <div>
                     <h2>Compiled code</h2>
@@ -112,5 +128,15 @@ path.replaceWith(thing)
         <script src="codemirror/codemirror.js"></script>
         <script src="codemirror/javascript.js"></script>
         <script src="playground-dist.js"></script>
+
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39253677-1', 'auto');
+  ga('send', 'pageview');
+        </script>
     </body>
 </html>
