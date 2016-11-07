@@ -1,5 +1,7 @@
 var babel = require("babel-core")
 var template = require("babel-template")
+var debounce = require('lodash.debounce');
+
 window.require = function(module){
     if (module === "babel-template") {
         return template;
@@ -98,5 +100,6 @@ function setError(type, message){
     }
 }
 
+run = debounce(run, 300)
 
 run()
