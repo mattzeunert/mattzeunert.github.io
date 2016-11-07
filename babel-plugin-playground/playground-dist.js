@@ -146,7 +146,7 @@
 	    uncompiledCodeErrors.setAttribute("style", "")
 
 	    if (type !== null){
-	        document.querySelector("#" + type).innerHTML = message.replace(/\n/g, "<br>")
+	        document.querySelector("#" + type).innerHTML = message.replace(/\n/g, "<br>").replace(/  /g, "&nbsp;&nbsp;")
 	        document.querySelector("#" + type).setAttribute("style", "display: block");
 	    }
 	}

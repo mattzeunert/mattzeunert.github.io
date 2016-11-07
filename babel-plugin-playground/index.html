@@ -44,7 +44,9 @@
                 display: none;
                 font-family: monospace;
             }
-
+            textarea {
+                border-color: #eee;
+            }
             * {
                 box-sizing: border-box;
             }
@@ -67,36 +69,17 @@
 var template = require("babel-template")
 
 module.exports = function(babel) {
-  return {
-    visitor: {
-        BinaryExpression(path){
-                      var thing = template(`
-  var IMPORT_NAME = "cake";
-`)({IMPORT_NAME: babel.types.identifier("hi")})
-
-path.replaceWith(thing)
-
-
-                      if (path.node.ignore){return}
-
-              var replacements = {
-                  "+": "f__add",
-                  "-": "f__subtract",
-                  "/": "f__divide",
-                  "*": "f__multiply"
-              }
-
-              var replacement = replacements[path.node.operator]
-              if (replacement) {
-                  var call = babel.types.callExpression(
-                      babel.types.identifier(replacement),
-                      [path.node.left, path.node.right]
-                  )
-                  call.loc = path.node.loc
-
-                  path.replaceWith(call)
-              }
-          }
+    return {
+        visitor: {
+            BinaryExpression(path){
+                if (path.node.operator === "*"){
+                    var call = babel.types.callExpression(
+                        babel.types.identifier("multiply"),
+                        [path.node.left, path.node.right]
+                    )
+                    path.replaceWith(call)
+                }
+            }
         }
     }
 }</textarea>
