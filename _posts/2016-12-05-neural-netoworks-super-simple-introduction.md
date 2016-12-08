@@ -4,30 +4,33 @@ title: A super simple introduction to neural networks
 date: 2016-12-05
 ---
 
-People mention neural networks a lot, both on tech sites and in the mainstream media. So I decided to get a basic understanding of how they work.
+People talk about neural networks a lot, both on tech sites and in the mainstream media. So I decided to get a learn a bit about how they work.
 
-After starting to read [chapter 1](http://neuralnetworksanddeeplearning.com/chap1.html) of the book "Neural Networks and Deep Learning" it turned math-heavy very quickly:
+After starting to read [chapter 1](http://neuralnetworksanddeeplearning.com/chap1.html) of the book "Neural Networks and Deep Learning" quickly turned... very mathy:
 
 ![](/img/blog/super-simple-neural-network/math.png)
 
 Not the most straightforward explanation! Maybe I should have read the [about section](http://neuralnetworksanddeeplearning.com/about.html) of the book first :)
 
-This post aims to give an introduction that's a bit more friendly to web developers without a college education.
+Hopefully with this article I can give an introduction that's more friendly to web developers without a college education.
 
 ## Let's solve a simple problem
 
 The article I mentioned above builds a neural network that's able to recognize handwritten digits.
 
-The inputs to the neural network are the pixels of the image containing the number. The output is the number that is represented by the image. ##don't like this sentence
+The neural network takes the pixels of the image of the written number as an input. The output is the classification of the digit as a 0, 1, 2, etc.
 
-To make building our neural networks easier, let's start by picking a simpler problem. We're going to check if a number written in binary is even.
+To save us some work, let's pick a simpler problem. We'll check if a number written in binary is even.
 
-A few examples (the b suffix means the number is in binary):
-In: 001b (1) => Out: Not Even
-In: 010b (2)=> Out: Even
-In: 101b (5) => Out: Not Even
+A few examples (number with a "b" suffix are in binary):
 
-Yes, there are existing solutions to this problem that don't rely on neural networks. But they won't teach us anything about neural networks!
+    Input       Output
+    ========================
+    001b (1)    0 (Not Even)
+    010b (2)    1 (Even)
+    101b (5)    2 (Not Even)
+
+Why use a neural network to solve this problem? It's true, there are better solutions. But they won't teach us anything about neural networks!
 
 ## What is a neural network?
 
@@ -35,7 +38,7 @@ You can think of a neural network as a function that takes an array as a paramet
 
 For our "isEven" neural network that means we take the binary digits as the input array (e.g. [0, 1, 0]) and return a simple true/false value (e.g. [1]).
 
-If we did handwriting recognition the input array would contain the pixels of the photo, and the return value would be an array with 10 values. The 10 values represent buckets for each digit from 0 to 9. The highest number in the output array is the digit that the network thinks is written in the image.
+If we did handwriting recognition the input array would contain the pixels of the photo, and the return value would be an array with 10 values. The 10 values represent buckets for each digit from 0 to 9. The highest number in the output array shows what digit the network thinks is written in the image.
 
 If you look up [Artificial Neural Network](https://en.wikipedia.org/wiki/Artificial_neural_network) on Wikipedia you'll see this image:
 
@@ -45,15 +48,21 @@ Each column of circles represents something called a layer.
 
 The input layer is the array we're passing into our isEven function. The output layer is the return value... sort of.
 
-While the input value consists of just numbers, the output layer consists of neurons. Neurons take an array of numbers and return a single number. We'll look at them more further down in the article.
+While the input layer consists of just numbers, the output layer consists of neurons. A neuron takes an array of numbers and returns a single number. We'll look at them more in more detail further down in the article.
 
-So, the return value of our isEven function contains the outputs of the neurons in the output layer. (Which for isEven is just one neuron.)
+So, the return value of our isEven function contains the results of the neurons in the output layer. (Which for isEven is just one neuron.)
 
-Between the input layer and the output layer you can have one or more hidden layers, which also consist of neurons.
+Between the input layer and the output layer are one or more hidden layers,which also consist of neurons.
 
-When we call the isEven function the numbers from the input array propagate through the network left to right. The hidden layer neurons take the input layer as an input. The outputs of the neurons in the hidden layer become the inputs for the neurons in the output layer.
+When we call the isEven function the numbers from the input array propagate through the network from left to right.
 
-GIF MAYBE?
+The hidden layer neurons take the input layer as an input.
+
+The outputs of the neurons in the hidden layer become the inputs for the neurons in the output layer.
+
+The image below shows how we progressively calculate the outputs of each layer. The exact values don't mean anything, we'll look at them later.
+
+![](/img/blog/super-simple-neural-network/propagation.png)
 
 ## How can our network learn to get better?
 
