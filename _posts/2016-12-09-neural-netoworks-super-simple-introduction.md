@@ -1,14 +1,14 @@
 ---
 layout: post
 title: A super simple introduction to neural networks
-date: 2016-12-05
+date: 2016-12-09
 ---
 
 People talk about neural networks a lot, both on tech sites and in the mainstream media. So I decided to get a learn a bit about how they work.
 
 After starting to read [chapter 1](http://neuralnetworksanddeeplearning.com/chap1.html) of the book "Neural Networks and Deep Learning" quickly turned... very mathy:
 
-![](/img/blog/super-simple-neural-network/math.png)
+![Backpropagation formula](/img/blog/super-simple-neural-network/math.png)
 
 Not the most straightforward explanation! Maybe I should have read the [about section](http://neuralnetworksanddeeplearning.com/about.html) of the book first :)
 
@@ -42,7 +42,7 @@ If we did handwriting recognition the input array would contain the pixels of th
 
 If you look up [Artificial Neural Network](https://en.wikipedia.org/wiki/Artificial_neural_network) on Wikipedia you'll see this image:
 
-![](/img/blog/super-simple-neural-network/nn.png)
+![Neural network diagram](/img/blog/super-simple-neural-network/nn.png)
 
 Each column of circles represents something called a layer.
 
@@ -50,7 +50,7 @@ The input layer is the array we're passing into our isEven function. The output 
 
 While the input layer consists of just numbers, the output layer consists of neurons. A neuron takes an array of numbers and returns a single number. We'll look at them more in more detail further down in the article.
 
-So, the return value of our isEven function contains the results of the neurons in the output layer. (Which for isEven is just one neuron.)
+So, the return value of our isEven function contains the results of the neurons in the output layer. (Which for isEven is only one neuron.)
 
 Between the input layer and the output layer are one or more hidden layers,which also consist of neurons.
 
@@ -62,7 +62,7 @@ The outputs of the neurons in the hidden layer become the inputs for the neurons
 
 The image below shows how we progressively calculate the outputs of each layer. The exact values don't mean anything, we'll look at them later.
 
-![](/img/blog/super-simple-neural-network/propagation.png)
+![values propagate through the neural network from the input layer to the output layer](/img/blog/super-simple-neural-network/propagation.png)
 
 ## How can our network learn to get better?
 
@@ -93,11 +93,11 @@ There are two important observations to make when running the demo:
 
 There are different types of neurons that behave slightly differently.
 
-In the simplest case a neuron just multiplies each input value by the weight of the connection and returns the sum.
+In the simplest case a neuron multiplies each input value by the weight of the connection and returns the sum.
 
 For example:
 
-![](/img/blog/super-simple-neural-network/neuron.png)
+![Neuron and calculation of the output value](/img/blog/super-simple-neural-network/neuron.png)
 
 You can think of the numbers on the left (5 and 2) as the input layer. The circle then represents a hidden layer with a single neuron.
 
@@ -172,9 +172,9 @@ function predict(inputLayer, weights){
 
 I could have called the function `predictIsEven`, but there's nothing problem-specific about the code. What the network ends up predicting will depend on the data we use to train it.
 
-For each layer, the `predict` function takes the result of the next layer and passes it to the neurons in the current layer.
+For each layer, the `predict` function takes the result of the previous layer and passes it to the neurons in the current layer.
 
-![](/img/blog/super-simple-neural-network/network-with-weights.png)
+![Network with correct calculations](/img/blog/super-simple-neural-network/network-with-weights.png)
 
 Let's look at an example. Is 3 an even number? We convert the number to binary 011b before we ask the network to make a prediction.
 
@@ -183,7 +183,6 @@ var prediction = predict([0, 1, 1], getRandomWeights())
 console.log(prediction)
 // [ 6.259452749432459 ]
 {% endhighlight %}
-
 
 
 What does an output of 6.25 mean? We need to interpret the result of our network somehow. 
@@ -210,18 +209,18 @@ This is the brute force solution. We'll pick random weights, see how well they w
 
 We'll do this 20,000 times. If the random set of weights is better than any other weights we had before we store them in `bestWeights` and show the new best correctness in the console.
 
-The exact code for `getRandomWeights` and `getCorrectness` isn't too important, but you can [find the full code on Github](https://github.com/mattzeunert/super-simple-neural-network).
+The exact code for `getRandomWeights` and `getCorrectness` isn't too important, but you can [find the full code on Github](https://github.com/mattzeunert/super-simple-neural-network/blob/master/random-weights.js).
 
 {% highlight javascript %}
 var ITERATIONS = 20000
-var trainingExamples = generateTestData(0, 100)
+var trainingSet = generateTestData(0, 100)
 
 var weights, bestWeights
 var bestCorrectness = -1
 
 for (var i=0; i<ITERATIONS; i++){
     weights = getRandomWeights()
-    var correctness = getCorrectness(weights, trainingExamples)
+    var correctness = getCorrectness(weights, trainingSet)
 
     if (correctness > bestCorrectness) {
         console.log("New best correctness:", correctness * 100, "%")
@@ -251,11 +250,11 @@ Nice! Our network makes a correct prediction in 96% of cases!
 
 But wait... this just tells us the network is predicting our training examples correctly. But we want our network to be able to predict any number correctly, even if it has never been trained with that exact number.
 
-If we just look at the correctness for the training set we risk that our network effectively just
+If we only look at correctness for the training set we can't verify if the network actually learned what we wanted it to learn: how to identify even nubers.
 
-A simple analogy is that the network just memorizes the training data instead of building a deeper understanding.
+A simple analogy is that the network merely memorizes the training data instead of building a deeper understanding.
 
-We need to verify that the rules our network learned apply not just to the data it was trained with.
+We need to verify that the rules our network learned apply not only to the data it was trained with.
 
 To do that we need a set of example data that's separate from the training set that we use to determine the weights.
 
@@ -311,20 +310,14 @@ The algorithm that's used to determine the improved set of weights is called bac
 
 There are a few things I've simplified for this article:
 
-- Instead of measuring correctness (correct/incorrect) normal neural network calculate a more nuanced error that indicates just how far off the network's predictions was.
+- Instead of measuring correctness (correct/incorrect) normal neural network calculate a more nuanced error that indicates how far off the network's predictions was.
 - I'm using an object model, but normally these calculations are done with matrices.
 - Neurons use an [activation function](https://en.wikipedia.org/wiki/Activation_function).
 - In addition to weights, neurons have a bias value (that's what the b<sub>l</sub> is for in the formula).
 
 Keep in mind that I don't have the best understanding of neural networks myself. But hopefully this article was understandable.
 
-If you have a bunch of extra time, go read [the article I mentioned earlier](http://neuralnetworksanddeeplearning.com/chap1.html). It's good, it just requires a bit more thinking.
+If you have a bunch of extra time, go read [the article I mentioned earlier](http://neuralnetworksanddeeplearning.com/chap1.html). It's good, but it requires a bit more thinking.
 
-
-
-
-todo: rename "examples" to "set" 
-
-
-
-
+<script src="http://localhost:11080/js/pingmeonce.js"></script>
+<iframe src="http://localhost:11080/ping/5629499534213120" style="width: 100%; border: none;" pingmeonce></iframe>
