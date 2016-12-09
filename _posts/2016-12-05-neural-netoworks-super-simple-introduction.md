@@ -297,11 +297,11 @@ Therefore, one way to improve our network would be to randomly select training e
 
 It may surprise you to hear that our approach isn't very efficient. :)
 
-That's why in practive people use maths to gradually determine tweak the weights. 
+That's why, in practice, people use math to figure out good ways to tweak the weights. You still start with random weights and then iterate, but the learning process is much more efficient.
 
 ![](/img/blog/super-simple-neural-network/math-formula-highlighted.png)
 
-If you take another look at the screenshot from above you can see that the formula at the bottom shows how to change a weight w<sub>k</sub> to a better weight w<sub>k</sub>'.
+If you take another look at the screenshot from above you can see that the formula at the bottom shows how to go from a weight w<sub>k</sub> to a better weight w<sub>k</sub>'.
 
 The algorithm that's used to determine the improved set of weights is called backpropagation.
 
@@ -309,17 +309,20 @@ The algorithm that's used to determine the improved set of weights is called bac
 
 There are a few things I've simplified for this article:
 
-- Instead of measuring correctness (correct/incorrect) normal neural network calculate a more nuanced error that indicates just how far off the networks predictions was.
+- Instead of measuring correctness (correct/incorrect) normal neural network calculate a more nuanced error that indicates just how far off the network's predictions was.
 - I'm using an object model, but normally these calculations are done with matrices.
-- Neurons use an something called an activation function and something called a bias.
+- Neurons use an [activation function](https://en.wikipedia.org/wiki/Activation_function).
+- In addition to weights, neurons have a bias value (that's what the b<sub>l</sub> is for in the formula).
 
-Keep in mind that I don't have the best understanding of neural networks myself. But I hope I could give you a more accessible version.
+Keep in mind that I don't have the best understanding of neural networks myself. But hopefully this article was understandable.
 
-If you have a bunch of extra time, go read [the article I mentioned earlier](http://neuralnetworksanddeeplearning.com/chap1.html). It's good, just a bit to hard for me.
-
-
+If you have a bunch of extra time, go read [the article I mentioned earlier](http://neuralnetworksanddeeplearning.com/chap1.html). It's good, it just requires a bit more thinking.
 
 
-todo: update github code to use > 0 rather than > 0.5 to say if even or not... really? might make stuff later more confusing
+
 
 todo: rename "examples" to "set" 
+
+
+
+
