@@ -312,14 +312,14 @@ The algorithm that's used to determine the improved set of weights is called bac
 
 There are a few things I've simplified for this article:
 
-- Instead of measuring correctness (correct/incorrect) normal neural network calculate a more nuanced error that indicates how far off the network's predictions was.
+- Instead of measuring correctness (correct/incorrect) neural networks nornally calculate a more nuanced error that indicates how far off the network's predictions was.
 - I'm using an object model, but normally these calculations are done with matrices.
-- Neurons use an [activation function](https://en.wikipedia.org/wiki/Activation_function).
-- In addition to weights, neurons have a bias value (that's what the b<sub>l</sub> is for in the formula).
+- Neurons have an [activation function](https://en.wikipedia.org/wiki/Activation_function).
+- In addition to weights, neurons have a bias (that's what the b<sub>l</sub> is for in the other formula above).
 
-Keep in mind that I don't have the best understanding of neural networks myself. But hopefully this article was understandable.
+Keep in mind that I don't have the best understanding of neural networks myself. But hopefully you learned something from this article.
 
-If you have a bunch of extra time, go read [the article I mentioned earlier](http://neuralnetworksanddeeplearning.com/chap1.html). It's good, but it requires a bit more thinking.
+If you want to spend more time learning about neural networks, go read [the article I mentioned earlier](http://neuralnetworksanddeeplearning.com/chap1.html). It's good, but it requires a bit more thinking.
 
 <script src="http://localhost:11080/js/pingmeonce.js"></script>
 <iframe src="http://localhost:11080/ping/5629499534213120" style="width: 100%; border: none;" pingmeonce></iframe>
