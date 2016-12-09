@@ -135,8 +135,6 @@ When we actually run the network the input layer will contain 16 digits, letting
 
 ## Propagating the input values through the network
 
-YT/gif of bad example, but don't show the actual problem we're trying to solve
-
 First, we need a set of weights to start with. We're just going to pick random numbers.
 
 We'll store these numbers in a `weights` object that contains weights for the neurons in the hidden layer and in the output layer.
@@ -176,19 +174,23 @@ I could have called the function `predictIsEven`, but there's nothing problem-sp
 
 For each layer, the `predict` function takes the result of the next layer and passes it to the neurons in the current layer.
 
+![](/img/blog/super-simple-neural-network/network-with-weights.png)
+
 Let's look at an example. Is 3 an even number? We convert the number to binary 011b before we ask the network to make a prediction.
 
 {% highlight javascript %}
 var prediction = predict([0, 1, 1], getRandomWeights())
 console.log(prediction)
-// [ 47.915576800891444 ]
+// [ 6.259452749432459 ]
 {% endhighlight %}
 
-What does an output of 47.9 mean? We need to interpret the result of our network somehow. 
+
+
+What does an output of 6.25 mean? We need to interpret the result of our network somehow. 
 
 I'm going to decide that a number greater than 0.5 means the number is even.
 
-But since 47.9 is greater than 0.5 that means or network is wrongly saying 3 is an even number!
+But since 6.25 is greater than 0.5 that means or network is wrongly saying 3 is an even number!
 
 So in order to make a correct prediction we need training data that let's us tweak the weights we're using.
 
