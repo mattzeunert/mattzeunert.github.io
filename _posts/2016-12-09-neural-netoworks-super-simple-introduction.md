@@ -321,5 +321,5 @@ Keep in mind that I don't have the best understanding of neural networks myself.
 
 If you want to spend more time learning about neural networks, go read [the article I mentioned earlier](http://neuralnetworksanddeeplearning.com/chap1.html). It's good, but it requires a bit more thinking.
 
-<script src="http://localhost:11080/js/pingmeonce.js"></script>
-<iframe src="http://localhost:11080/ping/5629499534213120" style="width: 100%; border: none;" pingmeonce></iframe>
+<script src="http://form.pingmeonce.com/js/pingmeonce.js"></script>
+<iframe src="http://form.pingmeonce.com/ping/5629499534213120" style="width: 100%; border: none;" pingmeonce></iframe>
