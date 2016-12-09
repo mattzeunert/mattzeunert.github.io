@@ -4,7 +4,7 @@ title: A super simple introduction to neural networks
 date: 2016-12-09
 ---
 
-People talk about neural networks a lot, both on tech sites and in the mainstream media. So I decided to get a learn a bit about how they work.
+Neural networks are a bit topic, both on tech sites and in the mainstream media. I decided to get a learn a bit about how they work.
 
 After starting to read [chapter 1](http://neuralnetworksanddeeplearning.com/chap1.html) of the book "Neural Networks and Deep Learning" quickly turned... very mathy:
 
@@ -22,7 +22,7 @@ The neural network takes the pixels of the image of the written number as an inp
 
 To save us some work, let's pick a simpler problem. We'll check if a number written in binary is even.
 
-A few examples (number with a "b" suffix are in binary):
+A few examples (numbers with a "b" suffix are in binary):
 
     Input       Output
     ========================
@@ -38,7 +38,7 @@ You can think of a neural network as a function that takes an array as a paramet
 
 For our "isEven" neural network that means we take the binary digits as the input array (e.g. [0, 1, 0]) and return a simple true/false value (e.g. [1]).
 
-If we did handwriting recognition the input array would contain the pixels of the photo, and the return value would be an array with 10 values. The 10 values represent buckets for each digit from 0 to 9. The highest number in the output array shows what digit the network thinks is written in the image.
+If we did handwriting recognition the input array would contain the pixels of the photo. The return value would be an array with 10 values, representing buckets for each digit from 0 to 9. The highest number in the output array shows what digit the network thinks is written in the image.
 
 If you look up [Artificial Neural Network](https://en.wikipedia.org/wiki/Artificial_neural_network) on Wikipedia you'll see this image:
 
@@ -52,15 +52,15 @@ While the input layer consists of just numbers, the output layer consists of neu
 
 So, the return value of our isEven function contains the results of the neurons in the output layer. (Which for isEven is only one neuron.)
 
-Between the input layer and the output layer are one or more hidden layers,which also consist of neurons.
+Between the input layer and the output layer are one or more hidden layers, which also consist of neurons.
 
 When we call the isEven function the numbers from the input array propagate through the network from left to right.
 
 The hidden layer neurons take the input layer as an input.
 
-The outputs of the neurons in the hidden layer become the inputs for the neurons in the output layer.
+The outputs from the neurons in the hidden layer become the inputs for the neurons in the output layer.
 
-The image below shows how we progressively calculate the outputs of each layer. The exact values don't mean anything, we'll look at them later.
+The image below shows how we progressively calculate the outputs for each layer. The exact values here don't mean anything, we'll look at them later.
 
 ![values propagate through the neural network from the input layer to the output layer](/img/blog/super-simple-neural-network/propagation.png)
 
@@ -72,9 +72,9 @@ Specifying the exact rules to follow is easy if you want to check if a number is
 
 Instead, for neural networks we only specify a set of ground rules. For example, we need to decide how many neurons are in each layer, and how each neuron should behave.
 
-What we don't specify is the strength of the connections between the different neurons. Each connection has a weight that is determined through learning.
+What we don't specify is the strength of the connections between the different neurons. Each connection has a weight that's determined through learning.
 
-In order for it to learn we need a set of example data to train our neural network. Each example consists of the input to our neural network and the expected output we're hoping for.
+In order for it to learn we need a set of example data to train our neural network. Each example consists of the input to our network and the expected output we're hoping for.
 
 How well our network predicts the correct outputs for a given example depends on the weights it uses. During training we gradually adjust the weights in order to improve the network's accuracy.
 
@@ -149,7 +149,7 @@ If we have three neurons in the hidden layer `weights.hiddenLayer` might look li
 
 Each hidden layer neuron needs exactly as many weights as there are values in the input layer.
 
-The output layer also needs as many weights as there are values in the layer before it. Since the hidden layer has three neurons that means we get three output values, and we need three weights for the neuron in the output layer.
+The output layer also needs a weight for every value it receives from the previous layer. Since the hidden layer has three neurons that means we get three output values, and we need three weights for the neuron in the output layer.
 
 This code makes a prediction for a given example input from our training data.
 
@@ -184,14 +184,13 @@ console.log(prediction)
 // [ 6.259452749432459 ]
 {% endhighlight %}
 
-
 What does an output of 6.25 mean? We need to interpret the result of our network somehow. 
 
 I'm going to decide that a number greater than 0.5 means the number is even.
 
 But since 6.25 is greater than 0.5 that means or network is wrongly saying 3 is an even number!
 
-So in order to make a correct prediction we need training data that let's us tweak the weights we're using.
+To make a correct prediction we need training data that let's us tweak the weights we're using.
 
 ## Training data
 
@@ -199,7 +198,7 @@ Normally, training data needs to be obtained manually. For handwriting recogniti
 
 Conveniently, we can determine if a number is even without resorting to neural networks. We can write a `generateTestData` function to generate the training data for us.
 
-If we go through all our training examples and check what percentage of predictions is correct we can find a way to compare different sets of weights. This means we can find the configuration that makes our network most performant.
+If we go through all our training examples and check what percentage of predictions is correct we can find a way to compare different sets of weights. This means we can determine the configuration that makes our network most performant.
 
 ## Training our network
 
@@ -248,9 +247,9 @@ Nice! Our network makes a correct prediction in 96% of cases!
 
 # Assessing network performance
 
-But wait... this just tells us the network is predicting our training examples correctly. But we want our network to be able to predict any number correctly, even if it has never been trained with that exact number.
+But wait... this just tells us the network is predicting our training examples correctly. But we want our network to be able to make a prediction for any number, even if it has never been trained with that exact number.
 
-If we only look at correctness for the training set we can't verify if the network actually learned what we wanted it to learn: how to identify even nubers.
+If we only look at correctness for the training set we can't verify if the network actually learned what we wanted it to learn: how to identify even numbers.
 
 A simple analogy is that the network merely memorizes the training data instead of building a deeper understanding.
 
@@ -258,7 +257,7 @@ We need to verify that the rules our network learned apply not only to the data 
 
 To do that we need a set of example data that's separate from the training set that we use to determine the weights.
 
-That's called a test set. Every time we think we found a better set of weights, we'll calculate these new weights work for the test set.
+That's called a test set. Every time we think we found a better set of weights, we'll calculate how well these new weights work for the test set.
 
 {% highlight javascript %}
 var testSet = generateTestData(10000, 11000)
@@ -269,7 +268,10 @@ var testSet = generateTestData(10000, 11000)
         // ...
 
         var testCorrectness = getCorrectness(weights, testSet)
-        console.log("Correctness in test set: ", testCorrectness * 100, "%\n")
+        console.log("New best correctness in training (test) set:",
+             correctness * 100, "%",
+             "(" + testSetCorrectness * 100 + "%)"
+        )
     }
 
 {% endhighlight %}
