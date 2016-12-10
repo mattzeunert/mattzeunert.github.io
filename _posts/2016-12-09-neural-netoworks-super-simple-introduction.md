@@ -296,6 +296,10 @@ One problem with this particular dataset is that our training inputs aren't repr
 
 Therefore, one way to improve our network would be to randomly select training examples from the full 0 - 65535 range.
 
+## Try it
+
+The full code is on [Github](https://github.com/mattzeunert/super-simple-neural-network/blob/master/random-weights.js), or you can try the code on [JSFiddle](https://jsfiddle.net/kdyva9ra/1/).
+
 ## Backpropagation, or why people use math
 
 It may surprise you to hear that our approach to determine good weights isn't very efficient. :)
