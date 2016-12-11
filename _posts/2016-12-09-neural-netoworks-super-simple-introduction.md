@@ -4,7 +4,7 @@ title: A super simple introduction to neural networks
 date: 2016-12-09
 ---
 
-Neural networks are a big topic, both on tech sites and in the mainstream media. I decided to learn a bit about how they work.
+Neural networks are a regular topic on both tech sites and in the mainstream media. I decided to learn a bit about how they work.
 
 When I tried to read [chapter 1](http://neuralnetworksanddeeplearning.com/chap1.html) of the book "Neural Networks and Deep Learning" things quickly turned... very mathy:
 
