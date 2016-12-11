@@ -74,7 +74,7 @@ Instead, for neural networks we only specify a set of ground rules. For example,
 
 What we don't specify is the strength of the connections between the different neurons. Each connection has a weight that's determined through learning.
 
-In order for the network to learn we need a set of example data to train our neural network. Each example consists of the input to our network and the output we're hoping for.
+In order for the network to learn we need a set of example data to train our neural network. Each example consists of the input to the network and the output we're hoping for.
 
 How well our network predicts the correct output for a given example depends on the weights it uses. During training we gradually adjust the weights in order to improve the network's accuracy.
 
@@ -294,7 +294,7 @@ It turns out that for numbers it wasn't trained with our network is performing l
 
 One problem with this particular dataset is that our training inputs aren't representative of all possible input numbers. We trained the network with the numbers 0 to 99, which are all low numbers. However, the test set checks how well the network works for the numbers from 10,000 to 10,999.
 
-Therefore, one way to improve our network would be to randomly select training examples from the full 0 - 65535 range.
+Therefore, one way to improve our network would be to randomly select training examples from the full 0 to 65,535 range.
 
 ## Try it
 
@@ -316,7 +316,7 @@ The algorithm that's used to determine the improved set of weights is called [ba
 
 There are a few things I've simplified for this article:
 
-- Instead of measuring correctness (correct/incorrect) neural networks nornally calculate a more nuanced error that indicates how far off the network's predictions was.
+- Instead of measuring correctness (correct/incorrect) neural networks normally calculate a more nuanced error that indicates how far off the network's predictions was.
 - I'm using an object model, but normally these calculations are done with matrices.
 - Neurons have an [activation function](https://en.wikipedia.org/wiki/Activation_function).
 - In addition to weights, neurons have a bias (that's what the b<sub>l</sub> is for in the other formula above).
