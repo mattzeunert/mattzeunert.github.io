@@ -6,11 +6,11 @@ date: 2016-12-20
 
 Since JavaScript allows most native methods to be overwritten I was wondering if it's possible to speed up an application by adding caching to native methods.
 
-This post will look at the idea and see if it's possible to achieve performance improvements this way.
+This post will look at the idea and see if it's possible to achieve performance improvements in this way.
 
 ## Wrapping the native function
 
-If you look at the code below you'll notice it's inefficient. (Since it's just for demo purposes we don't actually use the return value here.)
+If you look at the code below you'll notice it's inefficient. (Since this is just a demo we don't actually use the return value of the `replace` call.)
 
 {% highlight javascript %}
 "aa".replace(/[a-z]/g, "z") // "zz"
