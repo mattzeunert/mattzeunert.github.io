@@ -34,8 +34,8 @@ But our goal in this post is to provide an automatic way to avoid repeating the 
 We can replace the native String replace function with a [memoized](https://en.wikipedia.org/wiki/Memoization) version. That means we store the return value for a particular set of parameters in a lookup table. When the function is called again with the same parameters we return the cached value, rather than re-doing the replace operation.
 
 {% highlight javascript %}
-var nativeStringReplace = String.prototype.replace
 var cache = {}
+var nativeStringReplace = String.prototype.replace
 String.prototype.replace = function(search, replacement){
     // `this` is the string ("aa")
     // search is the regular expression (/[a-z]/g)
@@ -58,13 +58,13 @@ Now this code will only result in one call to the native `replace` function:
 "aa".replace(/[a-z]/g, "z")
 {% endhighlight %}
 
-The cache object will look like this:
+After running the code the cache object will look like this:
 
     {
         aa/[a-z]/gz: "zz"
     }
 
-The key consists of the string `replace` is called on ("aa"), the regular expression used to match the part of the string that should be replaced ("/[a-z]/g"), and the replacement ("z").
+The key consists of the string `replace` is called on (`"aa"`), the regular expression used to match the part of the string that should be replaced (`"/[a-z]/g"`), and the replacement (`"z"`).
 
 ## Measuring the performance impact
 
@@ -123,9 +123,9 @@ Now the results are different:
     Native: 345ms
     Cached: 91ms
 
-With memoization enabled, `replace` calls only require a constant time lookup. Without it, every `replace` call takes an amount of time that's roughly proportional to the length of the string.
+With memoization enabled, `replace` calls only require a constant time lookup. Without it, every `replace` call takes an amount of time that grows with the length of the string
 
-![](/img/blog/native-functions-memoized/native-vs-cached-performance.png)
+![Memoized vs native string replaced function](/img/blog/native-functions-memoized/native-vs-cached-performance.png)
 
 ## Is it useful?
 
