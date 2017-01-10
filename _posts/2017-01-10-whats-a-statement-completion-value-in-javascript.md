@@ -18,7 +18,7 @@ But why does it matter that it's a statement completion value rather than a retu
 
 ## What is a statement completion value?
 
-Intuitvely a statement completion value is what you get when evaluating a chunk of code, for example in the console:
+Intuitvely, a statement completion value is what you get when evaluating a chunk of code, for example in the console:
 
 ![](/img/blog/statement-completion-value/statement-completion-values-in-the-console.png)
 
@@ -26,7 +26,7 @@ In practice, the only way to access a statement completion value within JavaScri
 
 ![](/img/blog/statement-completion-value/eval.png)
 
-However, statement completion values aren't just plain JavaScript values. Instead there's JavaScript engines have a [Completion type](http://www.ecma-international.org/ecma-262/6.0/#sec-completion-record-specification-type) that acts as a wrapper around the completion value.
+However, statement completion values aren't just plain JavaScript values. Instead there JavaScript engines have a [Completion type](http://www.ecma-international.org/ecma-262/6.0/#sec-completion-record-specification-type) that acts as a wrapper around the completion value.
 
 In addition to normal JavaScript values the Completion type is able to store an `empty` value. For example, variable statements complete with `empty`.
 
@@ -47,7 +47,7 @@ The value of a StatementList is the value of the last value producing item in th
 
 `eval("1;;;;;")` consists of an expression statement (`1;`) and 4 empty statements (`;;;;`). Empty statements complete with ...`empty`. That means `1;` is the only statement that produces a non-empty value. Therefore it's also the last value producing item and the statement list completes with the value `1`.
 
-In the second example from the spec it may look like it should return an empty object. However, the `{}` actually represents an empty block statement, which also completes with an `empty` value.
+In the second example from the spec it may look like it should return an empty object. However, the `{}` actually represents an empty block statement, which also completes with `empty`.
 
 Finally, the last example is very similar to what we saw at the top of the post.
 
@@ -61,4 +61,4 @@ ES2015 has changed the completion values of some statements. Here's an example c
 
 Firefox follows ES5 rules where the completion value of the if statement is the completion value of the block statement. In this case the block statement is empty, so `"Hi"` is the last non-empty value.
 
-However, this behavior has [changed](http://www.ecma-international.org/ecma-262/6.0/#sec-if-statement-runtime-semantics-evaluation) and if statements in ES2015 always complete with `undefined`. It looks like Chrome has implemented this change.
+However, this behavior has [changed](http://www.ecma-international.org/ecma-262/6.0/#sec-if-statement-runtime-semantics-evaluation) and if statements in ES2015 always complete with `undefined`. Chrome seems to have implemtented this change.
