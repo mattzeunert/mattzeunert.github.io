@@ -10,7 +10,7 @@ Paul Irish posted a question [on Twitter](https://twitter.com/paul_irish/status/
 
 Instead of `"omg"` you'd expect the resulting value to be `undefined`, since that's what `var x = 4` evaluates to.
 
-Brandan Eich, the creator of JavaScript, [answered the question](https://twitter.com/BrendanEich/status/818570098998800388):
+Brendan Eich, the creator of JavaScript, [answered the question](https://twitter.com/BrendanEich/status/818570098998800388):
 
 ![](/img/blog/statement-completion-value/brendan-eich-tweet.png)
 
