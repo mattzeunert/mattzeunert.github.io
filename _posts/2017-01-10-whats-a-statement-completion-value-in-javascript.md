@@ -59,6 +59,6 @@ ES2015 has changed the completion values of some statements. Here's an example c
 
 Firefox follows ES5 rules where the completion value of the if statement is the completion value of the block statement. In this case the block statement is empty, so `"Hi"` is the last non-empty value.
 
-However, this behavior has [changed](http://www.ecma-international.org/ecma-262/6.0/#sec-if-statement-runtime-semantics-evaluation) and if statements in ES2015 always complete with `undefined`. Chrome seems to have implemented this change.
+However, this behavior has [changed](http://www.ecma-international.org/ecma-262/6.0/#sec-if-statement-runtime-semantics-evaluation) and if statements in ES2015 always complete with `undefined`. As the screenshot shows, Chrome seems to have implemented this change.
 
 Here's [some more background on completion changes in ES2015](http://wiki.ecmascript.org/doku.php?id=harmony:completion_reform).
