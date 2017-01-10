@@ -26,11 +26,9 @@ In practice, the only way to access a statement completion value within JavaScri
 
 ![](/img/blog/statement-completion-value/eval.png)
 
-However, statement completion values aren't just plain JavaScript values. Instead there JavaScript engines have a [Completion type](http://www.ecma-international.org/ecma-262/6.0/#sec-completion-record-specification-type) that acts as a wrapper around the completion value.
+However, statement completion values aren't just plain JavaScript values. Instead JavaScript engines have a [Completion type](http://www.ecma-international.org/ecma-262/6.0/#sec-completion-record-specification-type) that acts as a wrapper around the completion value.
 
-In addition to normal JavaScript values the Completion type is able to store an `empty` value. For example, variable statements complete with `empty`.
-
-Since `empty` empty isn't part of the JavaScript language, `eval("var a")` returns `undefined` instead of `empty`.
+In addition to normal JavaScript values the Completion type is able to store an `empty` value. For example, variable statements complete with `empty`. But `empty` isn't part of the JavaScript language, so `eval("var a")` returns `undefined` instead of `empty`.
 
 To understand the code at the top of the post we need to look at how statement lists handle this special `empty` type.
 
