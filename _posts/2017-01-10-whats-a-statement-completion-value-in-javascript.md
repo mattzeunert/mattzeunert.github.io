@@ -43,13 +43,13 @@ The value of a StatementList is the value of the last value producing item in th
 <code>eval("1;var a;")</code>
 </p>
 
-`eval("1;;;;;")` consists of an expression statement (`1;`) and 4 empty statements (`;;;;`). Empty statements complete with ...`empty`. That means `1;` is the only statement that produces a non-empty value. Therefore it's also the last value producing item and the statement list completes with the value `1`.
+`eval("1;;;;;")` consists of an expression statement (`1;`) and 4 empty statements (`;;;;`). Empty statements complete with (big surprise) `empty`. That means `1;` is the only statement that produces a non-empty value. Therefore it's also the last value producing item and the statement list completes with the value `1`.
 
 In the second example from the spec it may look like it should return an empty object. However, the `{}` actually represents an empty block statement, which also completes with `empty`.
 
 Finally, the last example is very similar to what we saw at the top of the post.
 
-`"omg"; var x = 4;` is a statement list with two statements. Since the completion values are `"omg"` and `empty` the code evaluates to `"omg"` as the last non-empty value.
+`"omg"; var x = 4;` is a statement list with two statements. Since the completion values are `"omg"` and `empty`, the code evaluates to `"omg"` as the last non-empty value.
 
 ## Changes in ES2015
 
