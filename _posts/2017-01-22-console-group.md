@@ -4,7 +4,7 @@ title: Using console.group to make logs more readable
 date: 2017-01-22
 ---
 
-When you're monitoring and logging a lot of values and events in your program, the output in the console can become difficult to read.
+When you're monitoring a lot of values and events in a program the output in the console can become difficult to read.
 
 [console.group](https://developer.mozilla.org/en-US/docs/Web/API/Console/group) in Chrome let's you group and collapse a set of console messages.
 
@@ -25,7 +25,7 @@ console.groupEnd()
 
 ![Expanding console grouped logs in Chrome](/img/blog/console-group/console-group-example.png)
 
-You can't append new messages to a existing group of logs.
+You can't append new messages to an existing group of logs.
 
 ## In Firefox
 
