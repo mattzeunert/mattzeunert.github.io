@@ -1,12 +1,9 @@
----
-layout: post
-title: Interactive console logs in Chrome
-date: 2017-01-10
----
+
+
 
 When building developer tools it's sometimes useful to let developers interact with the console logs to drill down for more detail.
 
-Since logs are usuallly static text, interacticity isn't something that comes easily. But I'll talk about three methods you can use:
+Logs aren't meant to be used to build an interactive UI, but I'll talk about three methods you can use:
 
 - console.group
 - Property getters
@@ -18,23 +15,22 @@ You could achieve similar results by having the user type in commands requesting
 
 ## console.group
 
-[console.group]() let's you group and collapse a set of console messages.
 
-To make sure your messages are collapsed before you start interacting with them use `groupCollapsed`
+## groupcollapsed not supported in chrome
 
-TODO[[[example here]]]
+## Logging objects
 
-TODO[[left: before expand, right: after expand]]
+Another way to achieve interactivity is by logging an object. You could do something similar
 
-console.group works well if you want to show a bunch of console message and don't know yet which ones will be relevant to the user.
-
-Because there's nothing hacky about this approach everything a user would normally expect works fine. The expanded content also appears in place, rather than being appended to the console like a new `console.log` call.
-
-However, unlike the next two approaches I'll talk about you'll need to know in advance what needs to be logged. That means logging everything that may interest the person conusming the logs, rather than only logging it what the user requested.
-
-You can't append new messages to a existing group of logs.
+One difference however is that 
 
 ## Property getters
+
+= A plain object with pre-defined values won't add anything over 
+
+ interactivity is using property getters.
+
+can use them as buttons.
 
 log obj rather than text
 
