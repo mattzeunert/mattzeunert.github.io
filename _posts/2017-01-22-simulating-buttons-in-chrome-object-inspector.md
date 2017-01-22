@@ -6,7 +6,7 @@ date: 2017-01-22
 
 When building developer tools it's sometimes useful to let developers request more information about an object.
 
-For example, imagine the tool you're building can calculate the sum of all property values on an object:
+For example, imagine a tool that can calculate the sum of all property values for an object:
 
 {% highlight javascript %}
 var obj = {a: 4, b: 22}
@@ -19,9 +19,9 @@ I've added a `getSum` function to `Object.prototype`, so you can now easily get 
 However, in order to call `getSum` a two things are needed:
 
 - A reference to the object in the console
-- You need to know about the `getSum` function
+- The user needs to know about the `getSum` function
 
-Ideally we should just be able to see the value every time we inspect an object:
+Ideally we should just be able to calculate the value every time we inspect an object:
 
 ![](/img/blog/object-inspector-buttons/object-inspector.png)
 
@@ -43,9 +43,9 @@ Now when we view the object we'll see a sum property with an ellipsis. If we cli
 
 While we can calculate the sum for the object synchronously, what happens if the response can't be synchronous? In that case a simple getter won't work.
 
-However, we can still use a getter and then when the asynchronous response is ready print the response to the console.
+However, we can still use a getter as a button and then print the asynchronous response to the console.
 
-For example, [Object History Debugger](https://github.com/mattzeunert/Object-History-Debugger) (which shows past values of an object property) adds an asynchronous `prettyPrint` function to certain objects. Because of this, the getter merely calls `prettyPrint` and then returns a message saying the response will apppear in the console.
+For example, [Object History Debugger](https://github.com/mattzeunert/Object-History-Debugger) adds an asynchronous `prettyPrint` function to certain objects. Because of this, the getter merely calls `prettyPrint` and then returns a message saying the response will apppear in the console.
 
 {% highlight javascript %}
 Object.defineProperty(PropertyHistory.prototype, "clickDotsToPrettyPrint", {
@@ -59,7 +59,7 @@ Object.defineProperty(PropertyHistory.prototype, "clickDotsToPrettyPrint", {
 
 ![](/img/blog/object-inspector-buttons/click-dots.png)
 
-Then the requested information appears:
+Shortly after the user clicks on the ellipsis the requested information appears:
 
 ![](/img/blog/object-inspector-buttons/console-output.png)
 
@@ -67,13 +67,13 @@ This is a bit hacky, since the object inspector isn't designed to let you build 
 
 ## Asynchronous values without printing to the console
 
-Printing to the console made sense for a property value history, but if you'd rather keep the value in the inspector there is a way that sort of works.
+Printing to the console made sense for the example above, but if you'd rather keep the value in the inspector there is a way that sort of works.
 
 We can return a new getter that the user needs to manually click until the response is ready. Because of the manual user interaction that's required I think this is only viable if the response becomes available in less than half a second. Otherwise the user would have to click again and again and again.
 
 ![](/img/blog/object-inspector-buttons/nested-getters.png)
 
-The UX here is pretty terrible, but here's the code anyway:
+Here's the code, even though the UX is pretty terrible:
 
 {% highlight javascript %}
 var obj = {}
