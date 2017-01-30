@@ -66,6 +66,9 @@ $blue: #44a;
     // generated from ```code``` in markdown
     display: block;
     overflow: auto;
+    padding: 10px;
+    border: 1px solid #eee;
+    background: #fafafa;
 }
 
 .non-techies-bottom-nav a.prev {
