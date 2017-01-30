@@ -4,7 +4,7 @@ title: Lazy JavaScript Parsing in V8
 date: 2017-01-30
 ---
 
-JavaScript engines use a mechanism called lazy parsing to be able to run code more quickly.
+JavaScript engines use a mechanism called lazy parsing to run code more quickly.
 
 This post will explain lazy parsing, how it's beneficial, and what the potential problems with it are.
 
@@ -14,7 +14,7 @@ V8 is the JavaScript engine used in Chrome and Node. While this post talks about
 
 Before JavaScript can be run it needs to be translated into machine code. That's what V8 does.
 
-First, the code is converted to a list of tokens, then the tokens are converted into a syntax tree, and then the machine code is generated from the sytnax tree. 
+First, the code is converted to a list of tokens, then the tokens are converted into a syntax tree, and then machine code is generated from the sytnax tree. 
 
 Parsing is the second step – converting the tokens to an abstract syntax tree (AST). Here's some example source code with the corresponding AST:
 
@@ -26,7 +26,7 @@ If you're interested in playing around with JavaScript syntax trees try out [AST
 
 Parsing code takes time, so JS engines will try to avoid parsing a file fully.
 
-That's possible because most functions in a JavaScript file are never called, or won't be called until later on, for example when the user interacts with the UI.
+That's possible because most functions in a JavaScript file are never actually called, or won't be called until later on, for example when the user interacts with the UI.
 
 So instead of parsing every function most functions are just pre-parsed. Pre-parsing detects syntax errors, but it [won't](http://stackoverflow.com/a/41827253/1290545) resolve the scope of variables used in the function or generate an AST.
 
@@ -38,7 +38,7 @@ However, when you call a function that hasn't been fully parsed yet you need to 
 
 Let's look at an example of this behavior.
 
-Node has a command-line option called `--trace_parse` that will tell you when scripts or functions are parsed. However, the output can sometimes be quite large because of various internal code that Node runs to bootstrap your program. So instead of Node I'll be using the V8 shell program called `d8`.
+Node has a command-line option called `--trace_parse` that will tell you when scripts or functions are parsed. However, the output can sometimes be quite large because of various internal code that Node runs to bootstrap your program. So instead of Node I'll be using the V8 shell called `d8`.
 
 Unlike Node, `d8` doesn't have a `console.log` function, so I'm using a function called `print`:
 
@@ -72,7 +72,7 @@ $ d8 --trace_parse test.js
 Hi Sparkle!
 ```
 
-There's still some `d8` related logic that's not part of our actual program, but much less than if we were using Node. You can ignore most of the output.
+There's still some `d8` related output, but much less than if we were using Node. The last three lines are what matters.
 
 When `test.js` is initially parsed the `sayHi` and `add` functions are only pre-parsed, making the intial script parse faster.
 
@@ -80,7 +80,7 @@ Then, when we call `sayHi`, the function is parsed fully.
 
 Importantly `add` is never parsed fully. That both saves the parser time and reduces the memory consumption of V8.
 
-If we append `add(1, 2)` to our JavaScript code this is the D8 output:
+If we append `add(1, 2)` to our JavaScript code `add` will be parsed at the time of the function call:
 
 ```
 [parsing script: /Users/mattzeunert/test.js - took 0.608 ms]
@@ -200,4 +200,4 @@ That fact also points to one limitation of these optimizations: they depend on t
 
 The speedup will be more meaningful on slower devices. But not on iPhones: Safari's JavaScriptCore engine shows no improvement for the optimized script.
 
-Most likely there are more impactful things you can do to improve your websites's performance. But if you've run out of ideas it's worth giving `optimize-js` a try and measue if it's a meaningful improvment.
+Most likely there are more impactful things you can do to improve your websites's performance. But if you've run out of ideas it's worth giving `optimize-js` a try and measue if there's a meaningful improvment.
