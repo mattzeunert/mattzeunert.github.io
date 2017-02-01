@@ -1,0 +1,146 @@
+---
+layout: root
+title: Money
+permalink: /money.html
+---
+
+<style>
+.money-subcategory {
+    display: none;
+}
+.category {
+    cursor: pointer;
+}
+.category-collapse {
+    display: none;
+}
+.category-expand {
+    display: inline-block;
+}
+.category-expanded .category-collapse {
+    display: inline-block;
+}
+.category-expanded .category-expand {
+    display: none;
+}
+.category-expand, .category-collapse {
+    background: #367dd6;
+    color: white;
+    border-radius: 999px;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: bold;
+}
+.non-personal {
+    opacity: .6;
+}
+</style>
+
+<script src="money/jan-2017.js"></script>
+<script src="money/underscore.min.js"></script>
+
+<!-- 
+<script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+
+-->
+
+<script type="text/template" id="month-template">
+<table style="width: 600px;max-width: 100%">
+    <tr>
+        <th style="text-align: left">Category</th>
+        <th style="text-align: right">Amount</th>
+    </tr>
+    <% personalSpending.forEach(function(category){ %>
+            <%= renderCategory(category) %>
+        <% }) %>
+
+    <tr style="font-weight: bold">
+        <td>Personal Spending Total</td>
+        <td style="text-align: right"><%= amt(personalAmount) %></td>
+    </tr>
+
+<% nonPersonalSpending.forEach(function(category){ %>
+            <%= renderCategory(category, true) %>
+        <% }) %>
+    <tr class="non-personal" style="font-weight: bold">
+        <td>Grand Total</td>
+        <td style="text-align: right"><%= amt(amount) %></td>
+    </tr>
+    
+</table>
+</script>
+
+<script type="text/template" id="category-template">
+    <tr data-category="<%= makeId(category.name) %>" class="category <%= isNonPersonal ? 'non-personal': '' %>">
+        <td>
+            <span class="category-expand">+</span>
+            <span class="category-collapse">&minus;</span>
+            <%= category.name %>
+        </td>
+        <td style="text-align: right"><%= amt(category.amount) %></td>
+    </tr>
+    <% category.subcategories.forEach(function(subcategory){ %>
+        <tr class="money-subcategory money-subcategory-<%= makeId(category.name) %> <%= isNonPersonal ? 'non-personal': '' %>" >
+            <td style="padding-left: 20px"><%= subcategory.name %></td>
+            <td style="text-align: right"><%= amt(subcategory.amount) %></td>
+
+        </tr>
+    <% }) %>
+</script>
+
+<h2>Spending January 2017</h2>
+
+<div id="content">
+
+</div>
+
+
+
+
+<script>
+var template = $("#month-template").html()
+template = _.template(template)
+var categoryTemplate = $("#category-template").html()
+categoryTemplate = _.template(categoryTemplate)
+
+jan2017.personalSpending.forEach(sortSubCategorySpending)
+jan2017.personalSpending = _.sortBy(jan2017.personalSpending, function(a){return -a.amount})
+
+jan2017.nonPersonalSpending.forEach(sortSubCategorySpending)
+
+function sortSubCategorySpending(category){
+    category.subcategories = _.sortBy(category.subcategories, function(a){return -a.amount})
+}
+
+$("#content").html(template(jan2017))
+
+$("body").on("click", "[data-category]", function(){
+    var expanded = $(this).data("isExpanded")
+    expanded = !expanded
+
+    var category = $(this).data("category")
+    $(".money-subcategory-" + category).toggle(expanded)
+    $(this).data("isExpanded", expanded)
+    $(this).toggleClass("category-expanded", expanded)
+
+})
+
+function renderCategory(category, isNonPersonal){
+    return categoryTemplate({category: category, isNonPersonal: isNonPersonal})
+}
+
+function amt(amount){
+    return "&pound;" + Math.round(amount)
+}
+
+function makeId(category){
+    return category.toLowerCase().replace(/[^0-9a-z]/g, "")
+}
+</script>
