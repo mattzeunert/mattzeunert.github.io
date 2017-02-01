@@ -240,6 +240,6 @@ While our CPU performance is pretty good there's still a lot of room to save on 
 
 Also, in practice the individual buckets often use linked lists rather than our `NaiveDict`. I'm not sure that would do much for performance, but it might reduce memory consumption as normal JavaScript lists may take up more memory than necessary in order to be able to grow, while linked lists can be more efficient.
 
-While we can retrieve the correct bucket in constant time (`O(1)`), the complexity of retrieving the value from `NativeDict` is still `O(n)`.
+While we can retrieve the correct bucket in constant time (`O(1)`), the complexity of retrieving the value from `NaiveDict` is still `O(n)`.
 
-However, now our n is much smaller. In fact, if our hashes were perfectly distributed and there are no collisions each `NativeDict` would only contain one item. Thus, in the best case `O(n)` becomes `O(1)`!.
+However, now our n is much smaller. In fact, if our hashes were perfectly distributed and there are no collisions each `NaiveDict` would only contain one item. Thus, in the best case `O(n)` becomes `O(1)`!.
