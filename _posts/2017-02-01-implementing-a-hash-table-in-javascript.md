@@ -175,7 +175,7 @@ SET: 127.702ms
 GET: 30.727ms
 ```
 
-Let's see if we can get the performance of our hash function closer to that.
+Let's see if we can get the performance of our hash table closer to that.
 
 ## A better hash function
 
