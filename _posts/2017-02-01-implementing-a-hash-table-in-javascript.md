@@ -90,8 +90,8 @@ We need to decide how our hash function should work. For now, let's use a very s
 {% highlight javascript %}
 HashTable.prototype.hashFunction = function(key){
     var hash = 0;
-    for (var char in key){
-        hash += char.charCodeAt(0)
+    for (var i=0;i< key.length;i++){
+        hash += key.charCodeAt(i)
     }
     return hash;
 }
@@ -190,8 +190,8 @@ The current hash function treats every character equally, but let's change it to
 {% highlight javascript %}
 HashTable.prototype.hashFunction = function(key){
     var hash = 0;
-    for (var char in key){
-        hash += char.charCodeAt(0)
+    for (var i=0;i< key.length;i++){
+        hash += key.charCodeAt(i) * i
     }
     return hash;
 }
