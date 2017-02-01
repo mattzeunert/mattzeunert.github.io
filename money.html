@@ -38,27 +38,35 @@ permalink: /money.html
 .non-personal {
     opacity: .6;
 }
+.money-category-odd td {
+    background: #f7f7f7;
+}
+
+table {
+    border-collapse: collapse
+}
+table td{
+    line-height: 2em;
+}
 </style>
 
 <script src="money/jan-2017.js"></script>
 <script src="money/underscore.min.js"></script>
 
-<!-- 
 <script
   src="https://code.jquery.com/jquery-2.2.4.js"
   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
   crossorigin="anonymous"></script>
 
--->
 
 <script type="text/template" id="month-template">
-<table style="width: 600px;max-width: 100%">
+<table style="width: 400px;max-width: 100%">
     <tr>
         <th style="text-align: left">Category</th>
         <th style="text-align: right">Amount</th>
     </tr>
-    <% personalSpending.forEach(function(category){ %>
-            <%= renderCategory(category) %>
+    <% personalSpending.forEach(function(category, i){ %>
+            <%= renderCategory(category, i) %>
         <% }) %>
 
     <tr style="font-weight: bold">
@@ -66,8 +74,8 @@ permalink: /money.html
         <td style="text-align: right"><%= amt(personalAmount) %></td>
     </tr>
 
-<% nonPersonalSpending.forEach(function(category){ %>
-            <%= renderCategory(category, true) %>
+<% nonPersonalSpending.forEach(function(category, i){ %>
+            <%= renderCategory(category, i, true) %>
         <% }) %>
     <tr class="non-personal" style="font-weight: bold">
         <td>Grand Total</td>
@@ -78,7 +86,7 @@ permalink: /money.html
 </script>
 
 <script type="text/template" id="category-template">
-    <tr data-category="<%= makeId(category.name) %>" class="category <%= isNonPersonal ? 'non-personal': '' %>">
+    <tr data-category="<%= makeId(category.name) %>" class="category <%= isNonPersonal ? 'non-personal': '' %> <%= index % 2 == 1 ? 'money-category-odd' : ''%>">
         <td>
             <span class="category-expand">+</span>
             <span class="category-collapse">&minus;</span>
@@ -88,7 +96,7 @@ permalink: /money.html
     </tr>
     <% category.subcategories.forEach(function(subcategory){ %>
         <tr class="money-subcategory money-subcategory-<%= makeId(category.name) %> <%= isNonPersonal ? 'non-personal': '' %>" >
-            <td style="padding-left: 20px"><%= subcategory.name %></td>
+            <td style="padding-left: 40px"><%= subcategory.name %></td>
             <td style="text-align: right"><%= amt(subcategory.amount) %></td>
 
         </tr>
@@ -132,8 +140,8 @@ $("body").on("click", "[data-category]", function(){
 
 })
 
-function renderCategory(category, isNonPersonal){
-    return categoryTemplate({category: category, isNonPersonal: isNonPersonal})
+function renderCategory(category, index, isNonPersonal){
+    return categoryTemplate({category: category, index: index, isNonPersonal: isNonPersonal})
 }
 
 function amt(amount){
