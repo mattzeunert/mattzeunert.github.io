@@ -6,7 +6,7 @@ date: 2017-02-01
 
 Hash tables are a common data structure for storing key-value pairs.
 
-To get a better understanding of how they work I started building my own data structure to store key value pairs and then tried to optimize it for performance.
+To get a better understanding of how they work I started building my own data structure to store key-value pairs and then tried to optimize it for performance.
 
 If you've got the time, consider trying to come up with your own solutions before reading on.
 
