@@ -58,7 +58,7 @@ table td{
 }
 </style>
 
-<script src="money/jan-2017.js"></script>
+<script src="money/data.js"></script>
 <script src="money/underscore.min.js"></script>
 
  <script
@@ -68,6 +68,7 @@ table td{
 
 
 <script type="text/template" id="month-template">
+<h2>Spending <%= monthAndYear %></h2>
 <table style="width: 400px;max-width: 100%">
     <tr>
         <th style="text-align: left">Category</th>
@@ -119,8 +120,6 @@ table td{
     </span>
 </div>
 
-<h2>Spending January 2017</h2>
-
 <div id="content">
 
 </div>
@@ -148,25 +147,38 @@ $("[data-currency]").click(function(e){
 render()
 
 function render(){
-    renderMonth()
+    $("#content").html("")
+    var months = [jan2017]
+    months.forEach(function(month){
+        renderMonth(month)    
+    })
 }
 
-function renderMonth(){
-    window.renderCategory = renderCategory;
+function renderMonth(month){
     window.amt = amt
     window.makeId = makeId
 
-    jan2017.personalSpending.forEach(sortSubCategorySpending)
-    jan2017.personalSpending = _.sortBy(jan2017.personalSpending, function(a){return -a.amount})
+    month.personalSpending.forEach(sortSubCategorySpending)
+    month.personalSpending = _.sortBy(month.personalSpending, function(a){return -a.amount})
 
-    jan2017.nonPersonalSpending.forEach(sortSubCategorySpending)
+    month.nonPersonalSpending.forEach(sortSubCategorySpending)
 
-    function sortSubCategorySpending(category){
-        category.subcategories = _.sortBy(category.subcategories, function(a){return -a.amount})
+
+    $("#content").prepend(template(month))
+
+    function amt(amount){
+        var currencySign = "&pound;"
+        if (currency === "USD") {
+            amount = amount * month.dollarExchangeRate
+            currencySign = "$"
+        }
+        return currencySign + Math.round(amount)
     }
 
-    $("#content").html(template(jan2017))
-
+    function makeId(category){
+        return category.toLowerCase().replace(/[^0-9a-z]/g, "")
+    }    
+}
 
     function renderCategory(category, index, isNonPersonal){
         return categoryTemplate({
@@ -176,18 +188,8 @@ function renderMonth(){
         })
     }
 
-    function amt(amount){
-        var currencySign = "&pound;"
-        if (currency === "USD") {
-            amount = amount * jan2017.dollarExchangeRate
-            currencySign = "$"
-        }
-        return currencySign + Math.round(amount)
-    }
-
-    function makeId(category){
-        return category.toLowerCase().replace(/[^0-9a-z]/g, "")
-    }    
+function sortSubCategorySpending(category){
+    category.subcategories = _.sortBy(category.subcategories, function(a){return -a.amount})
 }
 
 $("body").on("click", "[data-category]", function(){
