@@ -61,10 +61,10 @@ table td{
 <script src="money/data.js"></script>
 <script src="money/underscore.min.js"></script>
 
- <script
+ <!-- <script
   src="https://code.jquery.com/jquery-2.2.4.js"
   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-  crossorigin="anonymous"></script> 
+  crossorigin="anonymous"></script>  -->
 
 
 <script type="text/template" id="month-template">
@@ -148,7 +148,7 @@ render()
 
 function render(){
     $("#content").html("")
-    var months = [jan2017]
+    var months = [jan2017, feb2017]
     months.forEach(function(month){
         renderMonth(month)    
     })
