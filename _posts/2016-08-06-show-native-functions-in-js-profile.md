@@ -58,7 +58,7 @@ When we hover over the individual function call we can get a more detailed locat
 
 ![](/img/blog/profile-native-functions/array-join-more-exact.png)
 
-We can now head over to the [Chrome code search](cs.chromium.org) and look for "array.js". The line number won't be exact though, since the code Chrome is running is likely slightly older than what you find on the Chromium master branch.
+We can now head over to the [Chrome code search](https://cs.chromium.org) and look for "array.js". The line number won't be exact though, since the code Chrome is running is likely slightly older than what you find on the Chromium master branch.
 
 You can see that `ArrayJoin` is calling through to `InnerArrayJoin`:
 
