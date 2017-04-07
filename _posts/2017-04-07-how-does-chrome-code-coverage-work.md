@@ -17,13 +17,15 @@ DevTools uses the Chrome Debugging Protocol to communicate with V8. Before looki
 
 ![](/img/blog/javascript-code-coverage/protocol.png)
 
-You can see there's a `startPreciseCoverage` endpoint that takes a `callCount` parameter. If that parameter is true V8 will count the number of times the code has run, rather than just giving a binary value.
+There's a `startPreciseCoverage` endpoint that takes a `callCount` parameter. If that parameter is true V8 will count the number of times the code has run, rather than just giving a binary value.
 
 To generate the coverage report that's shown at the top of this post we don't need to count the exact number of calls, we just care whether or not the code has run.
 
 There's also a `takePreciseCoverage` endpoint, but unfortunately there's no example of what a coverage result looks like. There are two ways we can learn more.
 
 First, we can [debug the debugger](https://medium.com/@paul_irish/1e671bf659bb) and set a breakpoint after searching for `takePreciseCoverage`. Stepping into the call we find a `dispatchResponse` method where the results of requests that DevTools makes to V8/Chrome become available.
+
+![](/img/blog/javascript-code-coverage/debugging-debugger.png)
 
 This is the an excerpt from the data that gets sent to Chrome DevTools:
 
