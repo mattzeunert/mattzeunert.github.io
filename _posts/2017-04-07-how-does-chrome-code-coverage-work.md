@@ -6,7 +6,7 @@ date: 2017-03-29
 
 There's a new feature in Chrome Canary: JavaScript code coverage. It tells you how much of your code is actually executed, vs how much is loaded unnecessarily.
 
-I wondered how it's implemented... these are my findings from bumbling through the source code with [Chrome Code Search](https://cs.chromium.org/). It's C++, but don't worry, I don't know C++ either. :)
+I wondered how it's implemented... these are my findings from bumbling through the source code with [Chrome code search](https://cs.chromium.org/). It's C++, but don't worry, I don't know C++ either. :)
 
 ![](/img/blog/javascript-code-coverage/code.png)
 ![](/img/blog/javascript-code-coverage/files.png)
@@ -100,7 +100,11 @@ Response V8ProfilerAgentImpl::startPreciseCoverage(Maybe<bool> callCount) {
 }
 {% endhighlight %}
 
-I don't really understand this. But what matters is that we can click on some of the types in Chrome code search and find more code. For example, if you click on `kPreciseCount` we'll find [this](https://cs.chromium.org/chromium/src/v8/src/debug/debug-interface.h?dr=CSs&l=227):
+I don't really understand this. But what matters is that we can click on some of the types in Chrome code search and find more code.
+
+![](/img/blog/javascript-code-coverage/chrome-code-search.png)
+
+For example, if you click on `kPreciseCount` we'll find [this](https://cs.chromium.org/chromium/src/v8/src/debug/debug-interface.h?dr=CSs&l=227):
 
 {% highlight c++ %}
 enum Mode {
