@@ -4,7 +4,7 @@ title: A quick look at how Chrome's JavaScript code coverage feature works
 date: 2017-03-29
 ---
 
-There's a new feature in Chrome Canary: JavaScript code coverage. It tells you how much of your code is actually executed, vs how much is loaded unnecessarily.
+There's a new feature in Chrome Canary: [JavaScript code coverage](https://gideonpyzer.com/blog/runtime-coverage-using-chrome-devtools/). It tells you how much of your code is actually executed, vs how much is loaded unnecessarily.
 
 I wondered how it's implemented... these are my findings from bumbling through the source code with [Chrome code search](https://cs.chromium.org/). It's C++, but don't worry, I don't know C++ either. :)
 
