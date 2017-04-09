@@ -84,7 +84,7 @@ result : [
 
 We now have a decent idea of what the API that V8 provides looks like. Next we'll take a look at the actual API implementation.
 
-By searching for `startPreciseCoverage` we can find the [relevant C++ code](https://cs.chromium.org/chromium/src/v8/src/inspector/v8-profiler-agent-impl.cc?type=cs&q=startPreciseCoverage+package:%5Echromium$&l=276).
+By searching for `startPreciseCoverage` we can find the [relevant C++ code](https://cs.chromium.org/chromium/src/v8/src/inspector/v8-profiler-agent-impl.cc?l=276&rcl=952f96092a17a55f65cfb5d45979a14ad67cdf0a).
 
 {% highlight c++ %}
 Response V8ProfilerAgentImpl::startPreciseCoverage(Maybe<bool> callCount) {
@@ -104,7 +104,7 @@ I don't really understand this. But what matters is that we can click on some of
 
 ![](/img/blog/javascript-code-coverage/chrome-code-search.png)
 
-For example, if you click on `kPreciseCount` we'll find [this](https://cs.chromium.org/chromium/src/v8/src/debug/debug-interface.h?dr=CSs&l=227):
+For example, if you click on `kPreciseCount` we'll find [this](https://cs.chromium.org/chromium/src/v8/src/debug/debug-interface.h?l=227&rcl=952f96092a17a55f65cfb5d45979a14ad67cdf0a):
 
 {% highlight c++ %}
 enum Mode {
@@ -136,8 +136,7 @@ By clicking through the Chrome Code search UI you can discover more. I'll highli
 
 ## How precise is the coverage tracking
 
-One of the things I was curious about was how it knows exactly what code range has run. It turns out that tracking isn't actually that exact and it [happens at the function level](https://cs.chromium.org/chromium/src/v8/src/inspector/v8-profiler-agent-impl.cc?type=cs&q=%22only+one+range+per+function%22&l=314
-).
+One of the things I was curious about was how it knows exactly what code range has run. It turns out that tracking isn't actually that exact and it [happens at the function level](https://cs.chromium.org/chromium/src/v8/src/inspector/v8-profiler-agent-impl.cc?l=314&rcl=952f96092a17a55f65cfb5d45979a14ad67cdf0a).
 
 {% highlight c++ %}
 // At this point we only have per-function coverage data, so there is
@@ -146,11 +145,11 @@ One of the things I was curious about was how it knows exactly what code range h
 
 ## Where is the number of invocations stored?
 
-Functions [have a `FeedbackVector`](https://cs.chromium.org/chromium/src/v8/src/objects.h?gsn=JSFunction&l=6862) which can store the number of invocations.
+Functions [have a `FeedbackVector`](https://cs.chromium.org/chromium/src/v8/src/objects.h?l=6862&rcl=952f96092a17a55f65cfb5d45979a14ad67cdf0a) which can store the number of invocations.
 
 ## Where is the invocation count incremented?
 
-[Here](https://cs.chromium.org/chromium/src/v8/src/builtins/x64/builtins-x64.cc?type=cs&q=kInvocationCountIndex&l=690). The name `Generate_InterpreterEntryTrampoline` suggests it's to do with V8's new Ignition interpreter. But the code also appears to depend on the platform (there are different implementations for `Generate_InterpreterEntryTrampoline`).
+[Here](https://cs.chromium.org/chromium/src/v8/src/builtins/x64/builtins-x64.cc?l=690&rcl=952f96092a17a55f65cfb5d45979a14ad67cdf0a). The name `Generate_InterpreterEntryTrampoline` suggests it's to do with V8's new Ignition interpreter. But the code also appears to depend on the platform (there are different implementations for `Generate_InterpreterEntryTrampoline`).
 
 Anyway, I doesn't matter all that much. This is the code that matters:
 
@@ -169,7 +168,7 @@ A Smi is a small integer. It's a pretty ordinary integer, except V8 uses one bit
 
 ## Optimization 
 
-When enabling coverage [all optimizations are disabled](https://cs.chromium.org/chromium/src/v8/src/debug/debug-coverage.cc?type=cs&q=%22Remove+all+optimized+function%22&l=189):
+When enabling coverage [all optimizations are disabled](https://cs.chromium.org/chromium/src/v8/src/debug/debug-coverage.cc?l=189&rcl=952f96092a17a55f65cfb5d45979a14ad67cdf0a):
 
 {% highlight c++ %}
 // Remove all optimized function. Optimized and inlined functions do not
@@ -177,7 +176,7 @@ When enabling coverage [all optimizations are disabled](https://cs.chromium.org/
 Deoptimizer::DeoptimizeAll(isolate);
 {% endhighlight %}
 
-Future inlining is [disabled](https://cs.chromium.org/chromium/src/v8/src/objects.cc?type=cs&q=isInlineable&l=13558) - I don't know exactly inlining means in this context.
+Future inlining is [disabled](https://cs.chromium.org/chromium/src/v8/src/objects.cc?l=13558&rcl=952f96092a17a55f65cfb5d45979a14ad67cdf0a) - I don't know exactly inlining means in this context.
 
 {% highlight c++ %}
 bool SharedFunctionInfo::IsInlineable() {
