@@ -10,9 +10,9 @@ This post describes how to go about that.
 
 ## Running the Macaca server and Mocha separately
 
-If you try debugging `macaca run` directly you'll notice it won't pause on your breakpoints. The reason for that is that your test cases in`test.js` aren't executed as part of the main Macaca process, but separately through Mocha.
+If you try debugging `macaca run` directly you'll notice it won't pause on your breakpoints. The reason for that is that your test cases in`test.js` aren't executed as part of the main Macaca process, but separately through Mocha. To debug our tests we need to launch the Macaca server separately from the Mocha process.
 
-To run the two separately first run `macaca server`
+First run `macaca server`.
 
 Then locate the Mocha executable. In my case that was `node_modules/.bin/_mocha`.
 
