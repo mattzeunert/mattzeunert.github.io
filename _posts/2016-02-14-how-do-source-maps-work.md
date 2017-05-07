@@ -97,7 +97,7 @@ The content of "test.es6.js" is `const square = (x) => x * x;`. It's only one li
 
 This means that the compiled source column and the column in the original source are both 0. In both files the assignment starts at the beginning of the line.
 
-### Why does IAAM mean?
+### What does IAAM mean?
 
 "IAAM" represents the array `[4,0,0,6]`. The column indices are relative to the column from the previous segment, but because we started at column 0 the absolute column indices are also 4 and 6.
 
