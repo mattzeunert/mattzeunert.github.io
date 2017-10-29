@@ -27,12 +27,10 @@
 /* Show mark as done if item is created and not marked as done yet */
 .created-checkbox:checked ~ .done-checkbox:not(:checked) ~ .mark-done-checkbox-label {
     display: inline-block;
-    order: 1
 }
 /* Show mark as undone if item is created and marked as done */
 .created-checkbox:checked ~ .done-checkbox:checked ~ .mark-undone-checkbox-label {
     display: inline-block;
-    order: 1
 }
 
 /* Item creation */
@@ -102,28 +100,18 @@ input:not(:valid) ~ .created-checkbox-label {
 	color: #af5b5e !important;
 }
 
-.deleted-checkbox-label:after {
-	content: '×';
-}
-
 .created-checkbox:checked ~ .deleted-checkbox-label {
     display: inline-block;
-    order: 11
 }
 
 /* Show the delete icon on hover over any of the item elements */
 .created-checkbox:checked ~ .deleted-checkbox-label:hover,
-.created-checkbox:checked ~ .mark-undone-checkbox-label:hover ~ .deleted-checkbox-label,
-.created-checkbox:checked ~ .mark-done-checkbox-label:hover ~ .deleted-checkbox-label,
-.created-checkbox:checked ~ .todo-input:hover ~ .deleted-checkbox-label {
+.created-checkbox:checked ~ :not(.todo):hover ~ .deleted-checkbox-label {
     color: #cc9a9a;
 }
 
 /* If item is deleted hide its elements */
-.deleted-checkbox:checked ~ .mark-done-checkbox-label,
-.deleted-checkbox:checked ~ .mark-undone-checkbox-label,
-.deleted-checkbox:checked ~ .deleted-checkbox-label,
-.deleted-checkbox:checked ~ .todo-input {
+.deleted-checkbox:checked ~ :not(.todo) {
     display: none !important;
 }
 
@@ -197,8 +185,6 @@ body  {
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
     font-smoothing: antialiased;
-
-    order: 10;
 }
 
 .todo-input,
@@ -210,12 +196,8 @@ body  {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    order: 20;
 }
 
-.created-checkbox:checked + input {
-    order: 2
-}
 
 @media (max-width: 600px) {
     body {
