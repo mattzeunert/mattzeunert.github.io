@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to write a JavaScript-free todo app using just HTML and CSS
-date: 2017-10-29
+date: 2017-10-30
 ---
 
 I wrote a todo app. Unlike [TodoMVC](http://todomvc.com/) (where I took the design from) it doesn't use JavaScript and instead all interactions are driven by CSS.
