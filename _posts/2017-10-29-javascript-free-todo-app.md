@@ -10,7 +10,7 @@ I wrote a todo app. Unlike [TodoMVC](http://todomvc.com/) (where I took the desi
     <img src="/img/todo-css/todo-css.gif"/>
 </div>
 
-How does this work? Here's the short version: it uses a combination of pre-rendered HTML, the CSS sibling combinator (`~`), CSS counters, and the `:checked`, `:target` and `:requrired` pseudo selectors. The rest of this post will go into more detail.
+How does this work? Here's the short version: it uses a combination of pre-rendered HTML, the CSS sibling combinator (`~`), CSS counters, and the `:checked`, `:target` and `:required` pseudo selectors. The rest of this post will go into more detail.
 
 [Try out the app](http://www.mattzeunert.com/TodoCSS/#/)  
 [Read the full source](https://github.com/mattzeunert/CSS-Todo-App)
