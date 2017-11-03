@@ -150,7 +150,7 @@ Adding to all that, it's satisfying to take off the note after a few months when
 
 ## Labelling things and integrating words into day-to-day life
 
-If you learn the word to say an object, put a label on the thing!
+If you learn the word to say for an object, put a label on the thing!
 
 Also, look up the words you write down often, like for a shopping list or for regular items in your calendar. Then every time you need to write the word try to use the Chinese translation.
 
