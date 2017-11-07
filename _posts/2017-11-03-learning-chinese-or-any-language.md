@@ -183,6 +183,12 @@ Instead of searching individual words in a dictionary Google Translate lets you 
 
 No, it's not always perfect. But you can try different sentences containing the same word and see how it goes. If you're still not sure, search Google for the translated text to see if Real Chinese People use it.
 
+## Writing stories
+
+Just watching videos and reading Pinyin texts can be a bit passive, so a good way to mix things up is to use the words you know to write stories.
+
+I usually write about how my teddy bear [applied for his Chinese visa](https://twitter.com/mattzeunert/status/889862490397360128), or what happened when my coworker's dog met a giant dragon who couldn't find his way back to his apartment. (They bought a map, found the dragon's home, and cooked dinner together.)
+
 ## Talking to people
 
 I think this is useful, but for me it's a tiny part of my learning. Until recently my Chinese wasn't good enough for me to communicate what I was trying to say, or for me to understand Chinese speakers. I was happy if I could successfully ask if something was spicy.
