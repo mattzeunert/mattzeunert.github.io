@@ -64,6 +64,21 @@ title: Writing
 {% endfor %}
 
 
+<h1 class="content-h1">Chinese - Pinyin</h1>
+
+{% for note in site.pages reversed %}
+  {% if note.group == 'pinyin'%}
+      <a href="{{note.url}}" class="blog-post-link">
+        <div style="float:right;" class="date">
+          {{note.date | date: "%-d %b %Y" }}
+        </div>
+        {{note.title}}
+      </a>
+      <br style="clear:both">
+  {% endif %}
+{% endfor %}
+
+
 <h1 class="content-h1">Meetup Notes</h1>
 
 {% for note in site.pages reversed %}
