@@ -36,7 +36,6 @@ A Chinese/Pinyin transcript of the Octonauts episode about the Porcupine Puffer.
     margin-bottom: 10px;
 }
 </style>
-
 <div class="transcript">
 <div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
 <span class="transcript-content"> Hǎidǐ xiǎo zòngduì, gè jiù gè wèi!</span>
@@ -101,7 +100,9 @@ A Chinese/Pinyin transcript of the Octonauts episode about the Porcupine Puffer.
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
 <span class="transcript-content"> Hǎidǐ xiǎo zǒngduì. Qù jīdì zǒngbù.<br></span>
 </div><div class="transcript-situation">Zài jīdì zǒngbù.</div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
-<span class="transcript-content"> Hǎidǐ xiǎo zǒngduì.<br>Shuāngchóng jiùyuán rènwù.<br>Wǒmen yào xiǎng bànfǎ jiùchū mì bān cì tún hé tūndiào tā de nà zhǐ jīngshā.<br>Xiè Língtōng：Suīrán mì bān cì tún tǐjī hěn xiǎo，dànshì tāmen de dúxìng zài hǎiyáng zhōng kěshì shǔyīshǔ'èr de ne.<br>Rúguǒ pào pào bèi tūn jìn jīngshā de wèi zhōng, tā huì bèi xiāo huàdiaò de.</span>
+<span class="transcript-content"> Hǎidǐ xiǎo zǒngduì.<br>Shuāngchóng jiùyuán rènwù.<br>Wǒmen yào xiǎng bànfǎ jiùchū mì bān cì tún hé tūndiào tā de nà zhǐ jīngshā.</span>
+</div><div class="transcript-speech"><span class="transcript-current-speaker">Xiè Língtōng:</span>
+<span class="transcript-content"> Suīrán mì bān cì tún tǐjī hěn xiǎo，dànshì tāmen de dúxìng zài hǎiyáng zhōng kěshì shǔyīshǔ'èr de ne.<br>Rúguǒ pào pào bèi tūn jìn jīngshā de wèi zhōng, tā huì bèi xiāo huàdiaò de.</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Píyīshēng:</span>
 <span class="transcript-content"> Tā de dúyè huì kuòsàn, zhè huì ràng jīngshā chī bù xiāo de.</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
@@ -338,7 +339,7 @@ Bākè Duìzhǎng: Hǎidǐ xiǎo zǒngduì. Qù jīdì zǒngbù.
 Bākè Duìzhǎng: Hǎidǐ xiǎo zǒngduì.
 Shuāngchóng jiùyuán rènwù.
 Wǒmen yào xiǎng bànfǎ jiùchū mì bān cì tún hé tūndiào tā de nà zhǐ jīngshā.
-Xiè Língtōng：Suīrán mì bān cì tún tǐjī hěn xiǎo，dànshì tāmen de dúxìng zài hǎiyáng zhōng kěshì shǔyīshǔ'èr de ne.
+Xiè Língtōng: Suīrán mì bān cì tún tǐjī hěn xiǎo，dànshì tāmen de dúxìng zài hǎiyáng zhōng kěshì shǔyīshǔ'èr de ne.
 Rúguǒ pào pào bèi tūn jìn jīngshā de wèi zhōng, tā huì bèi xiāo huàdiaò de.
 Píyīshēng: Tā de dúyè huì kuòsàn, zhè huì ràng jīngshā chī bù xiāo de.
 Bākè Duìzhǎng: Wǒmen yào bǎ tā jiù chūlaí.
