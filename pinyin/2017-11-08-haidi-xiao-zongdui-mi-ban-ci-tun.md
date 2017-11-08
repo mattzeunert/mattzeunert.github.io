@@ -1,6 +1,6 @@
 ---
 layout: pinyin
-title: Hǎidǐ xiǎo zòngdui - mì bān cì tún
+title: Hǎidǐ xiǎo zòngduì - mì bān cì tún
 group: pinyin
 date: 8 November 2017
 ---
