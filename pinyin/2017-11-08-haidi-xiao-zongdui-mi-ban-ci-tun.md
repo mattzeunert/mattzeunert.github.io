@@ -1,6 +1,6 @@
 ---
 layout: pinyin
-title: Hǎidǐ xiǎo zòngduì - mì bān cì tún
+title: Hǎidǐ xiǎo zòngduì - yǔ mì bān cì tún
 group: pinyin
 date: 8 November 2017
 ---
@@ -220,7 +220,7 @@ A Chinese/Pinyin transcript of the Octonauts episode about the Porcupine Puffer.
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Píyīshēng:</span>
 <span class="transcript-content"> Yǐhòu nǐ kě yào duōduō liúxīn nàxiē dà gè de yú a.</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Pàopào:</span>
-<span class="transcript-content"> Wǒ huí yòng zhè zhī yǎnjìng, háiyǒu zhè zhī yǎnjīng dīng zhè tāmen de.<br></span>
+<span class="transcript-content"> Wǒ huí yòng zhè zhī yǎnjìng, háiyǒu zhè zhī yǎnjīng dīngzhe tāmen de.<br></span>
 </div><div class="transcript-situation">Zài jīdì zǒngbù.</div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
 <span class="transcript-content"> Hǎidǐ xiǎo zòngduì, jíhé!</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Guājī:</span>
@@ -481,7 +481,7 @@ Guājī: Xièxiè nǐ de shùnfēngqù jīngshā.
 Bākè Duìzhǎng: Bùguò wǒmen yào cóng zhè xià qù la.
 Pàopào: Guājī shūshu!
 Píyīshēng: Yǐhòu nǐ kě yào duōduō liúxīn nàxiē dà gè de yú a.
-Pàopào: Wǒ huí yòng zhè zhī yǎnjìng, háiyǒu zhè zhī yǎnjīng dīng zhè tāmen de.
+Pàopào: Wǒ huí yòng zhè zhī yǎnjìng, háiyǒu zhè zhī yǎnjīng dīng zhe tāmen de.
 
 (Zài jīdì zǒngbù.)
 
