@@ -285,4 +285,4 @@ One interesting thing I realized is that the `~` combinator works really well to
 
 When I started out I generated a lot of selectors like `deleted-checkbox-34` for each todo item, alongside with some respective CSS. The resulting CSS was pretty huge. But in the end I could [get rid of all of those index specific style rules](https://github.com/mattzeunert/CSS-Todo-App/blob/master/todo.css) and use just general selectors. Now I only use id's to target the checkbox labels.
 
-Obviously you're not going to write a production code using mostly CSS. But it was a fun exercise and made me better understand some CSS features.
+Obviously you're not going to write a production app using mostly CSS. But it was a fun exercise and made me better understand some CSS features.
