@@ -184,13 +184,13 @@ A Chinese/Pinyin transcript of the Octonauts episode about the Porcupine Puffer.
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Píyīshēng:</span>
 <span class="transcript-content"> Tā mǎshàng jiù yào chuānguò hǎimián zǔzhī la. Nà yīdìng téngjí le.</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
-<span class="transcript-content"> Wǒmen bu néng ràng tā diào jìn wèi lǐ a!</span>
+<span class="transcript-content"> Wǒmen bu néng ràng tā diào jìn wèi lǐ qù!</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Píyīshēng:</span>
 <span class="transcript-content"> Jiànchí zhù pàopào.</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
 <span class="transcript-content"> Wǒmen bīxù ràng tā huí daò shuǐ lǐ.<br>Yàokuài!</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Píyīshēng:</span>
-<span class="transcript-content"> Pàopào de jiān cì.<br>Yīdìng cì de jīngshā féicháng nánshòu.<br></span>
+<span class="transcript-content"> Pàopào de jiān cì.<br>Yīdìng cì dé jīngshā féicháng nánshòu.<br></span>
 </div><div class="transcript-situation">Zài jīngshā de wèi lǐ.</div><div class="transcript-speech"><span class="transcript-current-speaker">Píyīshēng:</span>
 <span class="transcript-content"> Wǒ gòu bù dào tā de wěiba.</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
@@ -220,7 +220,7 @@ A Chinese/Pinyin transcript of the Octonauts episode about the Porcupine Puffer.
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Píyīshēng:</span>
 <span class="transcript-content"> Yǐhòu nǐ kě yào duōduō liúxīn nàxiē dà gè de yú a.</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Pàopào:</span>
-<span class="transcript-content"> Wǒ huí yòng zhè zhī yǎnjìng, háiyǒu zhè zhī yǎnjīng dīngzhe tāmen de.<br></span>
+<span class="transcript-content"> Wǒ huí yòng zhè zhī yǎnjìng, háiyǒu zhè zhī yǎnjīng dīng zhe tāmen de.<br></span>
 </div><div class="transcript-situation">Zài jīdì zǒngbù.</div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
 <span class="transcript-content"> Hǎidǐ xiǎo zòngduì, jíhé!</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Guājī:</span>
@@ -240,7 +240,7 @@ A Chinese/Pinyin transcript of the Octonauts episode about the Porcupine Puffer.
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
 <span class="transcript-content"> Guāji, qǐdòng hǎidǐ bàogào.</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Dōu:</span>
-<span class="transcript-content"> Hǎidi bàogào!<br>Hǎidi bàogào!<br>Hǎidi bàogào!</span>
+<span class="transcript-content"> Hǎidǐ bàogào!<br>Hǎidǐ bàogào!<br>Hǎidǐ bàogào!</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
 <span class="transcript-content"> Jì zhu!<br>Mǐ bàn cì tún gètóu xiǎo.</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Tūtūtu:</span>
@@ -258,7 +258,7 @@ A Chinese/Pinyin transcript of the Octonauts episode about the Porcupine Puffer.
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
 <span class="transcript-content"> Yújiàn tā jiù táo pǎo.<br>Bèi cì zhā dào shòubùliǎo.</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Dōu:</span>
-<span class="transcript-content"> Hǎidi bàogào!</span>
+<span class="transcript-content"> Hǎidǐ bàogào!</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Bākè Duìzhǎng:</span>
 <span class="transcript-content"> Tāmen wèidào bù tài haǒ.</span>
 </div><div class="transcript-speech"><span class="transcript-current-speaker">Tūtūtu:</span>
@@ -444,12 +444,12 @@ Duìzhǎng, shéngzi!
 Píyīshēng: Pàopaò!
 Pàopào: Píyīshēng!
 Píyīshēng: Tā mǎshàng jiù yào chuānguò hǎimián zǔzhī la. Nà yīdìng téngjí le.
-Bākè Duìzhǎng: Wǒmen bu néng ràng tā diào jìn wèi lǐ a!
+Bākè Duìzhǎng: Wǒmen bu néng ràng tā diào jìn wèi lǐ qù!
 Píyīshēng: Jiànchí zhù pàopào.
 Bākè Duìzhǎng: Wǒmen bīxù ràng tā huí daò shuǐ lǐ.
 Yàokuài!
 Píyīshēng: Pàopào de jiān cì.
-Yīdìng cì de jīngshā féicháng nánshòu.
+Yīdìng cì dé jīngshā féicháng nánshòu.
 
 (Zài jīngshā de wèi lǐ.)
 
@@ -494,9 +494,9 @@ Zhāng Jiàoshòu: Zhāng Jiàoshòu!
 Tūtūtu: Tūtūtu!
 Xiǎo luóbo: Xiǎo luóbo!
 Bākè Duìzhǎng: Guāji, qǐdòng hǎidǐ bàogào.
-Dōu: Hǎidi bàogào!
-Hǎidi bàogào!
-Hǎidi bàogào!
+Dōu: Hǎidǐ bàogào!
+Hǎidǐ bàogào!
+Hǎidǐ bàogào!
 Bākè Duìzhǎng: Jì zhu!
 Mǐ bàn cì tún gètóu xiǎo.
 Tūtūtu: Shì de!
@@ -507,7 +507,7 @@ Guājī: Shì de!
 Xiè Língtōng: Méicuò!
 Bākè Duìzhǎng: Yújiàn tā jiù táo pǎo.
 Bèi cì zhā dào shòubùliǎo.
-Dōu: Hǎidi bàogào!
+Dōu: Hǎidǐ bàogào!
 Bākè Duìzhǎng: Tāmen wèidào bù tài haǒ.
 Tūtūtu: Shì de!
 Xiè Língtōng: Meícuò!

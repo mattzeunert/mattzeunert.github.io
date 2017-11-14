@@ -167,7 +167,7 @@ Here are two things I've been working on:
 
 The nice thing about the Mark Zuckerberg video is that he speaks nice and slow. He also uses business/technology vocabulary that I'm interested in.
 
-I'm about to finish the Octonauts video and will put the Pinyin transcript on my website. The porcupine puffer, or mi ban ci tun, was saved in the end!
+I'm about to finish the Octonauts video and will put the Pinyin transcript on my website soon ([here it is](http://www.mattzeunert.com/pinyin/2017-11-08-haidi-xiao-zongdui-mi-ban-ci-tun.html)). The porcupine puffer, or mi ban ci tun, was saved in the end!
 
 ## Google translate
 
