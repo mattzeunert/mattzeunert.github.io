@@ -61,9 +61,9 @@ Tells me:
     - `"Good"` comes from a string literal on line 1
     - `" night!"` comes from a string literal on line 4
 
-If you're working with an object that has the wrong data, an origin-aware debugger can show you the API call where the data was loaded.
+If you're working with an object that has the wrong data, an origin-aware debugger can show you where in the code the API to fetch the data was made.
 
-You can inspect the DOM HTML and it'll show what code rendered the element you're looking at.
+You can inspect an HTML server response and and see what code rendered the element you're looking at.
 
 I tried to build [something like this](http://www.fromjs.com/) last year. It didn't work too well though – turns out building JS debuggers should be done at the JS engine level, not inside the JS code itself.
 
@@ -80,10 +80,12 @@ Tells me:
 
 Doing this is more tricky.
 
-Suppose I'm expecting `"Good day!"` instead of `"Good night!"`. Looking at the origin of `"night"` is likely misleading. In a real application `"night!"` will be created in a completely different place from where the faulty concatenation happens. And the concatenation itself could be far from the if statement I need to fix.
+Suppose I'm expecting `"Good day!"` instead of `"Good night!"`. Looking at the origin of `"night"` is likely misleading. In a real application, `"night!"` will be created in a completely different place from where the faulty concatenation happens. And the concatenation itself could be far from the if statement I need to fix.
 
 But the debugger could try to figure out what went wrong.
 
 If I tell the debugger what I was expecting, it can toggle all conditions in the path of the string construction and see if any mutation will result in the correct value.
 
 The debugger can also look at diffs of previous execution history and tell me where execution diverged. For example, there might be logs from the last time my code ran successfully.
+
+So while this isn't straightforward, it still sounds worthwhile.
