@@ -10,12 +10,15 @@ date: 2017-12-07
         max-width: 100% !important;
         margin: 0 !important;
     }
+    #intro {
+        margin-bottom: 10px !important;
+    }
 }
 </style>
 
 <img style="float: right;
     max-width: 370px;
-    margin: 10px;" src="/img/blog/types-of-debuggers/better-debuggers.png"/>
+    margin: 10px;" src="/img/blog/types-of-debuggers/better-debuggers.png" id="intro"/>
 
 It would be nice to have better debuggers.
 
