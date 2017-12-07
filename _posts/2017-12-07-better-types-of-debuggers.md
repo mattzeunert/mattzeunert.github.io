@@ -23,7 +23,7 @@ Today debuggers tell you the state of your program at a given point in time. The
 
 But I want to know the origin of my values. How was this string constructed? How was this number calculated? Where was this property assigned?
 
-Ideally, the debugger should tell me why a value is what it is. What code affects it, and why is it not what I expected?
+Ideally, the debugger should tell me why a value is what it is. What code affected it, and why isn't it what I expect?
 
 ## An example
 
@@ -58,9 +58,9 @@ Tells me:
     - `"Good"` comes from a string literal on line 1
     - `" night!"` comes from a string literal on line 4
 
-If you're working with an object that has the wrong data, an origin-aware debugger can show you the API call where the object was loaded.
+If you're working with an object that has the wrong data, an origin-aware debugger can show you the API call where the data was loaded.
 
-You can inspect the DOM HTML and find the code that rendered it.
+You can inspect the DOM HTML and it'll show what code rendered the element you're looking at.
 
 I tried to build [something like this](http://www.fromjs.com/) last year. It didn't work too well though – turns out building JS debuggers should be done at the JS engine level, not inside the JS code itself.
 
@@ -75,12 +75,12 @@ Tells me:
   - because the if statement on line 3 evaluated to true
     - because `new Date().getHours()` evaluated to 21
 
-Doing this is more tricky, and I've not seen any similar tools.
+Doing this is more tricky.
 
-Suppose I'm expecting `"Good day!"` instead of `"Good night!"`. Looking at the origin of `"night"` is probably misleading. It might work in a simple example, but in a real application `"night!"` will be created in a completely different place from where the faulty concatenation happens. And the concatenation itself could be far from the if statement I need to fix.
+Suppose I'm expecting `"Good day!"` instead of `"Good night!"`. Looking at the origin of `"night"` is likely misleading. In a real application `"night!"` will be created in a completely different place from where the faulty concatenation happens. And the concatenation itself could be far from the if statement I need to fix.
 
 But the debugger could try to figure out what went wrong.
 
 If I tell the debugger what I was expecting, it can toggle all conditions in the path of the string construction and see if any mutation will result in the correct value.
 
-The debugger can also look at diffs of previous execution history and tell me where execution diverged. For example, there might be logs from the last time my code ran in CI, and I got the correct result.
+The debugger can also look at diffs of previous execution history and tell me where execution diverged. For example, there might be logs from the last time my code ran successfully.
