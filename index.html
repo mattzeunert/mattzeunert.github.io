@@ -1,26 +1,13 @@
 ---
 layout: root
 title: Web App Development - Matt Zeunert
+pageId: home
 ---
-
-<!-- bxSlider Javascript file -->
-<script src="/js/jquery.bxslider/jquery.bxslider.js"></script>
-<!-- bxSlider CSS file -->
-<link href="/js/jquery.bxslider/jquery.bxslider.css" rel="stylesheet" />
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-<script>
-if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
-    }, false);
-}
-</script>
 
 <div class='page-home'>
 	<div style="margin-top: 10px" class="top-of-homepage">
 
-    <div class="recent-projects">
+    <div class="recent-projects" style="display: none">
         <div style="margin-bottom: 5px;color: #777;text-transform: uppercase;font-size: 10px;">Recent Projects</div>
         <ul class="bxslider">
           <li><img src="/portfolio-images/vw-small.jpg" title="Implemented new VW model comparison interface." /></li>
@@ -30,13 +17,7 @@ if ('addEventListener' in document) {
           <li><img src="/portfolio-images/makethefuture-gallery.jpg" title="Contract for Digital Agency - Worked on marketing site for Shell's #makethefuture campaign." /></li>
         </ul>
     </div>
-    <script>
-    $('.bxslider').bxSlider({
-      mode: 'fade',
-      captions: true,
-      adaptiveHeight: true
-    });
-    </script>
+   
 
 		<div class="homepage-intro">
 			I'm a London-based web developer building web applications for mobile and desktop.
