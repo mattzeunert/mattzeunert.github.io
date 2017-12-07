@@ -4,6 +4,15 @@ title: Better types of debuggers
 date: 2017-12-07
 ---
 
+<style>
+@media screen and (max-width: 600px) {
+    img {
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+}
+</style>
+
 <img style="float: right;
     max-width: 370px;
     margin: 10px;" src="/img/blog/types-of-debuggers/better-debuggers.png"/>
