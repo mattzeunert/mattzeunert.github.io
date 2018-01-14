@@ -5,202 +5,301 @@ permalink: /money.html
 ---
 
 <style>
-.money-subcategory {
-    display: none;
+#main-container img {
+    width: 800px;
+    max-width: 100%;
 }
-.category {
-    cursor: pointer;
+#main-container td {
+    padding-left: 2px;
 }
-.category-collapse {
-    display: none;
-}
-.category-expand {
-    display: inline-block;
-}
-.category-expanded .category-collapse {
-    display: inline-block;
-}
-.category-expanded .category-expand {
-    display: none;
-}
-.category-expand, .category-collapse {
-    background: #367dd6;
-    color: white;
-    border-radius: 999px;
-    width: 16px;
-    height: 16px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: bold;
-}
-.non-personal {
-    opacity: .6;
-}
-.money-category-odd td {
-    background: #f7f7f7;
-}
-
-.currency {
-    text-decoration: none;
-    color: black;
-}
-.currency.currency-selected {
-    color:  #367dd6;
-}
-
-table {
-    border-collapse: collapse
-}
-table td{
-    line-height: 2em;
+#main-container td:first-child {
+    min-width: 100px;
 }
 </style>
 
-<script src="money/data.js"></script>
-<script src="money/underscore.min.js"></script>
+Tracking my personal spending.
 
- <!-- <script
-  src="https://code.jquery.com/jquery-2.2.4.js"
-  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-  crossorigin="anonymous"></script>  -->
+<h2>Annual overview</h2>
+
+<img src="/img/money/2017-category-pie-chart.png"/>
+<img src="/img/money/2017-monthly-line-chart.png"/>
+
+<p>
+    I got a job in Shanghai in March, so my accomodation costs have been relatively stable at £485 a month plus bills any hotels for travel.
+    <br>
+    My company provides breakfast, lunch, and dinner, but in October I started getting sick of having rice twice a day and started going to
+    restaurants in the evening. Because I don't really eat at home "Everyday items" is very low throughout the year.<br>
+    My fun budget goes up in August because I started taking Chinese lessons.
+</p>
 
 
-<script type="text/template" id="month-template">
-<h2>Spending <%= monthAndYear %></h2>
-<table style="width: 400px;max-width: 100%">
+<h2>Monthly detail</h2>
+
+<div style="max-width: 100%; overflow: auto"> 
+<!-- http://divtable.com/generator/ -->
+<table dir="ltr" border="1" cellspacing="0" cellpadding="0"><colgroup><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /><col width="100" /></colgroup>
+    <tbody>
     <tr>
-        <th style="text-align: left">Category</th>
-        <th style="text-align: right">Amount</th>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Month&quot;}">Month</td>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Accomodation&quot;}">Accomodation</td>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Transportation&quot;}">Transportation</td>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Eating Out&quot;}">Eating Out</td>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Fun&quot;}">Fun</td>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Donations&quot;}">Donations</td>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Everyday Purchases&quot;}">Everyday Purchases</td>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Other&quot;}">Other</td>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Productivity&quot;}">Productivity</td>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Occasional Purchases&quot;}">Occasional Purchases</td>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Exercise&quot;}">Exercise</td>
+    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Total&quot;}">Total</td>
     </tr>
-    <% personalSpending.forEach(function(category, i){ %>
-            <%= renderCategory(category, i) %>
-        <% }) %>
-
-    <tr style="font-weight: bold">
-        <td>Personal Spending Total</td>
-        <td style="text-align: right"><%= amt(personalAmount) %></td>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42736}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">Jan 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:279}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;279</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:293}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;293</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:164}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;164</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:78}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;78</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:43}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;43</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:136}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;136</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:65}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;65</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:122}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;122</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:22}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;22</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:25}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;25</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1226}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,226</td>
     </tr>
-
-<% nonPersonalSpending.forEach(function(category, i){ %>
-            <%= renderCategory(category, i, true) %>
-        <% }) %>
-    <tr class="non-personal" style="font-weight: bold">
-        <td>Grand Total</td>
-        <td style="text-align: right"><%= amt(amount) %></td>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42767}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">Feb 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:407}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;407</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:973}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;973</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:264}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;264</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:145}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;145</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;42</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:75}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;75</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:99}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;99</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:77}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;77</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:22}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;22</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:55}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;55</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2159}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;2,159</td>
     </tr>
-    
-</table>
-</script>
-
-<script type="text/template" id="category-template">
-    <tr data-category="<%= makeId(category.name) %>" class="category <%= isNonPersonal ? 'non-personal': '' %> <%= index % 2 == 1 ? 'money-category-odd' : ''%>">
-        <td>
-            <span class="category-expand">+</span>
-            <span class="category-collapse">&minus;</span>
-            <%= category.name %>
-        </td>
-        <td style="text-align: right"><%= amt(category.amount) %></td>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42795}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">Mar 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:522}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;522</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:428}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;428</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:220}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;220</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:53}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;53</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;42</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:123}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;123</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:70}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;70</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:16}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;16</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:73}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;73</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:47}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;47</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1593}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,593</td>
     </tr>
-    <% category.subcategories.forEach(function(subcategory){ %>
-        <tr class="money-subcategory money-subcategory-<%= makeId(category.name) %> <%= isNonPersonal ? 'non-personal': '' %>" >
-            <td style="padding-left: 40px"><%= subcategory.name %></td>
-            <td style="text-align: right"><%= amt(subcategory.amount) %></td>
-
-        </tr>
-    <% }) %>
-</script>
-
-<div>
-    <h1 style="display: inline-block">Money</h1>
-    <span>
-        <a class="currency currency-selected" data-currency="GBP" href="">GBP</a>
-        <a class="currency" data-currency="USD" href="">USD</a>
-    </span>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42826}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">Apr 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:601}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;601</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:296}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;296</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:162}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;162</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:52}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;52</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:121}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;121</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:88}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;88</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:125}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;125</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:43}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;43</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;0</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:46}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;46</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1534}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,534</td>
+    </tr>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42856}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">May 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:522}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;522</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:36}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;36</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:164}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;164</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:123}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;123</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:117}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;117</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:51}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;51</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:40}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;40</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:24}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;24</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;6</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:18}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;18</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1100}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,100</td>
+    </tr>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42887}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">Jun 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:509}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;509</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:800}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;800</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:107}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;107</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:49}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;49</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:119}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;119</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:73}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;73</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:89}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;89</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:25}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;25</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:114}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;114</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:7}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;7</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1892}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,892</td>
+    </tr>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42917}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">Jul 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:509}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;509</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:870}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;870</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:203}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;203</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:160}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;160</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:116}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;116</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:177}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;177</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:29}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;29</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:16}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;16</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:63}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;63</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:3}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;3</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2145}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;2,145</td>
+    </tr>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42948}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">Aug 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:513}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;513</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:58}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;58</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:162}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;162</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:181}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;181</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:118}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;118</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:97}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;97</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:24}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;24</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:16}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;16</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;0</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:3}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;3</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1171}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,171</td>
+    </tr>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42979}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">Sep 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:541}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;541</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:48}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;48</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:177}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;177</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:240}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;240</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:112}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;112</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:114}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;114</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:24}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;24</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:16}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;16</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;0</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;5</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1278}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,278</td>
+    </tr>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:43009}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">Oct 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:765}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;765</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:874}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;874</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:261}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;261</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:195}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;195</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:114}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;114</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:108}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;108</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:24}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;24</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:16}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;16</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:27}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;27</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:10}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;10</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2394}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;2,394</td>
+    </tr>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:43040}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">Nov 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:727}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;727</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:221}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;221</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:307}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;307</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:113}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;113</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:115}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;115</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:60}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;60</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:24}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;24</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:16}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;16</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:0}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;0</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:75}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;75</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1658}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,658</td>
+    </tr>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:43070}" data-sheets-numberformat="[null,5,&quot;mmm\&quot;  \&quot;yyyy&quot;]">Dec 2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:508}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;508</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:128}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;128</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:342}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;342</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:62}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;62</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:114}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;114</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:67}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;67</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:24}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;24</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:26}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;26</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;42</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:70}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;70</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1384}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,384</td>
+    </tr>
+    <tr>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2017}">2017</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:6404}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;6,404</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:5025}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;5,025</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:2532}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;2,532</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1451}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,451</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1172}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,172</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:1169}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;1,169</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:633}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;633</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:414}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;414</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:369}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;369</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:365}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;365</td>
+    <td data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:19534}" data-sheets-numberformat="[null,4,&quot;[$&pound;]#,##0&quot;,1]">&pound;19,534</td>
+    </tr>
+    </tbody>
+    </table>
 </div>
 
-<div id="content">
+<h2>Bookkeeping</h2>
+<p>
+    I keep track of things in a plain text file on my phone that looks something like this:
+</p>
 
-</div>
+<pre>
+--- january 2018
+use rmb
+50o   starbucks
+20e
+9.99gbp monthly spotify
+</pre>
 
+<p>
+    This means that in January 2018 I spent 50rmb eating out, spent 20rmb on everyday items (basically means supermarket), and will spend
+9.99gbp a month on Spotify (categorized as "Fun").
+</p>
+<p>
+    Using a plaintext file makes it super easy to enter new items.
+    Much simpler than clicking "New", entering a value, selecting a currency, entering category, ....
+</p>
+<p>
+    I then have a Node script that takes the text file and generates CSV report. Email me if you're interested in it.
+</p>
 
+<h2>Accounting</h2>
+<p>
+    Who doesn't love accounting! 😍
+</p>
+<p>
+    I have the following main categories, with some examples of what they contain:
+</p>
+<ul>
+    <li>Accomodation: rent, hotels, AirBnbs, bills</li>
+    <li>Transportation: flights, metro tickets, trains, ferries, taxis</li>
+    <li>Eating out: restaurants, takeaways, Starbucks, bakeries, any food that is meant to be eaten straight away</li>
+    <li>Fun: Chinese lessons, books, theme parks, phone</li>
+    <li>Productivity: office rental, Github, domains, backup harddrive, monitor</li>
+    <li>Occasional Purchaes: clothes, vaccinations, bed sheets</li>
+    <li>Everyday purchases: supermarket items, phone credit, VPN, laundry</li>
+    <li>Exercise: gym, swimming, badminton rackets</li>
+    <li>Donations: regular donations, leaving leftover currency at the airport</li>
+    <li>Other: travel insurance, visa fees</li>
+</ul>
 
+<p>
+    I also have deeper levels of categories like "Everyday Purchases>Haircut" and "Accomodation>Bills>Gas".
+</p>
 
-<script>
+<p>
+    For some items I book the cost over several months or years. For example, my phone cost £654 but instead of booking
+    it as a one-off I depreciate it over 3 years, and book an expense of £18.17 a month.<br>
+    What should be split over several months? One criterium is, could I could recover a meaningful percentage of the purchase price
+    if I sold the item? Or, is the item meant to be consumed over a longer period of time (e.g. gym membership, Chinese lessons)?
+</p>
 
-var template = $("#month-template").html()
-template = _.template(template)
-var categoryTemplate = $("#category-template").html()
-categoryTemplate = _.template(categoryTemplate)
-
-var currency = "GBP"
-
-$("[data-currency]").click(function(e){
-    currency = $(this).data("currency")
-    $(".currency").removeClass("currency-selected")
-    $(this).addClass("currency-selected")
-    render()
-    e.preventDefault()
-})
-
-render()
-
-function render(){
-    $("#content").html("")
-    var months = [jan2017, feb2017]
-    months.forEach(function(month){
-        renderMonth(month)    
-    })
-}
-
-function renderMonth(month){
-    window.amt = amt
-    window.makeId = makeId
-
-    month.personalSpending.forEach(sortSubCategorySpending)
-    month.personalSpending = _.sortBy(month.personalSpending, function(a){return -a.amount})
-
-    month.nonPersonalSpending.forEach(sortSubCategorySpending)
-
-
-    $("#content").prepend(template(month))
-
-    function amt(amount){
-        var currencySign = "&pound;"
-        if (currency === "USD") {
-            amount = amount * month.dollarExchangeRate
-            currencySign = "$"
-        }
-        return currencySign + Math.round(amount)
-    }
-
-    function makeId(category){
-        return category.toLowerCase().replace(/[^0-9a-z]/g, "")
-    }    
-}
-
-    function renderCategory(category, index, isNonPersonal){
-        return categoryTemplate({
-            category: category,
-            index: index, 
-            isNonPersonal: isNonPersonal
-        })
-    }
-
-function sortSubCategorySpending(category){
-    category.subcategories = _.sortBy(category.subcategories, function(a){return -a.amount})
-}
-
-$("body").on("click", "[data-category]", function(){
-    var expanded = $(this).data("isExpanded")
-    expanded = !expanded
-
-    var category = $(this).data("category")
-    $(".money-subcategory-" + category).toggle(expanded)
-    $(this).data("isExpanded", expanded)
-    $(this).toggleClass("category-expanded", expanded)
-
-})
-
-</script>
+<p>
+    Tracking productivity expenses is a bit tricky. Most of my travel expenses in 2017 were related to travelling to conferences.
+    So that could also be tracked as productivity.<br>
+    You can also see that unlike in October the travel in June and July did not increase my accomodation
+    costs, because the conferences paid for it.
+    <br>
+    Any items that either my own company or my current employer pays for also won't be tracked here.
+</p>
