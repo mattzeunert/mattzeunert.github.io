@@ -796,19 +796,32 @@ for (var i=0; i&lt;1024 * 1024; i++) {
 
 <script>
 var answeredQuestions = {}
-
+var didClickOnce = false
 window.onJQueryReady = function(){
     $("html").on("change", "input[type='radio']", function(){
+        if (!didClickOnce) {
+            didClickOnce = true
+            ga("send", "event", "V8 Memory Quiz", "Started Quiz");
+        }
+        
         var form = $(this).parents('form')
         var correctAnswer = form.data("correctAnswer")
         var questionIndex = form.data("questionIndex")
 
         var $explanation = form.parent().find(".explanation")
-        if ($(this).val() === correctAnswer) {
+        var isCorrect = $(this).val() === correctAnswer
+
+        var alreadyAnsweredQuestion = answeredQuestions[questionIndex] !== undefined
+
+        if (isCorrect) {
             answeredQuestions[questionIndex] = true
         } else {
             $(this).parents('label').addClass("incorrect")
             answeredQuestions[questionIndex] = false
+        }
+
+        if (!alreadyAnsweredQuestion) {
+            ga("send", "event", "V8 Memory Quiz", "Answered Question", isCorrect);
         }
 
         var correctInput = form.find("input").filter(function() {
@@ -832,6 +845,7 @@ window.onJQueryReady = function(){
             })
             $("#score").html("You're done! You got " + correctAnswers + " out of " + totalQuestions + " questions right!")    
             $("#score").show()
+            ga("send", "event", "V8 Memory Quiz", "Finished quiz", correctAnswers);
         }
 
         
