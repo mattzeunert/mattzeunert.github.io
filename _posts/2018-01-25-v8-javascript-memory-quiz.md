@@ -372,6 +372,9 @@ const questions = [
             line-height: 1.7em;
             
         }
+        .explanation.show a {
+            color: #44a !important;
+        }
         .explanation, .explanation * {
             color: transparent !important;
         }
@@ -481,6 +484,9 @@ const questions = [
         }
         .explanation, .explanation * {
             color: transparent !important;
+        }
+        .explanation.show a {
+            color: #44a !important;
         }
         .explanation:not(.show):before {
             content: 'Click on an answer to read the explanation';
