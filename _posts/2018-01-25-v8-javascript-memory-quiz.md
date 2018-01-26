@@ -4,7 +4,8 @@ title: V8 memory quiz
 date: 2018-01-25
 ---
 
-V8 is the JavaScript engine that Chrome and Node use to run JavaScript code. This quiz highlights and explains how some implementation details reveal themselves when looking at memory consumption.
+V8 is the JavaScript engine that Chrome and Node use to run JavaScript code. Take this quiz to discover
+some interesting implementation details about how V8 stores values in memory.
 
 Reading this probably won't help you fix any performance issues you encounter day-to-day.
 
