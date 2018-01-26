@@ -195,7 +195,7 @@ const questions = [
             holder.a = a
         `,
         explanation: `
-            </p>
+            <p>
             <code>true</code> is stored as an object reference just like a string. So again all we need to store is a 64 bit 
             memory location. <code>false</code>, <code>undefined</code> and <code>null</code> are treated the same way.
             </p>
@@ -691,7 +691,7 @@ for (var i=0; i&lt;MAGIC_ARRAY_LENGTH; i++) {
 <label><input type="radio" name="q5" value="32 bytes"> 32 bytes</label>
             </form>
             <div class="explanation">
-            </p>
+            <p>
             <code>true</code> is stored as an object reference just like a string. So again all we need to store is a 64 bit 
             memory location. <code>false</code>, <code>undefined</code> and <code>null</code> are treated the same way.
             </p>
