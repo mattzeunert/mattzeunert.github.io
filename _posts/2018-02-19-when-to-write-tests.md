@@ -10,7 +10,7 @@ When is the right time to write tests? I can think of three approaches: proactiv
 
 When developing a new feature you write tests to check that feature works. If you later break this functionality you'll find out right away!
 
-This is clearly the best approach to ensure you don't release bugs to production.
+This is clearly the best way to ensure you don't release bugs to production.
 
 However, doing this will result in a large number of tests that need to not just be written but also maintained.
 
@@ -32,11 +32,13 @@ You'll need to look a the cause of the bug, check if you can make similar bugs l
 
 You fix any bugs you find but don't write any tests to prevent similar problems in the future.
 
-The obvious advantage here is that you don't need to spend time on the tests. Hopefully, your bugfix can identify and fix the root cause of the bug and fix any code that's confusing and unclear. So next time that part of the code is modified you'll not break it again.
+The obvious advantage here is that you don't need to spend time on the tests. Hopefully, your bugfix can identify and fix the root cause of the bug and fix any code that's confusing or unclear. So next time you work on that part of the code you hopefully won't introduce another defect.
 
-But you won't know if you broke it again. You risk breaking the same functionality over and over again.
+But you won't know whether or not you broke it again! You risk breaking the same functionality over and over again.
 
-Every time you find a bug you gain some knowledge about what functionality is more or less fragile. If you just fix the bug and do nothing else that knowledge is lost into the void. Even if you can't write tests right now, consider keeping track of significant defects that can be tested in the future.
+Every time you find a bug you gain some knowledge about what functionality is more or less fragile. If you just fix the bug and do nothing else that knowledge is lost into the void.
+
+Even if you can't write tests right now, consider keeping track of common defects that can be tested in the future.
 
 ## So, what's the right approach?
 
@@ -47,8 +49,8 @@ If you should write a test depends on a few things:
 - How many people were or could be affected?
 - Are there more important things for your team to work on?
 
-Except in rare cases you can never test every scenario. When building an important new feature in a mature organization with a large user base you can easily justify writing tests upfront. But if you're a small startup and find a minor bug where the relevant code is rarely touched you might not bother writing a test for it.
+Except in rare cases you can never test every scenario. When building an important new feature in a mature organization and with a large user base you can easily justify writing tests upfront. But if you're a small startup and find a minor bug caused by code that's rarely touched then you might not bother writing a test for it.
 
 Whether to write tests will also depend on how much staff you have available and what your business priorities are. A project in maintenance mode with declining usage and without anyone allocated to work on it full-time might not justify the investment in better testing.
 
-Still, not having to worry about breaking prod is always a good thing.
+Still, being confident your changes won't break production always feels good.
