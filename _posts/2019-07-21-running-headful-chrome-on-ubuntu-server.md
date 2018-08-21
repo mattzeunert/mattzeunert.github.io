@@ -54,19 +54,13 @@ Building the Chrome extension before launching the test fixed the problem.
 
 ## [FATAL:proc_util.cc(97)] Check failed: fstatat(proc_self_fd, de->d_name, &s, 0) == 0
 
-There are two reasons for this:
-
-### Missing Chrome flags
-
-You need to start Chrome with the `--no-sandbox` and `--disable-setuid-sandbox` flags. Throw in `--disable-gpu` to be on the safe side.
-
-### Mismatched Chrome version
-
 At some point I noticed that the normal Google Chrome install was fine, but the Puppeteer one in `node_modules/puppeteer/.local-chromium` was failing. That's because Puppeteer usually only supports [one version of Chromium](https://github.com/GoogleChrome/puppeteer#q-why-doesnt-puppeteer-vxxx-work-with-chromium-vyyy).
 
 In my case Puppeteer Chromium was version 70, and stable Chrome was version 68. Setting the executablePath to stable Chrome caused the fstatat error.
 
 My solution was to downgrade Puppeteer to version 1.4, which uses Chrome 68. (However I've tried upgrading back to 1.7 now and it's fine.)
+
+If you still get this error, try ignoring it - it doesn't look to be as fatal as it sounds and I had tests being executed successfully despite this error.
 
 ## Unable to get session bus: Unknown or unsupported transport 'disabled' for address 'disabled:'
 
