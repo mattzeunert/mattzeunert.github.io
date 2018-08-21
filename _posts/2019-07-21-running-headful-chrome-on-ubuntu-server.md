@@ -35,9 +35,10 @@ jobs:
       - run: xvfb-run npm run test
 ```
 
-Looking at it now I only needed to do one thing:
+Looking at it now I only needed to do two things:
 
 - Add `xvfb-run` in front of `npm run test`
+- Start Chrome with the `--disable-gpu`, `--no-sandbox`, and `--disable-setuid-sandbox` flags
 
 That sounds pretty simple, but I still spent 7 hours trying to make it work. Here are some of the problems I ran into.
 
@@ -52,6 +53,14 @@ I was getting this because I was trying to load a Chrome extension, but hadn't r
 Building the Chrome extension before launching the test fixed the problem.
 
 ## [FATAL:proc_util.cc(97)] Check failed: fstatat(proc_self_fd, de->d_name, &s, 0) == 0
+
+There are two reasons for this:
+
+### Missing Chrome flags
+
+You need to start Chrome with the `--no-sandbox` and `--disable-setuid-sandbox` flags. Throw in `--disable-gpu` to be on the safe side.
+
+### Mismatched Chrome version
 
 At some point I noticed that the normal Google Chrome install was fine, but the Puppeteer one in `node_modules/puppeteer/.local-chromium` was failing. That's because Puppeteer usually only supports [one version of Chromium](https://github.com/GoogleChrome/puppeteer#q-why-doesnt-puppeteer-vxxx-work-with-chromium-vyyy).
 
