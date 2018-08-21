@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Running headful Chrome on an Ubuntu server"
+title: "Running headful Chrome on an Ubuntu server with Xvfb"
 date: 2018-07-21
 ---
 
@@ -57,7 +57,7 @@ At some point I noticed that the normal Google Chrome install was fine, but the 
 
 In my case Puppeteer Chromium was version 70, and stable Chrome was version 68. Setting the executablePath to stable Chrome caused the fstatat error.
 
-My solution was to downgrade Puppeteer to version 1.4. (However I've tried upgrading back to 1.7 now and it's fine.)
+My solution was to downgrade Puppeteer to version 1.4, which uses Chrome 68. (However I've tried upgrading back to 1.7 now and it's fine.)
 
 ## Unable to get session bus: Unknown or unsupported transport 'disabled' for address 'disabled:'
 
