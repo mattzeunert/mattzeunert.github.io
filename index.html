@@ -5,31 +5,34 @@ pageId: home
 ---
 
 <div class='page-home'>
-	<div style="margin-top: 10px" class="top-of-homepage">
+    <div style="margin-top: 10px" class="top-of-homepage">
 
-    <div class="recent-projects" style="display: none">
-        <div style="margin-bottom: 5px;color: #777;text-transform: uppercase;font-size: 10px;">Recent Projects</div>
-        <ul class="bxslider">
-          <li><img src="/portfolio-images/vw-small.jpg" title="Implemented new VW model comparison interface." /></li>
-          <li><img src="/portfolio-images/shufflehub.jpg" title="Ecommerce Aggregator - Implemented user interface and analytics." /></li>
-          <li><img src="/portfolio-images/libon.jpg" title="App for messaging, in-browser phone calls and custom voicemail greetings - Worked on automated tests, debugging and feature implementation." /></li>
-          <li><img src="/portfolio-images/sportlobster-events.jpg" title="Social Network - Work on user feed and event pages." /></li>
-          <li><img src="/portfolio-images/makethefuture-gallery.jpg" title="Contract for Digital Agency - Worked on marketing site for Shell's #makethefuture campaign." /></li>
-        </ul>
-    </div>
-   
+        <div class="recent-projects" style="display: none">
+            <div style="margin-bottom: 5px;color: #777;text-transform: uppercase;font-size: 10px;">Recent Projects</div>
+            <ul class="bxslider">
+                <li><img src="/portfolio-images/vw-small.jpg" title="Implemented new VW model comparison interface." /></li>
+                <li><img src="/portfolio-images/shufflehub.jpg" title="Ecommerce Aggregator - Implemented user interface and analytics." /></li>
+                <li><img src="/portfolio-images/libon.jpg" title="App for messaging, in-browser phone calls and custom voicemail greetings - Worked on automated tests, debugging and feature implementation." /></li>
+                <li><img src="/portfolio-images/sportlobster-events.jpg" title="Social Network - Work on user feed and event pages." /></li>
+                <li><img src="/portfolio-images/makethefuture-gallery.jpg" title="Contract for Digital Agency - Worked on marketing site for Shell's #makethefuture campaign." /></li>
+            </ul>
+        </div>
 
-		<div class="homepage-intro">
-			I'm a London-based web developer building web applications for mobile and desktop.
+
+        <div class="homepage-intro">
+            I'm a London-based web developer and the founder of <a style="color: #44a" href="https://www.debugbear.com/">DebugBear</a>.
+            <br><br>
+            <!--             
             <br><br>
             I've built many websites from scratch, as well as working on larger projects.
-            <br><br>
+            <br><br> -->
             I love working on developer tools.
-            I'm currently building a dynamic analysis tool called <a style="color: #44a;" href="http://www.fromjs.com">FromJS</a>.
-            <br><br>
-            <div style="color: white;background:#333;padding: 16px;">
-              Hire me: <a href="mailto:matt@mostlystatic.com" style="color:white">matt@mostlystatic.com</a>
-            </div>
+            I've recently been building a dynamic analysis tool called <a style="color: #44a;" href="http://www.fromjs.com">FromJS</a>.
+            <br>
+            <!--<br>
+             <div style="color: white;background:#333;padding: 16px;">
+                Hire me: <a href="mailto:matt@mostlystatic.com" style="color:white">matt@mostlystatic.com</a>
+            </div> -->
 
             <div class="me-links">
                 <div>
@@ -69,166 +72,156 @@ pageId: home
                     </div>
                 </div>
             </div>
-		</div>
+        </div>
 
-    <br style="clear:both">
-
-
-	</div>
+        <br style="clear:both">
 
 
-
-  <h2 style="margin-bottom: 2px;" class="recently-worked-for-h2">
-    I've recently done work for these companies:
-  </h2>
-  <ul class="recently-worked-for" style="margin-top: 2px;">
-      <li class="sl">
-          <a href="http://www.sportlobster.com">
-              <img src="/img/recently-worked-for/sportlobster.png">
-          </a>
-      </li>
-      <li class="shufflehub">
-          <a href="http://shufflehub.com" >
-              <img src="/img/recently-worked-for/shufflehub.svg">
-          </a>
-      </li>
-      <li>
-          <a href="http://possible.com">
-              <img src="/img/recently-worked-for/possible.png">
-          </a>
-      </li>
-      <li class="ssg">
-          <a href="http://www.solidstategroup.com">
-              <img src="/img/recently-worked-for/solid-state-group.png">
-          </a>
-      </li>
-      <li  class="">
-          <a href="http://www.orange.com">
-              <img src="/img/recently-worked-for/orange.png">
-          </a>
-      </li>
-  </ul>
-
-	<h2 style="margin-top:35px;">Personal Projects</h2>
+    </div>
 
 
-	{% for weight in (0..100) %}{% comment %}
-		{% endcomment %}{% for project in site.pages %}{% comment %}
-			{% endcomment %}{% if project.group == 'projects' and project.weight == weight %}
-				<div class="clearfix project-item">
-          {% if project.link != "NONE" %}
-  					<a href="{{project.link}}">
-          {% else %}
-            <a href="javascript:void(0);">
-          {% endif %}
-  						<img src="img/{{project.image}}" >
-  						<div class="project-info">
-  							<h2>{{project.projectName}}</h2>
-  							<div class="project-description">
-  								{{project.description}}
-  							</div>
-  							<div class="clearfix technology-list">
-  								{% for tag in project.tags %}
-  									<code>{{tag}}</code>
-  								{% endfor %}
-  							</div>
-  							<button class="view-project" data-href="{{project.link}}">
-  								View project
-  							</button>
-  						</div>
-  					</a>
-				</div>
-			{% endif %}{% comment %}
-		{% endcomment %}{% endfor %}{% comment %}
-	{% endcomment %}{% endfor %}
 
-
-  <div class="more-about-me">
-    <h2>Speaking</h2>
-    <p>
-      I've given talks at several user group meetups, including at FrontEndLondon, London Ajax User Group and  FrontEndgineers.
-    </p>
-    <ul>
-      <li>
-        <a href="/slides/bem-fel.pdf">
-          CSS modules and BEM
-        </a>
-      </li>
-      <li>
-        <a href="/2014/05/11/testing-and-debugging-cross-platform-websites.html">Mobile Debugging Tools</a>
-      </li>
-      <li>
-        <a href="/2015/09/16/react-and-immutable.html">React and Immutable.js</a>
-      </li>
-      <li>
-        Scraping websites with Node
-      </li>
-    </ul>
-    <p>
-        Upcoming talks:
-    </p>
-    <ul>
+    <h2 style="margin-bottom: 2px;" class="recently-worked-for-h2">
+        I've recently done work for these companies:
+    </h2>
+    <ul class="recently-worked-for" style="margin-top: 2px;">
         <li>
-            <a href="https://jsconf.uy">JS Conf Uruguay</a>
-        </li>
-        <li>
-            <a href="http://www.meetup.com/London-JavaScript-Community/events/228132238/">London JavaScript Community</a>
-        </li>
-    </ul>
-    <p>
-        I recently also started making screencasts:
-    </p>
-    <ul>
-        <li>
-            <a href="https://www.youtube.com/watch?v=8OxJnivoewA">Chrome DevTools: Advanced Breakpoints </a>
-        </li>
-        <li>
-            <a href="https://www.youtube.com/watch?v=cwk_ETFC-PQ">Chrome DevTools: Restart Frame</a>
-        </li>
-    </ul>
-  </div>
-
-  <div class="more-about-me">
-    <h2>Recommended blog posts</h2>
-    <ul>
-        <li>
-            <a href="/2016/01/13/running-a-free-front-end-development-course.html">
-                Lessons learned from running a free front-end development course
+            <a href="https://www.strikingly.com">
+                <img src="/img/recently-worked-for/strikingly.png">
             </a>
         </li>
-      <li>
-        <a href="/2015/08/07/building-a-website-with-limited-developer-resources.html">
-          6 tips for building a website with limited developer resources
-        </a>
-      </li>
-      <li>
-        <a href="/2015/03/29/stepping-through-javascript-code-in-chrome.html">
-          Stepping through JavaScript code in Chrome
-        </a>
-      </li>
-      <li>
-        <a href="2015/11/30/not-yet-fallacy-of-startups.html" ga-link-track="homepage-not-yet-fallacy">
-          The "Not Yet" Fallacy of Startups
-        </a>
-      </li>
-      <li>
-        <a href="/2014/09/09/using-mixpanels-engage-api-to-filter-and-count-users.html">
-          Using Mixpanel's Engage API to count users
-        </a>
-      </li>
-      <li>
-        <a href="/2013/10/15/usability-of-the-tubby-custard-machine.html">
-          Usability of the Tubby Custard machine
-        </a>
-      </li>
+        <!-- <li class="sl">
+            <a href="http://www.sportlobster.com">
+                <img src="/img/recently-worked-for/sportlobster.png">
+            </a>
+        </li>
+        <li class="shufflehub">
+            <a href="http://shufflehub.com">
+                <img src="/img/recently-worked-for/shufflehub.svg">
+            </a>
+        </li> -->
+        <li>
+            <a href="http://possible.com">
+                <img src="/img/recently-worked-for/possible.png">
+            </a>
+        </li>
+        <li class="ssg">
+            <a href="http://www.solidstategroup.com">
+                <img src="/img/recently-worked-for/solid-state-group.png">
+            </a>
+        </li>
+        <li class="">
+            <a href="http://www.orange.com">
+                <img src="/img/recently-worked-for/orange.png">
+            </a>
+        </li>
     </ul>
-    <p>
-      You can read <a href="/writing.html">the rest of my blog here</a>.
-    </p>
-  </div>
 
-  <div style="height: 100px;">
-  &nbsp;
-  </div>
+    <h2 style="margin-top:35px;">Personal Projects</h2>
+
+
+    {% for weight in (0..100) %}{% comment %}
+    {% endcomment %}{% for project in site.pages %}{% comment %}
+    {% endcomment %}{% if project.group == 'projects' and project.weight == weight %}
+    <div class="clearfix project-item">
+        {% if project.link != "NONE" %}
+        <a href="{{project.link}}">
+            {% else %}
+            <a href="javascript:void(0);">
+                {% endif %}
+                <img src="img/{{project.image}}">
+                <div class="project-info">
+                    <h2>{{project.projectName}}</h2>
+                    <div class="project-description">
+                        {{project.description}}
+                    </div>
+                    <div class="clearfix technology-list">
+                        {% for tag in project.tags %}
+                        <code>{{tag}}</code>
+                        {% endfor %}
+                    </div>
+                    <button class="view-project" data-href="{{project.link}}">
+                        View project
+                    </button>
+                </div>
+            </a>
+    </div>
+    {% endif %}{% comment %}
+    {% endcomment %}{% endfor %}{% comment %}
+    {% endcomment %}{% endfor %}
+
+
+    <div class="more-about-me">
+        <h2>Speaking</h2>
+        <p>
+            I've given talks at several user group meetups, including at FrontEndLondon, London Ajax User Group and
+            FrontEndgineers.
+        </p>
+        <ul>
+            <li>
+                <a href="/slides/bem-fel.pdf">
+                    CSS modules and BEM
+                </a>
+            </li>
+            <li>
+                <a href="/2014/05/11/testing-and-debugging-cross-platform-websites.html">Mobile Debugging Tools</a>
+            </li>
+            <li>
+                <a href="/2015/09/16/react-and-immutable.html">React and Immutable.js</a>
+            </li>
+            <li>
+                Scraping websites with Node
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="more-about-me">
+        <h2>Recommended blog posts</h2>
+        <ul>
+            <li>
+                <a href="http://www.mattzeunert.com/2018/01/25/v8-javascript-memory-quiz.html">
+                    V8 Memory Quiz
+                </a>
+            </li>
+            <li>
+                <a href="/2016/01/13/running-a-free-front-end-development-course.html">
+                    Lessons learned from running a free front-end development course
+                </a>
+            </li>
+            <li>
+                <a href="/2015/08/07/building-a-website-with-limited-developer-resources.html">
+                    6 tips for building a website with limited developer resources
+                </a>
+            </li>
+            <li>
+                <a href="/2015/03/29/stepping-through-javascript-code-in-chrome.html">
+                    Stepping through JavaScript code in Chrome
+                </a>
+            </li>
+            <li>
+                <a href="2015/11/30/not-yet-fallacy-of-startups.html" ga-link-track="homepage-not-yet-fallacy">
+                    The "Not Yet" Fallacy of Startups
+                </a>
+            </li>
+            <li>
+                <a href="/2014/09/09/using-mixpanels-engage-api-to-filter-and-count-users.html">
+                    Using Mixpanel's Engage API to count users
+                </a>
+            </li>
+            <li>
+                <a href="/2013/10/15/usability-of-the-tubby-custard-machine.html">
+                    Usability of the Tubby Custard machine
+                </a>
+            </li>
+        </ul>
+        <p>
+            You can read <a href="/writing.html">the rest of my blog here</a>.
+        </p>
+    </div>
+
+    <div style="height: 100px;">
+        &nbsp;
+    </div>
 
 </div>
