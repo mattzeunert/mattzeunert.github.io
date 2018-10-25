@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Manually making a HTTP requests in Node.js"
+title: "Manually making an HTTP requests in Node.js"
 date: 2018-10-25
 ---
 
