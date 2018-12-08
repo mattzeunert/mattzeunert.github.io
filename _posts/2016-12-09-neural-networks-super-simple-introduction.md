@@ -324,6 +324,3 @@ There are a few things I've simplified for this article:
 Keep in mind that I don't have the best understanding of neural networks myself. But hopefully you learned something from this article.
 
 If you've got more time to learn about neural networks, go read [the article I mentioned earlier](http://neuralnetworksanddeeplearning.com/chap1.html). It's good, but it requires a bit more thinking.
-
-<script src="http://form.pingmeonce.com/js/pingmeonce.js"></script>
-<iframe src="http://form.pingmeonce.com/ping/5629499534213120" style="width: 100%; border: none;" pingmeonce></iframe>
