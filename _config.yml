@@ -5,7 +5,7 @@ kramdown:
     input: GFM
     syntax_highlighter: rouge
 
-url: http://www.mattzeunert.com
+url: https://www.mattzeunert.com
 
 gems:
   - jekyll-sitemap
