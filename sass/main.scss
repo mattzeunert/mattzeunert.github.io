@@ -206,27 +206,18 @@ a
 }
 .content blockquote {
     margin: 0;
-    padding: 20px;
-    padding-left: 100px;
+    padding: 5px;
+    padding-left: 15px;
     background: #fafafa;
-    padding-right: 200px;
+    padding-right: 150px;
     position: relative;
-    min-height: 110px;
-    padding-top: 30px;
+    
 }
 @media (max-width: 600px) {
   .content blockquote {
-    padding-right: 50px;
+    padding-right: 30px;
   }
 }
-.content blockquote:before {
-    content: '>';
-    position: absolute;
-    left: 30px;
-    font-size: 80px;
-    color: #44a;
-    top: 40px;
-    font-family: serif;      }
 .content .highlight {
   padding: 2px;
   overflow: auto;
