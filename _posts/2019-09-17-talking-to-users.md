@@ -4,7 +4,7 @@ title: "Getting users to talk to you when building a software product"
 date: 2019-09-17
 ---
 
-You've built a product and got a few signups. How do you find out what your users think? Why aren't they upgrading? Or even, why *are* they upgrading?
+So you've built a product and got a few signups. How do you find out what your users think? Why aren't they upgrading? Or even, why *are* they upgrading?
 
 Ideally, users would just reach out to talk about their needs and any issues they ran into when trying out your your product. In practice, that's pretty rare, especially if your product doesn't yet look promising enough for the user to invest their time in.
 
