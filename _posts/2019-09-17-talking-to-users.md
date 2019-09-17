@@ -32,7 +32,7 @@ So in total 15% of people who signed up ended up talking to me on LinkedIn.
 
 You can find people's LinkedIn profiles by email using the [sales navigator link](https://www.linkedin.com/sales/gmail/profile/viewByEmail/matt@mostlystatic.com). If that doesn't work, just search for their name.
 
-## 2. Ask people why they signed up in your welcome email
+## 2. Ask users why they signed up in your welcome email
 
 I got this tip from [a Groove article](https://www.groovehq.com/blog/email-onboarding-optimization). Instead of giving general advice and inviting users to contact you with questions, try to start a conversation with your customer. Asking users why they signed up is something they definitely know the answer to, and knowing that helps you understand what you can do to make the product work for them.
 
@@ -43,6 +43,8 @@ This is what I put in my welcome emails:
 the most out of DebugBear.
 
 Having had an initial human-to-human exchange also helps get feedback from them in the future.
+
+Out of the last 100 signups 7 replied to my welcome email.
 
 ## 3. Proactively message users by chat when they're online
 
