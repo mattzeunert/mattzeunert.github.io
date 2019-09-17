@@ -22,17 +22,17 @@ Most of the time people don't reply to the message you sent with your connection
 
 If you don't hear from the person who created the account, check with any team members they've added to the project. I had one customer sign up for the Corporate plan only to cancel a month later. Even though they had accepted my connection request I didn't hear a word from them. Then I messaged one of their other team members on LinkedIn and found out they only wanted to monitor their website during a one-off front-end performance project.
 
-You can find people's LinkedIn profiles from their email using the [sales navigator link](https://www.linkedin.com/sales/gmail/profile/viewByEmail/matt@mostlystatic.com). If that doesn't work, just search for their name.
-
 How effective is this? I just went through 20 signups from a few months ago: 
 
 - I could find a relevant LinkedIn account for 65% of signups
 - 46% of those people accepted my invitation
 - 50% of users who accepted my invitation messaged me
 
-So in total I talked on LinkedIn with 15% of people who signed up.
+So in total 15% of people who signed up ended up talking to me on LinkedIn.
 
 After going through my LinkedIn messages my key takeaway is that I don't follow up enough after people connect and if they messaged back I don't check in with them again a week or two later.
+
+You can find people's LinkedIn profiles by email using the [sales navigator link](https://www.linkedin.com/sales/gmail/profile/viewByEmail/matt@mostlystatic.com). If that doesn't work, just search for their name.
 
 ## 2. Ask people why they signed up in your welcome email
 

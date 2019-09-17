@@ -198,7 +198,7 @@ a
   text-decoration: none;
 }
 .content {
-  width: 800px;
+  width: 750px;
   max-width: 100%;
 }
 .content a {
@@ -227,7 +227,7 @@ a
 }
 .content p {
   margin-top: 10px;
-  line-height: 1.5em;
+  line-height: 1.6em;
   font-size: 16px;
   @include mobile{
     font-size: 16px;
@@ -255,6 +255,7 @@ a
     text-transform: none;
     font-size: 26px;
     padding-bottom: 6px;
+    line-height: 1.5em;
 }
 @media (max-width: 600px) {
     .content h2 {
