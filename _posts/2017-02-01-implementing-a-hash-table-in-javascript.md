@@ -127,7 +127,7 @@ Let's see how well our hash table is doing.
 
 This test generates 100,000 keys and values, then measures how long it takes to insert (`SET`) and then read (`GET`) them from the hash table.
 
-I took the [`makeid`](http://stackoverflow.com/a/1349426/1290545) function from StackOverflow.
+I took the [`makeid`](https://stackoverflow.com/revisions/1349426/2) function from StackOverflow.
 
 We use [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) and `console.timeEnd` to measure how fast our hash table is.
 
