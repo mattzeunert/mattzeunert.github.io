@@ -8,13 +8,13 @@ Google Compute Engine has a feature that lets you [launch a VM running specific 
 
 At some point I noticed my Google Cloud Storage spend going up an up (the blue bar). I was being billed mostly for "GCP Storage egress between NA and EU".
 
-But, that was weird because I hardly use Cloud Storage, yet I was being billed 140GB of network egress a day. What was going on?
+But that was weird, because I hardly use Cloud Storage, yet I was being billed 140GB of network egress a day. What was going on?
 
 ![Google Cloud Storage spend going up](/img/blog/docker-containers-gcp/increasing-cloud-storage-spend.png)
 
 Eventually I realized that this is the cost of downloading the Docker images from Google Cloud Registry. 
 
-Network egress is free within a region, so initially I never had any issues since the Docker image was in the US, just like my servers. But as I was adding more VMs in other regions I started being billed each time I launched a VM.
+Network egress is free within a region, so initially I never had any issues since the Docker image was in the US, just like my servers. But, as I was adding more VMs in other regions, I started being billed each time I launched a VM.
 
 Running VMs in the UK cost me £2.84 a day, downloading the Docker images cost me £12.20!
 
