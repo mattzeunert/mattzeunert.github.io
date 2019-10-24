@@ -40,7 +40,7 @@ module.exports = function (api) {
 
   return {
     "presets": [
-      ["@babel/env", { "targets": "> 0.25%" }],
+      ["@babel/env", { "targets": "> 0.25%", "useBuiltIns": "usage" }],
       "@babel/preset-react",
       ["@babel/preset-typescript", { "allExtensions": true, "isTSX": true }],
 
@@ -79,7 +79,7 @@ Now you should be able to do a build!
 
 ## Removing Babel Polyfill
 
-If you've been using `@babel/polyfill` you can now remove it. It's deprecated, and `babel-preset-env` will make sure the right polyfills are automatically included.
+If you've been using `@babel/polyfill` you can now remove it. It's deprecated, and `babel-preset-env` will make sure the right polyfills are automatically included if `useBuiltIns` is set to `usage`.
 
 ## Fixing a build failure
 
