@@ -4,7 +4,7 @@ title: "HMRC cancelled my VAT registration, and how it got reinstated"
 date: 2019-10-24
 ---
 
-I started my company [DebugBear](https://www.debugbear.com/) a bit over a year ago, and registered for VAT right after. But then HMRC cancelled my registration and and sorting that out was a huge problem that took over 6 months.
+I started my company [DebugBear](https://www.debugbear.com/) a bit over a year ago, and registered for VAT right after. But then HMRC cancelled my registration and and sorting that out was a huge problem that took over 5 months.
 
 ## Registering for VAT
 
