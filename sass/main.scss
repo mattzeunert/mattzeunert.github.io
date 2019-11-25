@@ -23,9 +23,16 @@
     -webkit-font-smoothing: antialiased;
 }
 
-.content td, .content th{
+.content td {
 
-    border: 1px solid #bbb;
+    border: 1px solid #ddd;
+}
+.content th {
+  text-align: left;
+  background: #1551af;
+  border: 1px solid #1551af;
+  color: white;
+  padding: 4px;
 }
 .content td:first-child{
     text-align: left;
@@ -270,6 +277,8 @@ a
   color: #161f67;
     
 }
+
+
 
 .content img{
   border: 1px solid #ccc;
