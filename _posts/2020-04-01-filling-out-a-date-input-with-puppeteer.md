@@ -6,13 +6,13 @@ date: 2020-04-01
 
 As part of an end-to-end test I recently need to fill out an `input type="date"` field in Chrome using [Puppeteer](https://github.com/puppeteer/puppeteer).
 
-Fundamentally it's pretty straightforward, just type in the numbers like you would as a user. The slashes are handled by the browser:
+Fundamentally it's straightforward, just type in the numbers like you would as a user. The slashes are handled by the browser:
 
 ```
 await page.type("input", "01042020") // 1st of April 2020
 ```
 
-This would work fine on my laptop with a UK locale, but it would break on the CI server in the US, which need a date beginning with the month: `04 01 2020`.
+This would work fine on my laptop with a UK locale, but it would break on the CI server in the US, which needs a date beginning with the month: `04 01 2020`.
 
 To get the localized format we can use `toLocaleDateString`:
 
