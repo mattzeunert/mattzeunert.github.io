@@ -52,3 +52,5 @@ await page.type("input", dateString)")
 ```
 
 And this finally worked both on my computer and an the CI server!
+
+![Satisfied seal when their build finally passes again](/img/blog/puppeteer-date-field/commit-seal.png)
