@@ -12,7 +12,7 @@ Fundamentally it's pretty straightforward, just type in the numbers like you wou
 await page.type("input", "01042020") // 1st of April 2020
 ```
 
-This will work fine on my laptop with a UK locale. But it will break on the CI server in the US, which needs the month before the day: `04 01 2020`.
+This will work fine on my laptop with a UK locale. But it will break on the CI server in the US, which needs to begin with the month: `04 01 2020`.
 
 To get the localized format we can use `toLocaleDateString`:
 
@@ -27,7 +27,7 @@ Luckily we're already using Puppeteer and have a Chrome instance running. We can
 ```
 let dateString = await page.evaluate(
     d => new Date(d).toLocaleDateString(),
-    // pass date value from Node to Chrome as `d` parameter
+    // pass date value from Node to Chrome as the `d` parameter
     date.toISOString()
 );
 await page.type("input", dateString)")
