@@ -64,9 +64,8 @@ function convert() {
         var before = document.querySelector("#before")
         var after = document.querySelector("#after")
         var withoutLineBreaks = before.value.replace(/\n\n/g, '\n').replace(/\n\n/gi, '\n').trim()
-        var withoutLonelyTimestamps = withoutLineBreaks.replace(/\n\s*\[[\dA-Z: ]+\]\s*\n/gm, '\n')
-        var withoutAnyTimestamps = withoutLonelyTimestamps.replace(/[[\dA-Z: ]+\] \n/g, ': ')
-        after.value = withoutAnyTimestamps    
+        var withoutLonelyTimestamps = withoutLineBreaks.replace(/\n\s*[\dA-Z: ]+\s*\n/gm, '\n')
+        after.value = withoutLonelyTimestamps
     })
 }
 
