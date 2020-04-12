@@ -8,7 +8,18 @@ Checking if two JavaScript objects are equal to see if you need to update the UI
 
 This post compares Node's [deepEqual](https://www.npmjs.com/package/deep-equal) with a `JSON.stringify` based comparison in terms of performance and behavior.
 
-# Reference equality, shallow equality and deep equality
+## Warning: JSON.stringify may return different strings for two deep equal objects
+
+If the two objects are created in different ways the order of the keys will be different:
+
+{% highlight javascript %}
+JSON.stringify({a: 1, b: 2}) !== JSON.stringify({b: 2, a: 1})
+`{"a":1,"b":2}` !== `{"b":2,"a":1}`
+{% endhighlight %}
+
+Also note that the JavaScript does not guarantee for the keys to be in a particular order, though in practice the order is consistent.
+
+## Reference equality, shallow equality and deep equality
 
 First of all, let's look at why we need a deep comparison instead of just using `===`.
 
