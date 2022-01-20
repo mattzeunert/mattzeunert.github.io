@@ -198,4 +198,4 @@ Here are a few examples of how other businesses of various sizes handle bank tra
 
 ## Notes
 
-Someone mentioned that you it's possible to mostly automated the bank transfers and reconciliation. I think this makes sense if bank transfers are your main payment methods and don't involve a resource-intensive procurement process.
+Someone mentioned that it's possible to mostly automate the bank transfers and reconciliation. I think this makes sense if bank transfers are your main payment methods and don't involve a resource-intensive procurement process.
