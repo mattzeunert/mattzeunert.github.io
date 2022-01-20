@@ -234,8 +234,10 @@ a
 }
 .content p {
   margin-top: 10px;
-  line-height: 1.6em;
+}
+.content p, .content li {
   font-size: 18px;
+  line-height: 1.6em;
   @include mobile{
     font-size: 16px;
   }

@@ -23,7 +23,7 @@ This is written mostly from a European perspective, but I assume also applies to
 
 ## Why bank transfers are generally worse than card payments
 
-### Bank transfers requires time to handle
+### Bank transfers take time to handle
 
 This is my current process for credit card payments:
 
