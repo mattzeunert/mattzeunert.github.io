@@ -51,7 +51,7 @@ Some of this could be automated if I was willing to invest time in it. Generatin
 
 You've got a customer asking to pay by bank transfer, so all you have to do is send the invoice and wait, right?
 
-Sometimes this works. But the sale is now no longer self-service and **asking to pay by bank transfer can be the start a longer purchase process**.
+Sometimes this works. But **the sale is now no longer self-service** and asking to pay by bank transfer can be the start a longer purchase process.
 
 For example, you might be asked to:
 
