@@ -3,6 +3,7 @@ layout: post
 title: Should B2B SaaS businesses accept payment by bank transfer?
 date: 2022-01-20
 ogDescription: SaaS billing is usually self-service and paid by credit card. But sometimes customers ask to pay by bank transfer instead. This article looks at the downsides of that and how to handle those requests.
+ogImage: saas-bank-transfer.png
 ---
 
 Many Software-as-a-service (SaaS) apps are entirely self-service: customers buy a subscription by entering their credit card details, without ever talking to anyone at the company.
@@ -20,9 +21,9 @@ This post will:
 
 This is written mostly from a European perspective, but I assume also applies to US ACH/wire transfers.
 
-## Why payment by bank transfer is generally worse than by card
+## Why bank transfers are generally worse than card payments
 
-### It requires time to handle
+### Bank transfers requires time to handle
 
 This is my current process for credit card payments:
 
@@ -46,7 +47,7 @@ In the best case, a bank transfer goes like this:
 
 Some of this could be automated if I was willing to invest time in it. Generating all invoices through Chargebee would help, though it would also increase the fees I have to pay.
 
-### It starts a purchase process
+### Asking for invoiced billing starts a purchase process
 
 You've got a customer asking to pay by bank transfer, so all you have to do is send the invoice and wait, right?
 
@@ -97,7 +98,7 @@ For manual invoices, I have to include the invoice in the quarterly zip file I s
 
 As I generate some invoices manually, the revenue numbers reported by Chargebee don't cover all of my revenue. For example, to get the monthly recurring revenue (MRR) number I have to add monthly revenue from manual invoices to the Chargebee MRR figure.
 
-### Wrong payment amount
+### Wrong payment amounts
 
 Once a customer paid the amount stated on the invoice, but their bank took off a £7 processing fee. Not a big deal, and not worth asking for a full payment.
 

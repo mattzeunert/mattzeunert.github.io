@@ -6,9 +6,16 @@
     <link href="/sass/main.css" rel="stylesheet"></link>
     <meta name="viewport" content="width=device-width">
     <meta charset="utf-8">
+
+    <meta property="og:title" content="{{page.title}}" />
+    <meta name="twitter:card" content="summary_large_image" />
     {{#if page.ogDescription}}
-    <meta property="og:description" content="{{ogDescription}}" />
-    <meta name="description" content="{{ogDescription}}"/>
+    <meta property="og:description" content="{{page.ogDescription}}" />
+    <meta name="description" content="{{page.ogDescription}}"/>
+    <meta content="{{page.ogDescription}}" name="twitter:description">
+    {{/if}}
+    {{#if page.ogImage}}
+    <meta property="og:image" content="/ogImages/{{page.ogImage}}" />
     {{/if}}
 	</head>
 	<body>
