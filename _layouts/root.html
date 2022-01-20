@@ -6,6 +6,10 @@
     <link href="/sass/main.css" rel="stylesheet"></link>
     <meta name="viewport" content="width=device-width">
     <meta charset="utf-8">
+    {{#if page.ogDescription}}
+    <meta property="og:description" content="{{ogDescription}}" />
+    <meta name="description" content="{{ogDescription}}"/>
+    {{/if}}
 	</head>
 	<body>
 		<header>
