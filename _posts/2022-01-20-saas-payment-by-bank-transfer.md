@@ -39,7 +39,7 @@ In the best case, a bank transfer goes like this:
 1. Customer asks to pay by bank transfer
 2. I answer and explain options (e.g. annual plans only)
 3. Customer agrees
-4. I manually generate an invoice in Google docs
+4. I manually generate an invoice in Google Docs
 5. I email the invoice to the customer
 6. I manually activate their subscription
 7. The money arrives in my bank account a week later
@@ -162,7 +162,7 @@ Sending manual invoices **monthly would multiply the work you have to do by 12**
 
 My current policy is that payment by bank transfer is only an option if you're at least on the $199/mo plan. So $2,388 a year.
 
-Sometimes I give in though if I don't want to lose a sale. In the future I want to try sticking to the minimum payment value by offering 2-year or 3-year contracts.
+Sometimes I give in though, if I don't want to lose a sale. In the future I want to try sticking to the minimum payment value by offering 2-year or 3-year contracts.
 
 ### Charge extra
 
@@ -195,3 +195,7 @@ Here are a few examples of how other businesses of various sizes handle bank tra
 - **[Timetastic](https://timetastic.co.uk/)** only supports [payment by card](https://help.timetastic.co.uk/hc/en-us/articles/360020034837-Payments-and-invoices) and says that, given their business model, they ["don't have the resource to complete [supplier] forms"](https://help.timetastic.co.uk/hc/en-us/articles/115003288769-Supplier-forms-IT-questionnaires).
 - **[Buffer](https://buffer.com/)** also [only allows card payments](https://support.buffer.com/hc/en-us/articles/360038244493-Accepted-payment-methods).
 - **[Slack](https://slack.com/intl/en-gb/)** requires a [minimum invoice amount of $5,000](https://slack.com/intl/en-gb/help/articles/360002038947-Supported-payment-methods#pay-by-invoice) with payment due within 30 days.
+
+## Notes
+
+Someone mentioned that you it's possible to mostly automated the bank transfers and reconciliation. I think this makes sense if bank transfers are your main payment methods and don't involve a resource-intensive procurement process.
