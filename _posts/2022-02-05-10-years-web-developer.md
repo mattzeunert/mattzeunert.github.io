@@ -560,7 +560,7 @@ I wasn't great at running the business early on, and I think I compensated by pu
 
 #### Funding
 
-I have not taken any external funding so far, but put in about £15k in savings over the first two years. This wasn't essential, but because of the contract work I was sometimes time-constrained but I did have enough money to pay for ads, cloud hosting, or a coworking space.
+I have not taken any external funding so far, but did put in about £15k in savings over the first two years. This wasn't essential, but because of the contract work I was sometimes time-constrained but I did have enough money to pay for ads, cloud hosting, or a coworking space.
 
 I occasionally applied to accelerators, but other than that never seriously tried to raise funding. That's mostly because I have no idea how to do that, and spending time figuring out how to fundraise felt like a distraction from improving the business.
 
