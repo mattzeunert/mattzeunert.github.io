@@ -695,5 +695,3 @@ Downsides of not getting a degree:
 * Less commitment means having to make more choices, more potential to make bad ones, and a less clearly defined early career path
 
 While it would be nice to have a degree, I think I would have found studying for three years too boring at the time.
-
-test
