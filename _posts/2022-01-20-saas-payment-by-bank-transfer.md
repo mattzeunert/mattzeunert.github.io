@@ -66,6 +66,10 @@ Manual work also makes it easy to make mistakes, especially if you're small and 
 
 For example, I once didn't realize a buyer was also in the located in the UK, and quoted them the price excluding VAT. Charging VAT makes no difference to the buyer financially, but the purchase order stated the VAT exclusive amount and I had to check that they were still good to go ahead and pay the invoice that's inclusive of VAT.
 
+### Taking phone calls
+
+Sometimes customers want to confirm your phone number as part of the vendor registration process, or they want you to confirm your bank details over the phone before making a payment.
+
 ### It takes longer to get paid
 
 Self-service subscriptions are paid upfront by credit card. Payment by bank transfer usually takes about a month after approval.
@@ -151,6 +155,8 @@ It keeps your business simple, and is a good approach if you can afford to lose 
 If you're selling a B2C product for $20 a year then this seems like the obvious way to go. If your average annual contract value (ACV) is $100,000 then accepting bank transfers should also be an easy decision.
 
 In the future I also want to push back more on custom payment terms and requests to fill out forms.
+
+Update: this has worked quite well for me so far, everyone was able to find a card they can use eventually.
 
 ### Annual only
 
