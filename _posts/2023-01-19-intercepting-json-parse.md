@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Overwriting native JavaScript functions and intercepting JSON.parse
-date: 2023-01-18
+date: 2023-02-14
 ogDescription: Overwriting native JavaScript functions is easy. This article looks at three examples where I found wrapping the native JSON.parse method useful.
 ---
 
@@ -45,16 +45,84 @@ You can do the same for `JSON.stringify`.
 
 ## Showing additional data on PageSpeed Insights
 
-aa
+When building our [site speed Chrome extension](https://chrome.google.com/webstore/detail/site-speed-by-debugbear/peomeonecjebolgekpnddgpgdigmpblc) we used `JSON.parse` interception to surface additional details that PageSpeed Insights doesn't show by default.
+
+![Additional metrics](https://user-images.githubusercontent.com/1303660/218876603-18df9bbe-4951-4754-a2c5-fe2ba49c2fe0.png)
+
+We just had to add this (simplified) content script:
+
+```javascript
+const parse = JSON.parse;
+JSON.parse = function () {
+  const ret = parse.apply(this, arguments);
+  const str = (arguments[0] || "");
+  if (str.includes("observedLargestContentfulPaint")) {
+    const {
+      observedLargestContentfulPaint,
+    } = ret.audits.metrics.details.items[0];
+
+    setMetrics({ observedLargestContentfulPaint });
+  }
+
+  return ret;
+};
+```
 
 ## Collecting a list of extensions from the Chrome Web Store
 
+Before [testing the performance impact of the 1000 most popular Chrome extensions](https://www.debugbear.com/blog/chrome-extension-performance-2021), I first had to find out what the most popular Chrome extensions are.
 
-benchmark
+To see all extensions you can simply scroll through the category pages on the Chrome Web Store. We can automate that with `setInterval`.
 
-find api data
+Now we need to pick up the extension – again we can detect when a list of extensions is parsed and then add them to `allExtensions`.
 
-collect chrome extensions
+```javascript
+setInterval(() => document.documentElement.scrollTop = 999999999999, 2000)
 
+let allExtensions = [];
 
-## Overwriting native functions in practice, limits (history), 
+const nativeJSONParse = JSON.parse;
+JSON.parse = function (str) {
+  const parsedObj = nativeJSONParse.apply(JSON, arguments);
+  try {
+    if (parsedObj[0][1][1][0][0].length === 32) {
+      const extensions = parsedObj[0][1][1]
+        .map((ext) => {
+          if (!ext || !ext[0] || !ext[0].length || ext[0].length !== 32) {
+            return;
+          }
+          return {
+            id: ext[0],
+            name: ext[1],
+            author: ext[2],
+            smallImage: ext[3],
+            description: ext[6],
+            category: ext[10],
+            rating: ext[12],
+            installs: ext[23],
+          };
+        })
+        .filter((e) => !!e);
+
+      allExtensions = [...allExtensions, ...newExtensions];
+    }
+  } catch (err) {}
+
+  return parsedObj;
+};
+```
+
+## Overwriting native functions in practice
+
+We've seen three examples where changing native functions is helpful. However there are a few things to be aware of.
+
+First, it's usually important to not change the behavior of the function. That means calling through to the original and making sure to return the return value. You also need to be careful with infinite recursion, for example if you're overwriting `console.log`.
+
+While you can often reassign a function, for property getters and setters you need to use `Object.defineProperty`. For example, that's the case if you want to `Element.prototype.scrollTop`.
+
+Some properties can't be overwritten, for example `location.href`.
+
+```
+Object.defineProperty(location, "href", { get: () => "test" })
+//  Uncaught TypeError: Cannot redefine property: href
+```
