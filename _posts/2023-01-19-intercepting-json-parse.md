@@ -3,6 +3,8 @@ layout: post
 title: Overwriting native JavaScript functions and intercepting JSON.parse
 date: 2023-02-14
 ogDescription: Overwriting native JavaScript functions is easy. This article looks at three examples where I found wrapping the native JSON.parse method useful.
+ogImage: https://user-images.githubusercontent.com/1303660/218879502-9529aef6-ebeb-4ed0-80c2-cee8bcf0ccb8.png
+
 ---
 
 One thing I enjoy about working with JavaScript is how easy it is to override native methods. If you want to you can just overwrite `document.createElement`, `window.setTimeout`, or `Element.prototype.scrollTop`.
