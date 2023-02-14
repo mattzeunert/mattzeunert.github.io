@@ -14,9 +14,12 @@
     <meta name="description" content="{{page.ogDescription}}"/>
     <meta content="{{page.ogDescription}}" name="twitter:description">
     {{/if}}
-    {{#if page.ogImage}}
+    {%if page.ogImage %}
     <meta property="og:image" content="https://www.mattzeunert.com/ogImages/{{page.ogImage}}" />
-    {{/if}}
+    {% endif %}
+    {%if page.ogImageAbs %}
+    <meta property="og:image" content="{{page.ogImageAbs}}" />
+    {% endif %}
 	</head>
 	<body>
 		<header>
