@@ -35,7 +35,7 @@ background: black;
 <button id="full-toc-btn" onClick="this.remove(); document.querySelector('#full-toc-adjacent + ol').style.display = 'block';document.querySelector('#small-toc-adjacent + ol').style.display = 'none'">Show full TOC</button>
 
 <style>
-\#full-toc-adjacent + ol {
+#full-toc-adjacent + ol {
 display: none;
 }
 </style>
