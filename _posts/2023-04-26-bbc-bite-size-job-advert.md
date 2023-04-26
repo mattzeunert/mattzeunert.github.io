@@ -53,7 +53,7 @@ The job spec says you need to be able to speak a second language? But why is tha
 
 They're not asking for a specific second language, so it doesn't sound like you need to speak a language to communicate with other staff or suppliers. Maybe they're asking because they want to research how communication between polar bears is impacted by environmental changes.
 
-Suppose you only speak English but have been studying communication among polar bears or other emails for 10 years. You might be the world's most experienced researcher of polar bear communication, but the job "requirements" would rule you out.
+Suppose you only speak English but have been studying communication among polar bears or other animals for 10 years. You might be the world's most experienced researcher of polar bear communication, but the job "requirements" would rule you out.
 
 ## Skills are not binary
 
